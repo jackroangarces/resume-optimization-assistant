@@ -1,19 +1,17 @@
 .navbar {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: left;
     background-color: #1D2F6F;
+    align-items: center;
     color: white;
 }
 
-.navbar-left h1 {
-    display: inline;
+.logo {
+  width: 5rem;
 }
 
 .navbar-center {
-    display: inline;
-    margin-left: 0;
-    align-items: left;
+    margin-left: .5rem;
 }
 
 footer {
