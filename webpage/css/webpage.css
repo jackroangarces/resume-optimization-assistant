@@ -59,6 +59,15 @@
   font-size: larger;
 }
 
+.templates a {
+  text-decoration: none;
+  color: black;
+}
+
+.templates a:hover {
+  color: #1D2F6F;
+}
+
 .templateContainer {
   display: flex;
   justify-content: center;
@@ -68,15 +77,11 @@
 
 .templateCard {
   text-align: center;
+  border: solid 1px black;
 }
 
 .templateIMG {
   width: 30rem;
-}
-
-.templateText {
-  text-decoration: none;
-  color: black;
 }
 
 /* --------- CHATBOT --------- */
