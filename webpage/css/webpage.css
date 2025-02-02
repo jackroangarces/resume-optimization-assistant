@@ -1,11 +1,18 @@
-/* NAVBAR */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --------- NAVBAR --------- */
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    background-color: #1D2F6F;
-    align-items: center;
-    color: white;
+  display: flex;
+  justify-content: space-between;
+  background-color: #1D2F6F;
+  border-color: #1D2F6F;
+  align-items: center;
+  color: white; 
 }
 
 .navbar-left {
@@ -13,9 +20,13 @@
   margin: .5rem;
 }
 
-h1 {
-  font-size: 2rem;
-  padding: .5rem;
+.title {
+  display: none;
+}
+
+.titleAcronym {
+  font-size: 4rem;
+  padding-left: .5rem;
   margin: auto;
 }
 
@@ -33,7 +44,99 @@ h1 {
   display: none;
 }
 
+/* --------- TEMPLATE --------- */
 
+.templates {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 5rem;
+}
+
+.templates header {
+  display: flex;
+  margin: 1rem 100%;
+  font-size: larger;
+}
+
+.templateContainer {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  border: solid 1px black;
+}
+
+.templateCard {
+  text-align: center;
+}
+
+.templateIMG {
+  width: 30rem;
+}
+
+.templateText {
+  text-decoration: none;
+  color: black;
+}
+
+/* --------- CHATBOT --------- */
+
+.chatBot {
+  display: flex;
+  margin: 2em;
+  background-color: #cccccc;
+  border-radius: 20%;
+  align-items: flex-end;
+}
+
+.chatBot header {
+  justify-content: center;
+}
+
+/* --------- FOOTER --------- */
+
+footer {
+  background-color: #f9e9ec;
+  color: black;
+  padding: 1rem;
+  font-size: 0.9rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+  
+footer a {
+  text-decoration: none;
+}
+  
+footer a:hover {
+  text-decoration: underline;
+}
+  
+.footer-content {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  text-align: left;
+  gap: 1rem; 
+}
+
+@media (min-width: 598px) {
+  .titleAcronym {
+    display: none;
+  }
+  
+  .title {
+    display: inline;
+    font-size: 2rem;
+    padding: .5rem;
+    margin: auto;
+  }
+}
+  
 @media (min-width: 768px) {
   .navbar-right {
     width: 10rem;
@@ -42,53 +145,31 @@ h1 {
   #hamburger-menu {
     display: none;
   }
-
+  
   #nav-links-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: right;
   }
-  
+    
   #nav-links {
     justify-content: right;
     color: white;
     text-decoration: none;
     margin-right: 1rem;
   }
-
+  
   #nav-links:hover {
     color: #f9e9ec;
     text-decoration: underline;
   }
 }
-
-/* FOOTER */
-
-footer {
-    background-color: #f9e9ec;
-    color: black;
-    padding: 1rem;
-    font-size: 0.9rem;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-  }
   
-  footer a {
-    text-decoration: none;
-  }
+@media (min-width: 992px) {
+    
+}
   
-  footer a:hover {
-    text-decoration: underline;
-  }
+@media (min-width: 1200px) {
+    
+}
   
-  .footer-content {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    text-align: left;
-    gap: 1rem; 
-  }
