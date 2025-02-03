@@ -4,11 +4,24 @@
   padding: 0;
 }
 
-/* --------- FONT-FAMILY --------- */
+/* --------- FONT-FAMILY, GENERAL HEADINGS, SPACING --------- */
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
 
 body {
   font-family: 'Arial', sans-serif;
   background-color: #E3EAFD;
+}
+
+main {
+  min-height: 82vh; /* "main" takes up whole viewport always (accounting for navbar size) */
+}
+
+h1 {
+  font-size: 2rem;
 }
 
 /* --------- NAVBAR --------- */
@@ -106,6 +119,106 @@ body {
   justify-content: center;
 }
 
+/* --------- HOME PAGE --------- */
+
+#homepage .container h1 {
+  margin-bottom: 1rem;
+}
+
+#homepage .container h2 {
+  margin-bottom: 1rem;
+}
+
+#homepage .container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+  padding: 2rem;
+}
+
+#homepage .card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 64rem;
+  padding: 1rem;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  overflow: hidden;
+  margin-top: 3rem;
+  align-self: center;
+}
+
+#homepage .card-image {
+  width: 100%;
+  border-radius: 0.75rem;
+}
+
+#homepage .button {
+  display: inline-block;
+  padding: 1rem 3rem;
+  background-color: #1D2F6F;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: bold;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+  text-align: left;
+  padding-left: 1rem;
+}
+
+#homepage .button:hover {
+  background-color: #0056b3;
+}
+
+/* --------- MY RESUMES PAGE --------- */
+
+#myresumes .card-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+#myresumes .card {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 200px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+#myresumes .card:hover {
+  transform: translateY(-10px);
+}
+
+#myresumes .card-image {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+#myresumes .card-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+#myresumes .last-modified {
+  font-size: 0.8rem;
+  color: #888;
+}
+  
 /* --------- FOOTER --------- */
 
 footer {
@@ -119,7 +232,7 @@ footer {
   right: 0;
   width: 100%;
 }
-  
+
 footer a {
   text-decoration: none;
 }
@@ -135,6 +248,45 @@ footer a:hover {
   align-items: flex-start;
   text-align: left;
   gap: 1rem; 
+}
+
+/* --------- LOG IN --------- */
+
+form {
+  border: solid;
+  border-radius: 10px;
+  text-align: center;
+  margin: auto;
+  margin-top: 1.5rem;
+  width: fit-content;
+  background-color: #cccccc;
+}
+
+.insert-user {
+  padding-top: 2rem;
+}
+
+.insert-pass {
+  padding-top: 1rem;
+}
+
+#email, #password {
+  font-size: larger;
+  width: 100%;
+}
+
+h1, .forgot-password {
+  text-align: left;
+}
+
+.forgot-password {
+  font-size: small;
+  padding-top: 0.25rem;
+  color: #1d2f6f;
+}
+
+.container {
+  margin: 1rem;
 }
 
 /* --------- MEDIA QUERIES --------- */
