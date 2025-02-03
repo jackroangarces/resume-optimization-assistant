@@ -98,6 +98,45 @@
   justify-content: center;
 }
 
+/* --------- LOG IN --------- */
+
+form {
+  border: solid;
+  border-radius: 10px;
+  text-align: center;
+  margin: auto;
+  margin-top: 1.5rem;
+  width: fit-content;
+  background-color: #cccccc;
+}
+
+.insert-user {
+  padding-top: 2rem;
+}
+
+.insert-pass {
+  padding-top: 1rem;
+}
+
+#email, #password {
+  font-size: larger;
+  width: 100%;
+}
+
+h1, .forgot-password {
+  text-align: left;
+}
+
+.forgot-password {
+  font-size: small;
+  padding-top: 0.25rem;
+  color: #1d2f6f;
+}
+
+.container {
+  margin: 1rem;
+}
+
 /* --------- FOOTER --------- */
 
 footer {
