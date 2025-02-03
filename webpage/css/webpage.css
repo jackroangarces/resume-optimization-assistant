@@ -4,6 +4,13 @@
   padding: 0;
 }
 
+/* --------- FONT-FAMILY --------- */
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #E3EAFD;
+}
+
 /* --------- NAVBAR --------- */
 
 .navbar {
@@ -42,6 +49,7 @@
 
 #nav-links-container {
   display: none;
+  font-size: 0.9rem;
 }
 
 /* --------- TEMPLATE --------- */
@@ -98,45 +106,6 @@
   justify-content: center;
 }
 
-/* --------- LOG IN --------- */
-
-form {
-  border: solid;
-  border-radius: 10px;
-  text-align: center;
-  margin: auto;
-  margin-top: 1.5rem;
-  width: fit-content;
-  background-color: #cccccc;
-}
-
-.insert-user {
-  padding-top: 2rem;
-}
-
-.insert-pass {
-  padding-top: 1rem;
-}
-
-#email, #password {
-  font-size: larger;
-  width: 100%;
-}
-
-h1, .forgot-password {
-  text-align: left;
-}
-
-.forgot-password {
-  font-size: small;
-  padding-top: 0.25rem;
-  color: #1d2f6f;
-}
-
-.container {
-  margin: 1rem;
-}
-
 /* --------- FOOTER --------- */
 
 footer {
@@ -144,7 +113,7 @@ footer {
   color: black;
   padding: 1rem;
   font-size: 0.9rem;
-  position: fixed;
+  position: relative;
   bottom: 0;
   left: 0;
   right: 0;
@@ -167,6 +136,8 @@ footer a:hover {
   text-align: left;
   gap: 1rem; 
 }
+
+/* --------- MEDIA QUERIES --------- */
 
 @media (min-width: 598px) {
   .titleAcronym {
