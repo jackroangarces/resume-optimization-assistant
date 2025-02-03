@@ -205,6 +205,11 @@ h1 {
 
 /* --------- MY RESUMES PAGE --------- */
 
+#myresumes h2 {
+  text-align: center;
+  margin-top: 1rem;
+}
+
 #myresumes .card-container {
   display: flex;
   justify-content: space-evenly;
@@ -288,6 +293,11 @@ form {
   background-color: #cccccc;
 }
 
+.sign-up {
+  font-size: 3rem;
+  font-weight: 400;
+}
+
 .insert-user {
   padding-top: 2rem;
 }
@@ -301,14 +311,15 @@ form {
   width: 100%;
 }
 
-h1, .forgot-password {
-  text-align: left;
-}
-
 .forgot-password {
   font-size: small;
   padding-top: 0.25rem;
   color: #1d2f6f;
+  text-align: left;
+}
+
+.or {
+  font-size: larger;
 }
 
 .container {
