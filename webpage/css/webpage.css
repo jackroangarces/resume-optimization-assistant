@@ -67,56 +67,82 @@ h1 {
 
 /* --------- TEMPLATE --------- */
 
+.templatesHeader {
+  font-size: larger;
+  text-align: center;
+  margin: 1rem;
+}
+
 .templates {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   margin-bottom: 5rem;
-}
-
-.templates header {
-  display: flex;
-  margin: 1rem 100%;
-  font-size: larger;
 }
 
 .templates a {
   text-decoration: none;
-  color: black;
+  color: white;
+  margin: 1rem;
 }
 
 .templates a:hover {
   color: #1D2F6F;
+
 }
 
 .templateContainer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   padding: 1rem;
-  border: solid 1px black;
 }
 
 .templateCard {
+
+  flex-wrap: wrap;
+  margin: 1rem;
   text-align: center;
   border: solid 1px black;
+  max-width: 25rem;
+  background-color: #888;
 }
 
 .templateIMG {
-  width: 30rem;
+  max-width: 25rem;
+  max-height: 30rem;
 }
 
 /* --------- CHATBOT --------- */
 
 .chatBot {
-  display: flex;
   margin: 2em;
   background-color: #cccccc;
-  border-radius: 20%;
-  align-items: flex-end;
+  border-radius: 5%;
+  height: 30rem;
+  border: 1px solid black;
 }
 
 .chatBot header {
+  display: flex;
   justify-content: center;
+  margin: 1rem;
+  font-size: larger;
+}
+
+.chatInput {
+  display: flex;
+  justify-content: space-between;
+  background-color: #888;
+  margin-top: 24.5rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  border-radius: 10%;
+  border: 1px solid black;
+}
+
+.chatInput img {
+  width: 1rem;
 }
 
 /* --------- HOME PAGE --------- */
