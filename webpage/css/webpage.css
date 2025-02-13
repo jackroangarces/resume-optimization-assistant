@@ -298,11 +298,7 @@ form {
   font-weight: 400;
 }
 
-.insert-user {
-  padding-top: 2rem;
-}
-
-.insert-pass {
+.user-input {
   padding-top: 1rem;
 }
 
@@ -311,14 +307,15 @@ form {
   width: 100%;
 }
 
-.forgot-password {
+div .forgot-password {
   font-size: small;
   padding-top: 0.25rem;
   color: #1d2f6f;
   text-align: left;
+  margin-left: 0;
 }
 
-.or {
+.ors {
   font-size: larger;
 }
 
@@ -343,7 +340,7 @@ form {
 }
 
 .sign-in:hover {
-  background-color: #123165;
+  background-color: #E3EAFD;
 }
 
 .register {
