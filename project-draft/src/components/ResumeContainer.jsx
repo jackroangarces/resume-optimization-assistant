@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function ResumeContainer() {
+export function ResumeContainer(resume) {
     return (
         <div className="card">
             <img src="img/foster-resume-template.png" alt="Resume Preview" className="card-image"></img>
@@ -10,7 +10,7 @@ export function ResumeContainer() {
     );
 };
 
-export function TemplateContainer() {
+export function TemplateContainer(template) {
     return (
         <div className="card">
             <img src="img/foster-resume-template.png" alt="Resume Preview" className="card-image"></img>
