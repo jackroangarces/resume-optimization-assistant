@@ -6,9 +6,7 @@ export function Navbar(props) {
     return (
         <nav className="navbar">
             <div className="navbar-left">
-                <Link to="/home">
-                    <img id="logo" src="img/website_icon.jpeg" alt="Website Icon" />
-                </Link>
+                <Link to="/home"><img id="logo" src="img/website_icon.jpeg" alt="Website Icon" /></Link>
                 <h1 className="title">Resume Optimization System</h1>
                 <h1 className="title-acronym">ROS</h1>
             </div>
