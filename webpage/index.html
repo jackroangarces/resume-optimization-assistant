@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
         <div class="navbar-left">
             <a href="index.html">
                 <img id="logo" src="img/website_icon.jpeg" alt="Website Icon">
@@ -23,9 +23,9 @@
 
         </div>
         <div class="navbar-right">
-            <div id="nav-menu">
+            <button id="hamburger-menu" aria-label="Open navigation menu for mobile devices">
                 <img id="hamburger-menu" src="img/hamburger.png">
-            </div>
+            </button>
             <div id="nav-links-container">
                 <a id="nav-links" href="ai.html">AI Resume Optimizer</a>
                 <a id="nav-links" href="my-resumes.html">My Resumes</a>
@@ -40,7 +40,7 @@
             <div class="container">
                 <h1>Start building your astonishing resume now!</h1>
                 <h2>Free, easy access to optimization tools</h2>
-                <a href="login.html" class="button">Get Started</a>
+                <a href="login.html" class="button" aria-label="Start building your resume now">Get Started</a>
                 <div class="card">
                     <img src="img/screen_grab_mockup.png" alt="Website Features Preview" class="card-image">
                 </div>
@@ -49,9 +49,11 @@
     </main>
 
     <footer>
+        <nav aria-label="Footer Navigation"></nav>
         <div class="footer-content">
             <p>&copy; 2025 Resume Optimization System</p>
-            <p>Contact: <a href="mailto:info@ros.com">info@ros.com</a></p>
+            <p>Contact: <a href="mailto:info@ros.com" aria-label="Send an email to info@ros.com">info@ros.com</a></p>
         </div>
+        </nav>
     </footer>
 </body>
