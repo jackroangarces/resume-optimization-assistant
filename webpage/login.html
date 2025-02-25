@@ -13,10 +13,10 @@
 <body>
 
     <!-- Navigation Bar -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
         <div class="navbar-left">
-            <a href="index.html">
-                <img id="logo" src="img/website_icon.jpeg">
+            <a href="index.html" aria-label="Go to homepage">
+                <img id="logo" src="img/website_icon.jpeg" alt="Website Logo">
             </a>
             <h1 class="title">Resume Optimization System</h1>
             <h1 class="title-acronym">ROS</h1>
@@ -25,40 +25,40 @@
             
         </div>
         <div class="navbar-right">
-            <div id="nav-menu">
-                <img id="hamburger-menu" src="img/hamburger.png">
-            </div>
+            <button id="hamburger-menu" aria-label="Toggle navigation menu">
+                <img src="img/hamburger.png" alt="Menu Icon">
+            </button>
             <div id="nav-links-container">
-                <a id="nav-links" href="ai.html">AI Resume Optimizer</a>
-                <a id="nav-links" href="my-resumes.html">My Resumes</a>
-                <a id="nav-links" href="templates.html">Example Templates</a>
-                <a id="nav-links" href="login.html">Login</a>
+                <a id="nav-links" href="ai.html" aria-label="Go to AI Resume Optimizer">AI Resume Optimizer</a>
+                <a id="nav-links" href="my-resumes.html" aria-label="Go to My Resumes">My Resumes</a>
+                <a id="nav-links" href="templates.html" aria-label="Go to Example Templates">Example Templates</a>
+                <a id="nav-links" href="login.html" aria-label="Go to Login">Login</a>
             </div>
         </div>
     </nav>
 
     <!-- Sign In Form -->
     <main>
-        <form>
+        <form role="form" aria-labelledby="sign-in-heading">
             <div class="container">
                 <p class="sign-up">Sign in</p>
 
                 <div class="user-input">
-                    <label for="email"></label><input id="email" type="email" name="email" placeholder="Email or Phone"/>
+                    <label for="email"></label><input id="email" type="email" name="email" placeholder="Email or Phone" aria-required="true">
                 </div>
                 <div class="user-input">
-                    <label for="password"></label><input id="password" type="password" name="password" placeholder="Password"/>
+                    <label for="password"></label><input id="password" type="password" name="password" placeholder="Password" aria-required="true">
                 </div>
                 <div>
-                    <a href="#" class="forgot-password">Forgot Password?</a>
+                    <a href="#" class="forgot-password" aria-label="Forgot Password? Click to recover your account.">Forgot Password?</a>
                 </div>
-                <button class="sign-in">
+                <button class="sign-in" aria-label="Sign in to your account">
                     <p>Sign In</p>
                 </button>
 
-                <p class="or">------ or ------</p>
+                <p class="or" aria-hidden="true">------ or ------</p>
 
-                <button class="register">
+                <button class="register" aria-label="Create a new account">
                     <p>Register now!</p>
                 </button>
             </div>
@@ -66,10 +66,10 @@
     </main>
     
     <!-- Footer Content -->
-    <footer>
+    <footer role="contentinfo" aria-label="Footer Information">
         <div class="footer-content">
             <p>&copy; 2025 Resume Optimization System</p>
-            <p>Contact: <a href="mailto:info@ros.com">info@ros.com</a></p>
+            <p>Contact: <a href="mailto:info@ros.com" aria-label="Send an email to info@ros.com">info@ros.com</a></p>
         </div>
     </footer>
 </body>

@@ -11,9 +11,9 @@
 </head>
 
 <body>
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main Navigation">
         <div class="navbar-left">
-            <a href="index.html">
+            <a href="index.html" aria-label="Go to homepage">
                 <img id="logo" src="img/website_icon.jpeg">
             </a>
             <h1 class="title">Resume Optimization System</h1>
@@ -23,39 +23,42 @@
             
         </div>
         <div class="navbar-right">
-            <div id="nav-menu">
-                <img id="hamburger-menu" src="img/hamburger.png">
-            </div>
+            <button id="hamburger-menu" aria-label="Open navigation menu">
+                <img src="img/hamburger.png" alt="Menu Icon">
+            </button>
             <div id="nav-links-container">
-                <a id="nav-links" href="ai.html">AI Resume Optimizer</a>
-                <a id="nav-links" href="my-resumes.html">My Resumes</a>
-                <a id="nav-links" href="templates.html">Example Templates</a>
-                <a id="nav-links" href="login.html">Login</a>
+                <a id="nav-links" href="ai.html" aria-label="Go to AI Resume Optimizer page">AI Resume Optimizer</a>
+                <a id="nav-links" href="my-resumes.html" aria-label="Go to My Resumes page">My Resumes</a>
+                <a id="nav-links" href="templates.html" aria-label="Go to Example Templates page">Example Templates</a>
+                <a id="nav-links" href="login.html" aria-label="Go to Login page">Login</a>
             </div>
         </div>
     </nav>
 
     <main>
         
-        <div class="chat-bot">
+        <div class="chat-bot" role="region" aria-label="Chatbot Section">
             <header>
                 <h2>AI Resume Optimizer</h4>
             </header>
-            <div class="chat-page">
+            <div class="chat-page" role="region" aria-label="Chat Messages">
                 <!-- Background for chat page -->
             </div>
             <div class="chat-input">
-                <p>Type question here.</p>
-                <a href="#"><img class="send-button" src="img/send-button.png"></a>
+                <label for="chat-message" class="visually-hidden">Chat Input</label>
+                <input type="text" id="chat-message" placeholder="Type your question here." aria-label="Chat input field, type your message">
+                <button aria-label="Send message">
+                    <img class="send-button" src="img/send-button.png" alt="Send Icon">
+                </button>
             </div>
         </div>
 
     </main>
 
     <footer>
-        <div class="footer-content">
+        <div class="footer-content" role="contentinfo" aria-label="Footer Information">
             <p>&copy; 2025 Resume Optimization System</p>
-            <p>Contact: <a href="mailto:info@ros.com">info@ros.com</a></p>
+            <p>Contact: <a href="mailto:info@ros.com" aria-label="Send an email to info@ros.com">info@ros.com</a></p>
         </div>
     </footer>
     

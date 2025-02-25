@@ -11,9 +11,9 @@
 </head>
 
 <body>
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
         <div class="navbar-left">
-            <a href="index.html">
+            <a href="index.html" aria-label="Go to homepage">
                 <img id="logo" src="img/website_icon.jpeg" alt="Website Icon">
             </a>
             <h1 class="title">Resume Optimization System</h1>
@@ -23,35 +23,35 @@
             
         </div>
         <div class="navbar-right">
-            <div id="nav-menu">
-                <img id="hamburger-menu" src="img/hamburger.png">
-            </div>
+            <button id="hamburger-menu" aria-label="Toggle navigation menu">
+                <img src="img/hamburger.png" alt="Menu Icon">
+            </button>
             <div id="nav-links-container">
-                <a id="nav-links" href="ai.html">AI Resume Optimizer</a>
-                <a id="nav-links" href="my-resumes.html">My Resumes</a>
-                <a id="nav-links" href="templates.html">Example Templates</a>
-                <a id="nav-links" href="login.html">Login</a>
+                <a id="nav-links" href="ai.html aria-label="Go to AI Resume Optimizer page"">AI Resume Optimizer</a>
+                <a id="nav-links" href="my-resumes.html" aria-label="Go to My Resumes page">My Resumes</a>
+                <a id="nav-links" href="templates.html" aria-label="Go to Example Templates page">Example Templates</a>
+                <a id="nav-links" href="login.html" aria-label="Go to Login page">Login</a>
             </div>
         </div>
     </nav>
 
     <main>
-        <section id="myresumes">
+        <section id="myresumes" role="region" aria-labelledby="my-resumes-heading">
             <h2>My Resumes</h2>
             <div class="card-container">
-                <div class="card">
-                    <img src="img/foster-resume-template.png" alt="Resume Preview" class="card-image">
-                    <h3 class="card-title">Jack's SWE Resume</h3>
+                <div class="card" role="article" aria-labelledby="resume1-title">
+                    <img src="img/foster-resume-template.png" alt="Resume Preview" class="card-image" alt="Preview of Jack's Software Engineer Resume">
+                    <h3 id="resume1-title" class="card-title">Jack's SWE Resume</h3>
                     <p class="last-modified">Last Modified: February 2, 2025</p>
                 </div>
-                <div class="card">
-                    <img src="img/foster-resume-template.png" alt="Resume Preview" class="card-image">
-                    <h3 class="card-title">Resume 2</h3>
+                <div class="card" aria-labelledby="resume2-title">
+                    <img src="img/foster-resume-template.png" alt="Resume Preview" class="card-image" alt="Preview of second resume template" class="card-image">
+                    <h3 id="resume2-title" class="card-title">Resume 2</h3>
                     <p class="last-modified">Last Modified: January 1, 2025</p>
                 </div>
-                <div class="card">
-                    <img src="img/foster-resume-template.png" alt="Resume Preview" class="card-image">
-                    <h3 class="card-title">Resume 3</h3>
+                <div class="card" aria-labelledby="resume3-title">
+                    <img src="img/foster-resume-template.png" alt="Resume Preview" class="card-image" alt="Preview of third resume template">
+                    <h3 id="resume3-title" class="card-title">Resume 3</h3>
                     <p class="last-modified">Last Modified: March 3, 2024</p>
                 </div>
             </div>
@@ -59,9 +59,9 @@
     </main>
 
     <footer>
-        <div class="footer-content">
+        <div class="footer-content" aria-label="Footer Information">
             <p>&copy; 2025 Resume Optimization System</p>
-            <p>Contact: <a href="mailto:info@ros.com">info@ros.com</a></p>
+            <p>Contact: <a href="mailto:info@ros.com" aria-label="Send an email to info@ros.com">info@ros.com</a></p>
         </div>
     </footer>
 </body>

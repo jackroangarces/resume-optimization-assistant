@@ -12,9 +12,9 @@
 
 <body>
 
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
         <div class="navbar-left">
-            <a href="index.html">
+            <a href="index.html" aria-label="Go to homepage">
                 <img id="logo" src="img/website_icon.jpeg" alt="Website Icon">
             </a>
             <h1 class="title">Resume Optimization System</h1>
@@ -24,14 +24,14 @@
             
         </div>
         <div class="navbar-right">
-            <div id="nav-menu">
-                <img id="hamburger-menu" src="img/hamburger.png">
-            </div>
+            <button id="hamburger-menu" aria-label="Toggle navigation menu">
+                <img src="img/hamburger.png" alt="Menu Icon">
+            </button>
             <div id="nav-links-container">
-                <a id="nav-links" href="ai.html">AI Resume Optimizer</a>
-                <a id="nav-links" href="my-resumes.html">My Resumes</a>
-                <a id="nav-links" href="templates.html">Example Templates</a>
-                <a id="nav-links" href="login.html">Login</a>
+                <a class="nav-links" href="ai.html" aria-label="Go to AI Resume Optimizer">AI Resume Optimizer</a>
+                <a class="nav-links" href="my-resumes.html" aria-label="Go to My Resumes">My Resumes</a>
+                <a class="nav-links" href="templates.html" aria-label="Go to Example Templates">Example Templates</a>
+                <a class="nav-links" href="login.html" aria-label="Go to Login">Login</a>
             </div>
         </div>
     </nav>
@@ -40,10 +40,10 @@
         <header class="templates-header">
             <h2>Templates</h2>
         </header>
-        <div class="templates">
+        <div class="templates" role="region" aria-labelledby="templates-heading">
             <div class="template-container">
 
-                <a href="https://foster.uw.edu/careers/career-services/undergraduate-students/resume-cover-letter/" target="_blank" alt="UW Foster Resume Template">
+                <a href="https://foster.uw.edu/careers/career-services/undergraduate-students/resume-cover-letter/" aria-label="View UW Foster Resume Template" target="_blank" alt="UW Foster Resume Template">
                     <div class="template-card"> 
                         <div class="template-img">
                             <img class="template-img" src="img/foster-resume-template.png" alt="UW Foster Example Template">
@@ -72,7 +72,7 @@
                 <a href="https://ocs.yale.edu/resources/ocs-resume-template/" target="_blank" alt="Yale Resume">
                     <div class="template-card"> 
                         <div class="template-img">
-                            <img class="template-img" src="img/yale-resume-template.png" alt="Yale Resume Template Example">
+                            <img class="template-img" src="img/yale-resume-template.png" alt="Yale Resume Template Example" aria-label="View Yale Resume Template">
                         </div>
                         <div class="template-title">
                             <p class="template-text"> 
@@ -86,10 +86,10 @@
         </div>
     </main>
 
-    <footer>
+    <footer role="contentinfo" aria-label="Footer Information">
         <div class="footer-content">
             <p>&copy; 2025 Resume Optimization System</p>
-            <p>Contact: <a href="mailto:info@ros.com">info@ros.com</a></p>
+            <p>Contact: <a href="mailto:info@ros.com" aria-label="Send an email to info@ros.com">info@ros.com</a></p>
         </div>
     </footer>
 </body>
