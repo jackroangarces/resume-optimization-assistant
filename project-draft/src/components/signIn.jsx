@@ -4,6 +4,10 @@ import { useParams } from 'react-router';
 export function SignIn(props) {
 
     // State variables here
+    const [userName, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    
 
     return (
         <div className="container">
@@ -35,6 +39,8 @@ export function Register(props) {
 
     // State variables here
 
+
     // return DOM of register component here
 
 }
+
