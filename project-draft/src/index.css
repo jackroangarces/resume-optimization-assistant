@@ -1,0 +1,406 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* --------- FONT-FAMILY, GENERAL HEADINGS, SPACING --------- */
+  
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #E3EAFD;
+  }
+  
+  main {
+    min-height: 84vh; /* "main" takes up whole viewport always (accounting for navbar size) */
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  /* --------- NAVBAR --------- */
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #1D2F6F;
+    border-color: #1D2F6F;
+    align-items: center;
+    color: white; 
+  }
+  
+  .navbar-left {
+    display: flex;
+    margin: .5rem;
+  }
+  
+  .title {
+    display: none;
+  }
+  
+  .title-acronym {
+    font-size: 4rem;
+    padding-left: .5rem;
+    margin: auto;
+  }
+  
+  #logo {
+    width: 5rem;
+  }
+  
+  #hamburger-menu {
+    width: 2rem;
+    margin-right: 1rem;
+    color: white;
+  }
+  
+  #nav-links-container {
+    display: none;
+    font-size: 0.9rem;
+  }
+  
+  /* --------- TEMPLATE --------- */
+  
+  .templates-header {
+    font-size: larger;
+    text-align: center;
+    margin: 1rem;
+  }
+  
+  .templates {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-bottom: 5rem;
+  }
+  
+  .templates a {
+    text-decoration: none;
+    color: white;
+    margin: 1rem;
+  }
+  
+  .templates a:hover {
+    color: #1D2F6F;
+  
+  }
+  
+  .template-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem;
+  }
+  
+  .template-card {
+  
+    flex-wrap: wrap;
+    margin: 1rem;
+    text-align: center;
+    border: solid 1px black;
+    max-width: 25rem;
+    background-color: #888;
+  }
+  
+  .template-img {
+    max-width: 25rem;
+    max-height: 30rem;
+  }
+  
+  /* --------- CHATBOT --------- */
+  
+  .chat-bot {
+    margin: 2em;
+    background-color: #cccccc;
+    border-radius: 5%;
+    height: 30rem;
+    border: 1px solid black;
+  }
+  
+  .chat-bot header {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+    font-size: larger;
+  }
+  
+  .chat-input {
+    display: flex;
+    justify-content: space-between;
+    background-color: #888;
+    margin-top: 24.5rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    border-radius: 10%;
+    border: 1px solid black;
+  }
+  
+  .chat-input img {
+    width: 1rem;
+  }
+  
+  /* --------- HOME PAGE --------- */
+  
+  #homepage .container h1 {
+    margin-bottom: 1rem;
+  }
+  
+  #homepage .container h2 {
+    margin-bottom: 1rem;
+  }
+  
+  #homepage .container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    padding: 2rem;
+  }
+  
+  #homepage .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 64rem;
+    padding: 1rem;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    overflow: hidden;
+    margin-top: 3rem;
+    align-self: center;
+  }
+  
+  #homepage .card-image {
+    width: 100%;
+    border-radius: 0.75rem;
+  }
+  
+  #homepage .button {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background-color: #1D2F6F;
+    color: white;
+    font-size: 1.25rem;
+    font-weight: bold;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+    text-align: left;
+    padding-left: 1rem;
+  }
+  
+  #homepage .button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* --------- MY RESUMES PAGE --------- */
+  
+  #myresumes h2 {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  #myresumes .card-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  #myresumes .card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 200px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  #myresumes .card:hover {
+    transform: translateY(-10px);
+  }
+  
+  #myresumes .card-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  #myresumes .card-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  #myresumes .last-modified {
+    font-size: 0.8rem;
+    color: #888;
+  }
+    
+  /* --------- FOOTER --------- */
+  
+  footer {
+    background-color: #f9e9ec;
+    color: black;
+    padding: 1rem;
+    font-size: 0.9rem;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+  
+  footer a {
+    text-decoration: none;
+  }
+    
+  footer a:hover {
+    text-decoration: underline;
+  }
+    
+  .footer-content {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    gap: 1rem; 
+  }
+  
+  /* --------- LOG IN --------- */
+  
+  form {
+    border: solid;
+    border-radius: 10px;
+    text-align: center;
+    margin: auto;
+    margin-top: 1.5rem;
+    width: fit-content;
+    background-color: #cccccc;
+  }
+  
+  .sign-up {
+    font-size: 3rem;
+    font-weight: 400;
+  }
+  
+  .user-input {
+    padding-top: 1rem;
+  }
+  
+  #email, #password {
+    font-size: larger;
+    width: 100%;
+  }
+  
+  div .forgot-password {
+    font-size: small;
+    padding-top: 0.25rem;
+    color: #1d2f6f;
+    text-align: left;
+    margin-left: 0;
+  }
+  
+  .ors {
+    font-size: larger;
+  }
+  
+  .container {
+    margin: 1rem;
+  }
+  
+  .sign-in, .register {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1D2F6F;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 25px;
+    text-align: center;
+    cursor: pointer;
+    width: fit-content;
+    margin: 10px auto;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sign-in:hover {
+    background-color: #E3EAFD;
+  }
+  
+  .register {
+    background-color: white;
+    color: #1D2F6F;
+    border: 2px solid #1D2F6F; 
+  }
+  
+  .register:hover {
+    background-color: #E3EAFD;
+  }
+  
+  /* --------- MEDIA QUERIES --------- */
+  
+  @media (min-width: 598px) {
+    .titleAcronym {
+      display: none;
+    }
+    
+    .title {
+      display: inline;
+      font-size: 2rem;
+      padding: .5rem;
+      margin: auto;
+    }
+  }
+    
+  @media (min-width: 768px) {
+    .navbar-right {
+      width: 10rem;
+    }
+  
+    #hamburger-menu {
+      display: none;
+    }
+    
+    #nav-links-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: right;
+    }
+      
+    #nav-links {
+      justify-content: right;
+      color: white;
+      text-decoration: none;
+      margin-right: 1rem;
+    }
+    
+    #nav-links:hover {
+      color: #f9e9ec;
+      text-decoration: underline;
+    }
+  }
+    
+  @media (min-width: 992px) {
+      
+  }
+    
+  @media (min-width: 1200px) {
+      
+  }
+    
