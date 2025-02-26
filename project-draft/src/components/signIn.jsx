@@ -3,6 +3,10 @@ import React from 'react';
 export function Signin(props) {
 
     // State variables here
+    const [userName, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    
 
     return (
     <div class="container">
@@ -34,6 +38,8 @@ export function Register(props) {
 
     // State variables here
 
+
     // return DOM of register component here
 
 }
+
