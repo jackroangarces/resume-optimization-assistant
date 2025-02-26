@@ -1,19 +1,18 @@
 import React from 'react';
 
-export function Signin(props) {
+export function SignIn(props) {
 
     // State variables here
-    const [userName, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    
 
     return (
     <div class="container">
             <p class="sign-up">Sign in</p>
 
             <div class="user-input">
-                <label for="email"></label><input id="email" type="email" name="email" placeholder="Email or Phone"/>
+                <label for="email"></label><input id="email" type="email" name="email" placeholder="Email or Phone" />
             </div>
             <div class="user-input">
                 <label for="password"></label><input id="password" type="password" name="password" placeholder="Password"/>
@@ -42,4 +41,6 @@ export function Register(props) {
     // return DOM of register component here
 
 }
+
+
 
