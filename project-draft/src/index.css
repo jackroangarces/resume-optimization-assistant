@@ -356,7 +356,7 @@
   /* --------- MEDIA QUERIES --------- */
   
   @media (min-width: 598px) {
-    .titleAcronym {
+    .title-acronym {
       display: none;
     }
     
