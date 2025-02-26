@@ -1,6 +1,8 @@
 import React from 'react';
 
-function Signin(props) {
+export function Signin(props) {
+
+    // State variables here
 
     return (
     <div class="container">
@@ -26,4 +28,12 @@ function Signin(props) {
             </button>
     </div>
     );
+}
+
+export function Register(props) {
+
+    // State variables here
+
+    // return DOM of register component here
+
 }
