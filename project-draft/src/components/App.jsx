@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Routes, Route } from 'react-router';
+import { Routes, Route, Navigate } from 'react-router';
 import { Navbar } from './Navbar.jsx';
 import { Footer } from './Footer.jsx';
 import { HomePage } from './StaticPages.jsx';
@@ -23,6 +23,8 @@ function App(props) {
           <Routes>
             <Route path="/" element = {<HomePage />} />
             <Route path="/login" element = {<SignIn />} />
+
+            <Route path="*" element={<Navigate to="/"/>} /> {/* Catch-all for bad URLs */}
             <Route path="/myresumes/*" element={<MyResumes resumes={resumes} setResumes={setResumes} />} />
             <Route path="/resume/edit-resume/:id" element={<ResumeEditor resumes={resumes} setResumes={setResumes} />} />
           </Routes>

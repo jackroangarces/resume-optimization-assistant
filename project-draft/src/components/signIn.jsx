@@ -1,13 +1,11 @@
-import React from 'react';
-import { useParams } from 'react-router';
+import React, {useState} from 'react';
 
 export function SignIn(props) {
 
-    // State variables here
-    const [userName, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    {/* // State variables here
+    // const [username, setUsername] = useState(' ');
+    // const [password, setPassword] = useState(' '); */}
 
-    
 
     return (
         <div className="container">
