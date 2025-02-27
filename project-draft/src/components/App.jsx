@@ -4,9 +4,18 @@ import { Navbar } from './Navbar.jsx';
 import { Footer } from './Footer.jsx';
 import { HomePage } from './StaticPages.jsx';
 import { SignIn } from './signIn.jsx';
+import { MyResumes } from './MyResumes.jsx';
+import { ResumeEditor } from './ResumeEditor.jsx';
 
 
 function App(props) {
+    
+    const [resumes, setResumes] = useState([
+      { id: 1, title: "Software Engineer Resume", lastEdited: "2025-02-25", image: null },
+      { id: 2, title: "Data Scientist Resume", lastEdited: "2025-02-20", image: null },
+    ]);
+    {/* what is set in the state default is just sample resumes*/}
+
     return (
       <div>
         <Navbar />
@@ -14,6 +23,8 @@ function App(props) {
           <Routes>
             <Route path="/" element = {<HomePage />} />
             <Route path="/login" element = {<SignIn />} />
+            <Route path="/myresumes/*" element={<MyResumes resumes={resumes} setResumes={setResumes} />} />
+            <Route path="/resume/edit-resume/:id" element={<ResumeEditor resumes={resumes} setResumes={setResumes} />} />
           </Routes>
         </main>
         <Footer />

@@ -1,9 +1,12 @@
 import React from 'react';
+import {ResumeContainer} from './ResumeContainer';
 
-export function ResumeList(resumes) {
+export function ResumeList({ resumes }) {
     return (
-        <div className="card-container">
-            {resumes}
+        <div className="resume-list">
+            {resumes.map(resume => (
+                <ResumeContainer key={resume.id} resume={resume} />
+            ))}
         </div>
     );
-};
+}
