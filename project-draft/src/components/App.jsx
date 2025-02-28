@@ -11,7 +11,24 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../index.css'
 
 function App(props) {
-    
+
+
+    // Global state variable for username 
+    // (because its needed to access different user's resumes)  
+    const [username, setUsername] = useState(null);
+
+    // "login" function to set Global username from inside sign in 
+    // component
+    const login = (username) => {
+      setUsername(username);
+    };
+
+    // simple logout that can be assigned to a button
+    // (probably in the navbar)
+    const logout = () => {
+      setUsername(null);
+    }
+
     const [resumes, setResumes] = useState([
       { id: 1, title: "Software Engineer Resume", lastEdited: "2025-02-25", image: null },
       { id: 2, title: "Data Scientist Resume", lastEdited: "2025-02-20", image: null },
@@ -20,11 +37,11 @@ function App(props) {
 
     return (
       <div>
-        <Navbar />
+        <Navbar username={username} logout={logout}/>
         <main>
           <Routes>
             <Route path="/" element = {<HomePage />} />
-            <Route path="/login" element = {<SignIn />} />
+            <Route path="/login" element = {<SignIn login={login}/>} />
 
             <Route path="*" element={<Navigate to="/"/>} /> {/* Catch-all for bad URLs */}
             <Route path="/myresumes/*" element={<MyResumes resumes={resumes} setResumes={setResumes} />} />

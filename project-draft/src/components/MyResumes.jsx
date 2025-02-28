@@ -13,6 +13,7 @@ export function MyResumes({ resumes, setResumes }) {
           lastEdited: new Date().toISOString().split("T")[0],
           image: null,
         };
+
         setResumes([...resumes, newResume]);
     };
 
