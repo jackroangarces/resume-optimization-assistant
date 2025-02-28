@@ -14,8 +14,8 @@ export function ResumeEditor({ resumes, setResumes }) {
     return (
         <div>
             <h1>{resume.title}</h1>
-            <div className='d-flex'>
-                <div className='w-25 justify-content-between'>
+            <div className='d-flex justify-content-between'>
+                <div className='button-container'>
                     <EditorButtons editName="Biography"/> {/* Example Button */} 
                     <EditorButtons editName="Relevant Coursework"/> 
                     <EditorButtons editName="Work Experience"/> 
@@ -34,10 +34,10 @@ export function ResumeEditor({ resumes, setResumes }) {
                         </div>
                     </div>
                 </div>
-                <div className='w-25'>
-                    <EditorButtons editName="Biography"/> {/* Example Button */} 
-                    <EditorButtons editName="Relevant Coursework"/> 
-                    <EditorButtons editName="Biography"/> 
+                <div className='button-container'>
+                    <EditorButtons editName="Generate Class Recs"/> {/* Example Button */} 
+                    <EditorButtons editName="Generate Project Ideas"/> 
+                    <EditorButtons editName="AI Quality Score"/> 
                 </div>
             </div>
         </div>
