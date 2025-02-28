@@ -3,10 +3,12 @@ import { Routes, Route, Navigate } from 'react-router';
 import { Navbar } from './Navbar.jsx';
 import { Footer } from './Footer.jsx';
 import { HomePage } from './StaticPages.jsx';
-import { SignIn } from './signIn.jsx';
+import { SignIn } from './SignIn.jsx';
 import { MyResumes } from './MyResumes.jsx';
 import { ResumeEditor } from './ResumeEditor.jsx';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../index.css'
 
 function App(props) {
     
