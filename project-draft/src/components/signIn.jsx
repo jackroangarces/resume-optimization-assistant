@@ -2,9 +2,7 @@ import React, {useState} from 'react';
 
 export function SignIn(props) {
 
-    {/* // State variables here
-    // const [username, setUsername] = useState(' ');
-    // const [password, setPassword] = useState(' '); */}
+    // setting the state of username, password, and error messages
     const {login} = props;
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -24,12 +22,12 @@ export function SignIn(props) {
 
         if (user && pw) {
             setError('');
-            login(user => user.username);
-        } else if(user != true) {
+            login(user => username);
+        } else if(!user) {
             setError('Username not found, please enter a valid username');
-        } else if(user && pw != true) {
+        } else if(!pw) {
             setError('Please enter the correct password');
-        } 
+        }
         setUsername('');
         setPassword('');
     }
@@ -37,10 +35,10 @@ export function SignIn(props) {
 
     return (
         <div className="container">
-                <p className="sign-up">Sign in</p>
                 <form onSubmit={handleSubmit}>
                 <div className="user-input column">
-                    {<p style={{color: 'red'}}>{error}</p>}
+                <p className="sign-up">Sign in</p>
+                {<p style={{color: 'red'}}>{error}</p>}
                     <input 
                         className="usernameInput"
                         type="text" 
