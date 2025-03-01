@@ -25,9 +25,11 @@
 
   /* --------- BUTTON --------- */
 
-  .button, .sign-in, .register, .my-resumes-page button{
+  .button, .register {
     display: inline-block;
-    padding: 1rem 3rem;
+    width: 12rem;
+    padding: 1rem 2rem;
+    margin: 1rem;
     background-color: #1D2F6F;
     color: white;
     font-size: 1.25rem;
@@ -35,10 +37,10 @@
     border-radius: .75rem;
     text-decoration: none;
     transition: background-color 0.3s ease;
-    text-align: left;
+    text-align: center;
   }
 
-  .button:hover, .register:hover, .sign-in:hover, .my-resumes-page button:hover {
+  .button:hover {
     background-color: #0056b3;
   }
   
@@ -323,13 +325,7 @@
 .button-container {
   margin: 0rem;
   justify-content: center;
-  width: 10rem;
-}
-
-.resume-buttons {
-  padding: 1rem 0rem;
-  margin: 1rem;
-  width: 7rem;
+  width: 15rem;
 }
 
 .docx-placeholder {
