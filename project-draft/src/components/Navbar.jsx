@@ -9,11 +9,11 @@ export function Navbar(props) {
     if (username) {
 
         return (
-            <nav className="navbar">
-                <div className="navbar-left">
-                    <Link to="/"><img id="logo" src="img/website_icon.jpeg" alt="Website Icon" /></Link>
-                    <h1 className="title">Resume Optimization System</h1>
-                    <h1 className="title-acronym">ROS</h1>
+            <nav className="navbar d-flex justify-content-between align-items-center text-white">
+                <div className="navbar-left d-flex m-1">
+                    <Link to="/"><img className="logo" src="img/website_icon.jpeg" alt="Website Icon" /></Link>
+                    <h1 className="title fs-1">Resume Optimization System</h1>
+                    <h1 className="title-acronym mx-auto pl-1 ">ROS</h1>
                 </div>
                 <div className="navbar-center">
                     <p>Welcome, {username}!</p>              {/* Displays username */}
@@ -21,7 +21,7 @@ export function Navbar(props) {
                 </div>
                 <div className="navbar-right">
                     <div id="nav-menu">
-                        <img id="hamburger-menu" src="img/hamburger.png" />
+                        <img className="hamburger-menu" src="img/hamburger.png" />
                     </div>
                     <div id="nav-links-container">
                         <Link id="nav-links" to="/ai">AI Resume Optimizer</Link>
@@ -36,17 +36,19 @@ export function Navbar(props) {
 
     else {
         return (
-            <nav className="navbar">
-                <div className="navbar-left">
-                    <Link to="/"><img id="logo" src="img/website_icon.jpeg" alt="Website Icon" /></Link>
-                    <h1 className="title">Resume Optimization System</h1>
-                    <h1 className="title-acronym">ROS</h1>
+            <nav className="navbar d-flex justify-content-between align-items-center text-white">
+                <div className="navbar-left d-flex m-1">
+                    <Link to="/"><img className="logo" src="img/website_icon.jpeg" alt="Website Icon" /></Link>
+                    <h1 className="title fs-1">Resume Optimization System</h1>
+                    <h1 className="title-acronym mx-auto pl-1 ">ROS</h1>
                 </div>
                 <div className="navbar-center">
+                    <p>Welcome, {username}!</p>              {/* Displays username */}
+                    <button onClick={logout}>Logout</button> {/* Displays logout button */}
                 </div>
                 <div className="navbar-right">
                     <div id="nav-menu">
-                        <img id="hamburger-menu" src="img/hamburger.png" />
+                        <img className="hamburger-menu" src="img/hamburger.png" />
                     </div>
                     <div id="nav-links-container">
                         <Link id="nav-links" to="/ai">AI Resume Optimizer</Link>

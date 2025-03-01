@@ -9,14 +9,11 @@
   html, body {
     height: 100%;
     margin: 0;
-  }
-  
-  body {
     font-family: 'Arial', sans-serif;
-    background-color: #E3EAFD;
   }
   
   main {
+    background-color: #E3EAFD;
     min-height: 84vh; /* "main" takes up whole viewport always (accounting for navbar size) */
   }
   
@@ -25,21 +22,42 @@
     font-size: 2rem;
     margin-bottom: 1rem;
   }
+
+  /* --------- BUTTON --------- */
+
+  .button, .sign-in, .register, .my-resumes-page button{
+    display: inline-block;
+    padding: 1rem 3rem;
+    background-color: #1D2F6F;
+    color: white;
+    font-size: 1.25rem;
+    font-weight: bold;
+    border-radius: .75rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    text-align: left;
+  }
+
+  .button:hover, .register:hover, .sign-in:hover, .my-resumes-page button:hover {
+    background-color: #0056b3;
+  }
+  
+  .register {
+    background-color: white;
+    color: #1D2F6F;
+    border: 2px solid #1D2F6F;
+  }
+  
+  .register:hover {
+    background-color: #E3EAFD;
+  }
+
   
   /* --------- NAVBAR --------- */
   
   .navbar {
-    display: flex;
-    justify-content: space-between;
     background-color: #1D2F6F;
     border-color: #1D2F6F;
-    align-items: center;
-    color: white; 
-  }
-  
-  .navbar-left {
-    display: flex;
-    margin: .5rem;
   }
   
   .title {
@@ -48,26 +66,25 @@
   
   .title-acronym {
     font-size: 4rem;
-    padding-left: .5rem;
-    margin: auto;
   }
   
-  #logo {
+  .logo {
     width: 5rem;
   }
   
-  #hamburger-menu {
+  .hamburger-menu {
     width: 2rem;
     margin-right: 1rem;
-    color: white;
   }
   
-  #nav-links-container {
+
+  /* Will probably replace this container */
+  #nav-links-container { 
     display: none;
     font-size: 0.9rem;
   }
   
-  /* --------- TEMPLATE --------- */
+  /* --------- TEMPLATE (Need to reduce) --------- */
   
   .templates-header {
     font-size: larger;
@@ -115,72 +132,28 @@
     max-height: 30rem;
   }
   
-  /* --------- CHATBOT --------- */
-  
-  .chat-bot {
-    margin: 2em;
-    background-color: #cccccc;
-    border-radius: 5%;
-    height: 30rem;
-    border: 1px solid black;
-  }
-  
-  .chat-bot header {
-    display: flex;
-    justify-content: center;
-    margin: 1rem;
-    font-size: larger;
-  }
-  
-  .chat-input {
-    display: flex;
-    justify-content: space-between;
-    background-color: #888;
-    margin-top: 24.5rem;
-    margin-right: 1rem;
-    margin-left: 1rem;
-    border-radius: 10%;
-    border: 1px solid black;
-  }
-  
-  .chat-input img {
-    width: 1rem;
-  }
-  
   /* --------- HOME PAGE --------- */
   
-  #homepage .container h2 {
-    margin-bottom: 1rem;
-  }
-  
-  #homepage .container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    text-align: left;
-    padding: 2rem;
-  }
   
   #homepage .card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* width: 100%; */
     max-width: 64rem;
-    padding: 1rem;
-    background: white;
+    /* padding: 1rem; */
+    /* background: white; */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 1rem;
-    overflow: hidden;
-    margin-top: 3rem;
-    align-self: center;
+    /* overflow: hidden; */
+    /* margin-top: 3rem; */
+    /* align-self: center; */
   }
   
-  #homepage .card-image {
+  /* #homepage .card-image {
     width: 100%;
     border-radius: 0.75rem;
-  }
+  } */
   
   #homepage .button {
     display: inline-block;
@@ -244,11 +217,6 @@
     background-color: #cccccc;
   }
   
-  .sign-up {
-    font-size: 3rem;
-    font-weight: 400;
-  }
-  
   .user-input {
     padding-top: 1rem;
   }
@@ -258,7 +226,7 @@
     width: 100%;
   }
   
-  div .forgot-password {
+  .forgot-password {
     font-size: small;
     padding-top: 0.25rem;
     color: #1d2f6f;
@@ -272,36 +240,6 @@
   
   .container {
     margin: 1rem;
-  }
-  
-  .sign-in, .register {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #1D2F6F;
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 25px;
-    text-align: center;
-    cursor: pointer;
-    width: fit-content;
-    margin: 10px auto;
-    border: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  .sign-in:hover {
-    background-color: #E3EAFD;
-  }
-  
-  .register {
-    background-color: white;
-    color: #1D2F6F;
-    border: 2px solid #1D2F6F; 
-  }
-  
-  .register:hover {
-    background-color: #E3EAFD;
   }
   
   /* --------- MY RESUMES --------- */
@@ -358,25 +296,6 @@
 
 .my-resumes-page {
   padding: 2rem;
-}
-
-.my-resumes-page button {
-  display: inline-block;
-  padding: 1rem 3rem;
-  background-color: #1D2F6F;
-  color: white;
-  font-size: 1.25rem;
-  font-weight: bold;
-  border-radius: 0.75rem;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-  margin-top: 1rem;
-  text-align: left;
-  padding-left: 1rem;
-}
-
-.my-resumes-page button:hover {
-  background-color: #0056b3;
 }
 
 @media (max-width: 768px) {
@@ -441,7 +360,7 @@
       width: 10rem;
     }
   
-    #hamburger-menu {
+    .hamburger-menu {
       display: none;
     }
     

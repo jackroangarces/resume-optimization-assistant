@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router';
-import { EditorButtons } from './ResumeButtons';
+import { EditorButtons, GenerateButtons } from './ResumeButtons';
+import { ChatScreen } from './ResumeAI';
 
 
 export function ResumeEditor({ resumes, setResumes }) {
@@ -35,9 +36,10 @@ export function ResumeEditor({ resumes, setResumes }) {
                     </div>
                 </div>
                 <div className='button-container'>
-                    <EditorButtons editName="Generate Class Recs"/> {/* Example Button */} 
-                    <EditorButtons editName="Generate Project Ideas"/> 
-                    <EditorButtons editName="AI Quality Score"/> 
+                    <GenerateButtons task="" editName="Generate Class Recs"/> {/* Example Button */} 
+                    <GenerateButtons task="" editName="Generate Project Ideas"/> 
+                    <GenerateButtons editName="AI Quality Score"/> 
+
                 </div>
             </div>
         </div>

@@ -14,10 +14,11 @@ export function EditorButtons(props) {
 export function GenerateButtons(props) {
 
     // same with props here
+    const {editName} = props;
 
     return (
-        <button>
-            Generate
+        <button className="resume-buttons">
+            {editName}
         </button>
     )
 }
