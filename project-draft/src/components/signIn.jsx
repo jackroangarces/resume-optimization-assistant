@@ -17,16 +17,19 @@ export function SignIn(props) {
 
         let usernameInput = document.querySelector('.usernameInput').value;
         let passwordInput = document.querySelector('.passwordInput').value;
-        let user = registeredUsers.find(user => user.username == usernameInput && user.password == passwordInput)
+        let user = registeredUsers.find(user => user.username == usernameInput);
+        let pw = registeredUsers.find(user => user.password == passwordInput);
 
         // will add conditionals for invalid usernames here
 
-        if (user) {
+        if (user && pw) {
             setError('');
-            login(user => username);
-        } else {
-            setError('Username not found, please enter a valid username.');
-        }
+            login(user => user.username);
+        } else if(user != true) {
+            setError('Username not found, please enter a valid username');
+        } else if(user && pw != true) {
+            setError('Please enter the correct password');
+        } 
         setUsername('');
         setPassword('');
     }
@@ -64,13 +67,4 @@ export function SignIn(props) {
             </button>
         </div>
     );
-}
-
-export function Register(props) {
-
-    // State variables here
-
-
-    // return DOM of register component here
-
 }
