@@ -20,7 +20,7 @@ export function MyResumes({ resumes, setResumes }) {
     return (
         <div className="my-resumes-page">
                 <h1>My Resumes</h1>
-                <button onClick={handleCreateResume}>Create New Resume</button>
+                <button className="button" onClick={handleCreateResume}>Create New Resume</button>
                 <ResumeList resumes={resumes} />
         </div>
     );
