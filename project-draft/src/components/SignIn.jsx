@@ -13,6 +13,10 @@ export function SignIn(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
 
+        // Remember! It is bad practice to use querySelector in React
+        // We have to use state to set input values. Text me if u need
+        // help with that.
+
         let usernameInput = document.querySelector('.usernameInput').value;
         let passwordInput = document.querySelector('.passwordInput').value;
         let user = registeredUsers.find(user => user.username == usernameInput);
@@ -38,9 +42,8 @@ export function SignIn(props) {
                 <form onSubmit={handleSubmit}>
                 <div className="user-input column">
                 <p className="sign-up">Sign in</p>
-                {<p style={{color: 'red'}}>{error}</p>}
+                {<p style={{color: 'red'}}>{error}</p>} {/*  Inline CSS is bad practice */}
                     <input 
-                        className="usernameInput"
                         type="text" 
                         placeholder="Enter Username" 
                         value={username} 
@@ -49,7 +52,6 @@ export function SignIn(props) {
                 </div>
                 <div>
                     <input 
-                        className="passwordInput"
                         type="text"
                         placeholder="Enter password"
                         value={password}

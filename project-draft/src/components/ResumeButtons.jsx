@@ -8,11 +8,16 @@ export function EditorButtons(props) {
 
     //modal state
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    
+    //input value state to input into forms
+    const [buttonInput, setButtonInput] = useState('');
+    const handleButtonInput = (event) => {
+        setButtonInput(event.target.value);
+        
+    }        
+
     return (
         <>
             <button className="button" onClick={handleShow}>
@@ -23,7 +28,12 @@ export function EditorButtons(props) {
                 <Modal.Title>Modal heading</Modal.Title>
                 </Modal.Header>
             <Modal.Body>
-                <input type="text" placeholder="input here" />
+                <input 
+                type="text" 
+                placeholder="input here" 
+                onChange={handleButtonInput}
+                />
+                
             </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
