@@ -4,7 +4,13 @@ import { Link } from 'react-router';
 
 export function Navbar(props) {
 
-    const {username, logout} = props;
+    const {username} = props;
+    const {logout} = props;
+
+    // you can set the username to any value for now just for
+    // when you style it. comment out line 7 and you could use:
+    //
+    // const username = "BruhitsBK";
 
     if (username) {
 

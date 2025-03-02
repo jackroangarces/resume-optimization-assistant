@@ -15,7 +15,6 @@ export function EditorButtons(props) {
     const [buttonInput, setButtonInput] = useState('');
     const handleButtonInput = (event) => {
         setButtonInput(event.target.value);
-        
     }        
 
     return (
