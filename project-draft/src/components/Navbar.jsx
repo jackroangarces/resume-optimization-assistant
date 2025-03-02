@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Link } from 'react-router';
 
 export function Navbar(props) {
+    
+    const [menuOpen, setMenuOpen] = useState(false);
 
     const {username} = props;
     const {logout} = props;
@@ -21,19 +23,25 @@ export function Navbar(props) {
                     <h1 className="title fs-1">Resume Optimization System</h1>
                     <h1 className="title-acronym mx-auto pl-1 ">ROS</h1>
                 </div>
-                <div className="navbar-center">
-                    <p>Welcome, {username}!</p>              {/* Displays username */}
-                    <button onClick={logout}>Logout</button> {/* Displays logout button */}
+                <div id="nav-menu" className="mobile-only" onClick={() => setMenuOpen(!menuOpen)}>
+                    <img className="hamburger-menu" src="img/hamburger.png" alt="Menu" />
                 </div>
-                <div className="navbar-right">
-                    <div id="nav-menu">
-                        <img className="hamburger-menu" src="img/hamburger.png" />
+                
+                <div className={`navbar-right ${menuOpen ? 'active' : ''}`}>
+
+                    <div id="nav-menu" onClick={() => setMenuOpen(!menuOpen)}>
+                    <img className="hamburger-menu" src="img/hamburger.png" alt="Menu" />
                     </div>
                     <div id="nav-links-container">
                         <Link id="nav-links" to="/ai">AI Resume Optimizer</Link>
                         <Link id="nav-links" to="/myresumes">My Resumes</Link>
                         <Link id="nav-links" to="/templates">Example Templates</Link>
-                        <Link id="nav-links" to="/login">Login</Link>
+                        
+                        
+                </div>
+                <div className="navbar-center">
+                    <p>Welcome, {username}!</p>              {/* Displays username */}
+                    <button onClick={logout}>Logout</button> {/* Displays logout button */}
                     </div>
                 </div>
             </nav>
@@ -48,11 +56,12 @@ export function Navbar(props) {
                     <h1 className="title fs-1">Resume Optimization System</h1>
                     <h1 className="title-acronym mx-auto pl-1 ">ROS</h1>
                 </div>
-                <div className="navbar-center">
-                    <p>Welcome, {username}!</p>              {/* Displays username */}
-                    <button onClick={logout}>Logout</button> {/* Displays logout button */}
+
+                <div id="nav-menu" className="mobile-only" onClick={() => setMenuOpen(!menuOpen)}>
+                    <img className="hamburger-menu" src="img/hamburger.png" alt="Menu" />
                 </div>
-                <div className="navbar-right">
+                
+                <div className={`navbar-right ${menuOpen ? 'active' : ''}`}>
                     <div id="nav-menu">
                         <img className="hamburger-menu" src="img/hamburger.png" />
                     </div>
@@ -60,7 +69,15 @@ export function Navbar(props) {
                         <Link id="nav-links" to="/ai">AI Resume Optimizer</Link>
                         <Link id="nav-links" to="/myresumes">My Resumes</Link>
                         <Link id="nav-links" to="/templates">Example Templates</Link>
+                        {/* <Link id="nav-links" to="/login">Login</Link> */}
+                        {username ? (
+                        <span className="user-info">
+                            Welcome, {username} <span className="separator">|</span>
+                            <button className="logout-button" onClick={logout}>Logout</button>
+                        </span>
+                    ) : (
                         <Link id="nav-links" to="/login">Login</Link>
+                    )}
                     </div>
                 </div>
             </nav>

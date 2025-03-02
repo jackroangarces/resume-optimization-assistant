@@ -75,16 +75,43 @@
   }
   
   .hamburger-menu {
+    display: block;
+    cursor: pointer;
     width: 2rem;
+    height: 2rem;
     margin-right: 1rem;
-  }
+}
   
 
   /* Will probably replace this container */
-  #nav-links-container { 
-    display: none;
-    font-size: 0.9rem;
-  }
+  #nav-links-container {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+#nav-links-container a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1.5rem;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+}
+
+#nav-links-container a:not(:last-child)::after {
+    content: "|";
+    position: absolute;
+    right: -10px;
+    color: #aaa;
+    font-weight: normal;
+}
+
+#nav-links-container a:hover {
+    color: #0071e3;
+}
+
   
   /* --------- TEMPLATE (Need to reduce) --------- */
   
@@ -301,6 +328,42 @@
 }
 
 @media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    text-align: center;
+}
+#nav-links-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+  width: 100%;
+}
+#nav-links-container a {
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.navbar-right {
+  display: flex !important;  /* Ensures it is always displayed */
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
+  position: static;
+  width: auto;
+}
+.hamburger-menu {
+  display: none;
+}
+
+
+.navbar-right.active {
+  display: flex;
+}
   .resume-list {
       flex-direction: column;
       align-items: center;
@@ -350,28 +413,45 @@
       margin: auto;
     }
   }
-    
+  .navbar-right.active {
+    display: flex;
+}
+  .hamburger-menu {
+    display: block;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1rem;
+}
   @media (min-width: 768px) {
     .navbar-right {
-      width: 10rem;
-    }
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      background-color: #1D2F6F;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1rem;
+  }
+  .navbar-right.active {
+    display: flex;
+}
   
     .hamburger-menu {
       display: none;
     }
     
-    #nav-links-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: right;
-    }
-      
     #nav-links {
-      justify-content: right;
-      color: white;
+      color: black;
       text-decoration: none;
-      margin-right: 1rem;
-    }
+      font-weight: 500;
+      padding: 0.5rem 0;
+      transition: color 0.3s ease-in-out;
+  }
     
     #nav-links:hover {
       color: #f9e9ec;
