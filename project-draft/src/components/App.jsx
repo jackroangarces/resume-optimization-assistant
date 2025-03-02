@@ -9,6 +9,7 @@ import { ResumeEditor } from './ResumeEditor.jsx';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../index.css'
+import { ExamplesPage } from './ExamplesPage.jsx';
 
 function App(props) {
 
@@ -40,9 +41,9 @@ function App(props) {
         <Navbar username={username} logout={logout}/>
         <main>
           <Routes>
-            <Route path="/" element = {<HomePage />} />
-            <Route path="/login" element = {<SignIn login={login}/>} />
-
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<SignIn login={login}/>} />
+            <Route path="/examples" element={<ExamplesPage />} />
             <Route path="*" element={<Navigate to="/"/>} /> {/* Catch-all for bad URLs */}
             <Route path="/myresumes/*" element={<MyResumes resumes={resumes} setResumes={setResumes} />} />
             <Route path="/resume/edit-resume/:id" element={<ResumeEditor resumes={resumes} setResumes={setResumes} />} />

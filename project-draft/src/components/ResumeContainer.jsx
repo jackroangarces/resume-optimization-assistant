@@ -16,12 +16,14 @@ export function ResumeContainer({ resume }) {
 export function TemplateContainer(props) {
 
     // State variables here:
+    const {name, img, alt, target, link} = props;
 
     return (
-        <div className="card">
-            <img src="img/foster-resume-template.png" alt="Resume Preview" className="card-image"></img>
-            <h3 className="card-title">Jacks SWE Resume</h3>
-            <p className="last-modified">Last Modified: February 2, 2025</p>
+        <div className="template-card w-50">
+            <a href={link} target={target}>
+                <img src={img} alt={alt} className="template-img" />
+                <h2>{name}</h2>
+            </a>
         </div>
     );
 };

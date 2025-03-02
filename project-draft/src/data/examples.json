@@ -1,0 +1,23 @@
+[
+    {
+        "name": "UW Foster Resume Template",
+        "img": "img/foster-resume-template.png",
+        "alt": "UW Foster Resume Template",
+        "link": "https://foster.uw.edu/careers/career-services/undergraduate-students/resume-cover-letter/",
+        "target": "_blank"
+    },
+    {
+        "name": "Harvard Bullet Point Resume Template",
+        "img": "img/harvard-resume-template.png",
+        "alt": "Harvard Resume Template Example",
+        "link": "https://careerservices.fas.harvard.edu/resources/bullet-point-resume-template/",
+        "target": "_blank"
+    },
+    {
+        "name": "Yale Resume Template Example",
+        "img": "img/yale-resume-template.png",
+        "alt": "Yale Resume Template Example",
+        "link": "https://ocs.yale.edu/resources/ocs-resume-template/",
+        "target": "_blank"
+    }
+]
