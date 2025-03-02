@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Link } from 'react-router';
 
 export function SignIn(props) {
 
@@ -13,14 +14,8 @@ export function SignIn(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        // Remember! It is bad practice to use querySelector in React
-        // We have to use state to set input values. Text me if u need
-        // help with that.
-
-        let usernameInput = document.querySelector('.usernameInput').value;
-        let passwordInput = document.querySelector('.passwordInput').value;
-        let user = registeredUsers.find(user => user.username == usernameInput);
-        let pw = registeredUsers.find(user => user.password == passwordInput);
+        let user = registeredUsers.find(user => user.username == username);
+        let pw = registeredUsers.find(user => user.password == password);
 
         // will add conditionals for invalid usernames here
 
@@ -40,9 +35,10 @@ export function SignIn(props) {
     return (
         <div className="container">
                 <form onSubmit={handleSubmit}>
+                
                 <div className="user-input column">
-                <p className="sign-up">Sign in</p>
-                {<p style={{color: 'red'}}>{error}</p>} {/*  Inline CSS is bad practice */}
+                <p className="sign-in">Sign in</p>
+                {<p className="text-danger">{error}</p>}
                     <input 
                         type="text" 
                         placeholder="Enter Username" 
@@ -50,7 +46,7 @@ export function SignIn(props) {
                         onChange={(event) => setUsername(event.target.value)}
                     />
                 </div>
-                <div>
+                <div className="user-input column">
                     <input 
                         type="text"
                         placeholder="Enter password"
@@ -62,9 +58,8 @@ export function SignIn(props) {
                     Sign In
                 </button>
             </form>
-            <button className="register">
-                <p>Register now!</p>
-            </button>
+            <Link className="button" to="/register">Register</Link>
         </div>
+        
     );
 }

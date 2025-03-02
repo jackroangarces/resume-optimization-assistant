@@ -6,13 +6,14 @@ import { HomePage } from './StaticPages.jsx';
 import { SignIn } from './SignIn.jsx';
 import { MyResumes } from './MyResumes.jsx';
 import { ResumeEditor } from './ResumeEditor.jsx';
+import { Register } from './Register.jsx';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../index.css'
 import { ExamplesPage } from './ExamplesPage.jsx';
 
 function App(props) {
-
+    
 
     // Global state variable for username 
     // (because its needed to access different user's resumes)  
@@ -42,7 +43,8 @@ function App(props) {
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<SignIn login={login}/>} />
+            <Route path="/login" element={<SignIn login={login} />} />
+            <Route path="/register" element={<Register login={login} />} />
             <Route path="/examples" element={<ExamplesPage />} />
             <Route path="*" element={<Navigate to="/"/>} /> {/* Catch-all for bad URLs */}
             <Route path="/myresumes/*" element={<MyResumes resumes={resumes} setResumes={setResumes} />} />
