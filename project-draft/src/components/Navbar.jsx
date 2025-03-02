@@ -29,9 +29,7 @@ export function Navbar(props) {
                 
                 <div className={`navbar-right ${menuOpen ? 'active' : ''}`}>
 
-                    <div id="nav-menu" onClick={() => setMenuOpen(!menuOpen)}>
-                    <img className="hamburger-menu" src="img/hamburger.png" alt="Menu" />
-                    </div>
+                    
                     <div id="nav-links-container">
                         <Link id="nav-links" to="/ai">AI Resume Optimizer</Link>
                         <Link id="nav-links" to="/myresumes">My Resumes</Link>
@@ -62,9 +60,7 @@ export function Navbar(props) {
                 </div>
                 
                 <div className={`navbar-right ${menuOpen ? 'active' : ''}`}>
-                    <div id="nav-menu">
-                        <img className="hamburger-menu" src="img/hamburger.png" />
-                    </div>
+                    
                     <div id="nav-links-container">
                         <Link id="nav-links" to="/ai">AI Resume Optimizer</Link>
                         <Link id="nav-links" to="/myresumes">My Resumes</Link>
