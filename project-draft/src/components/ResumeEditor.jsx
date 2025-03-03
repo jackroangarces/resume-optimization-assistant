@@ -14,14 +14,14 @@ export function ResumeEditor({ resumes, setResumes }) {
 
     return (
         <div>
-            <h1>{resume.title}</h1>
+            <h1 className="pt-4">{resume.title}</h1>
             <div className='d-flex justify-content-between'>
                 <div className='button-container'>
-                    <EditorButtons editName="Biography"/> {/* Example Button */} 
-                    <EditorButtons editName="Relevant Coursework"/> 
-                    <EditorButtons editName="Work Experience"/> 
-                    <EditorButtons editName="Projects"/> 
-                    <EditorButtons editName="Skills"/> 
+                    <EditorButtons name="Edit Biography"/> {/* Example Button */} 
+                    <EditorButtons name="Edit Relevant Coursework"/> 
+                    <EditorButtons name="Edit Work Experience"/> 
+                    <EditorButtons name="Edit Projects"/> 
+                    <EditorButtons name="Edit Skills"/> 
                 </div>
                 <div className="resume-editor d-flex">
                     <div className="resume-preview">

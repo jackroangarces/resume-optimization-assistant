@@ -45,7 +45,7 @@ function App(props) {
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<SignIn login={login} />} />
             <Route path="/register" element={<Register login={login} />} />
-            <Route path="/examples" element={<ExamplesPage />} />
+            <Route path="/templates" element={<ExamplesPage />} />
             <Route path="*" element={<Navigate to="/"/>} /> {/* Catch-all for bad URLs */}
             <Route path="/myresumes/*" element={<MyResumes resumes={resumes} setResumes={setResumes} />} />
             <Route path="/resume/edit-resume/:id" element={<ResumeEditor resumes={resumes} setResumes={setResumes} />} />
