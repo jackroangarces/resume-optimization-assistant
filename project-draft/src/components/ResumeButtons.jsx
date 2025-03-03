@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-export function EditorButtons({name, modalName, onSave}) {
+export function EditorButtons({name, modalName, subtext, onSave}) {
     
     //modal state
     const [show, setShow] = useState(false);
@@ -35,6 +35,8 @@ export function EditorButtons({name, modalName, onSave}) {
                 <Modal.Title>{modalName}</Modal.Title>
                 </Modal.Header>
             <Modal.Body>
+                <p>Current: {subtext}</p>
+                <br />
                 <input 
                 type="text" 
                 placeholder="input here" 

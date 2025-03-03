@@ -4,7 +4,7 @@ import { EditorButtons, GenerateButtons } from './ResumeButtons';
 import { Document, Page, pdfjs} from 'react-pdf';
 import { ChatScreen } from './ResumeAI.jsx';
 
-// pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 
 export function ResumeEditor({ resumes, setResumes }) {
@@ -12,6 +12,10 @@ export function ResumeEditor({ resumes, setResumes }) {
     const resume = resumes.find(resume => resume.id === parseInt(id));
     const [numPages, setNumPages] = useState(null);
     const pdfUrl = "/swe-resume-template.pdf";
+    const [biography, setBiography] = useState("");
+    const [projects, setProjects] = useState("");
+    const [workExperience, setWorkExperience] = useState("");
+    const [skills, setSkills] = useState("");
 
     function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
@@ -44,10 +48,10 @@ export function ResumeEditor({ resumes, setResumes }) {
             <h1 className="pt-4">{resume.title}</h1>
             <div className='d-flex justify-content-between'>
                 <div className='button-container'>
-                    <EditorButtons name="Edit Biography" />
-                    <EditorButtons name="Edit Work Experience" />
-                    <EditorButtons name="Edit Projects" />
-                    <EditorButtons name="Edit Skills" />
+                    <EditorButtons name="Edit Biography" modalName="Edit Biography" subtext={biography} onSave={setBiography}/>
+                    <EditorButtons name="Edit Work Experience" modalName="Edit Work Experience" subtext={workExperience} onSave={setWorkExperience}/>
+                    <EditorButtons name="Edit Projects" modalName="Edit Projects" subtext={projects} onSave={setProjects}/>
+                    <EditorButtons name="Edit Skills" modalName="Edit Skills" subtext={skills} onSave={setSkills}/>
                 </div>
 
                 {/* Resume Preview Card */}

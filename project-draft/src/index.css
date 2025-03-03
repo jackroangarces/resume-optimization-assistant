@@ -360,9 +360,9 @@
   color: inherit;
 }
 
-.resume-container:hover {
+{/*}.resume-container:hover {
   transform: scale(1.05); 
-}
+}*/}
 
 .resume-image {
   width: 100%;
