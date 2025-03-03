@@ -1,11 +1,8 @@
-# INFO 340 Project
+# React + Vite
 
-This repository contains code for an interactive information web app, created for the _Client-Side Web Development_ course at the UW iSchool, Tech Industry Resume Optimization Assistant. This application allows users to enhance their resumes specifically for tech industry roles.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Brandon Kim
+Currently, two official plugins are available:
 
-Jack Garces
-
-Willy Dang
-
-Artyom Serebryakov
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
