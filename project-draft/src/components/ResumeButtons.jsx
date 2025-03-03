@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-export function EditorButtons({name, onSave}) {
+export function EditorButtons({name, modalName, onSave}) {
     
     //modal state
     const [show, setShow] = useState(false);
@@ -30,7 +30,7 @@ export function EditorButtons({name, onSave}) {
             </button>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
+                <Modal.Title>{modalName}</Modal.Title>
                 </Modal.Header>
             <Modal.Body>
                 <input 

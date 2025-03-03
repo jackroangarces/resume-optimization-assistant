@@ -22,7 +22,7 @@ export function MyResumes({ resumes, setResumes }) {
         <div>
             <h1>My Resumes</h1>
             <div className="my-resumes-page">
-                <EditorButtons name="Create Resume" onSave={handleCreateResume}/>
+                <EditorButtons name="Create Resume" modalName="Enter Resume Title" onSave={handleCreateResume}/>
                 <ResumeList resumes={resumes} />
             </div>
         </div>
