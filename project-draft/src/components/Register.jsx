@@ -39,35 +39,35 @@ export function Register(props) {
         <div className="container">
             <form onSubmit={handleSubmit}>
             <div className="user-input column">
-            <p className="sign-up">Sign Up</p>
+            <p className="sign-in-header">Sign Up</p>
             {<p className="text-danger">{error}</p>}
-            <p>Enter a username</p>
-                <input className="enter-username"
-                    placeholder="Enter Username" 
+            <p className="enter-username">Enter a username</p>
+                <input className="username"
+                     
                     type="text"
                     value={username}
                     onChange={(event) => setUsername(event.target.value)}
                 />
             </div>
             <div className="user-input column">
-            <p>Enter a password</p>
-                <input className="enter-password"
-                    placeholder="Enter password"
-                    type="text"
+            <p className="enter-password">Enter a password</p>
+                <input className="password"
+                    
+                    type="password"
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
                 />
             </div>
             <div className="user-input column">
-            <p>Confirm your entered password</p>
-                <input className="confirm-password"
-                    placeholder="Confirm password"
-                    type="text"
+            <p className="confirm-password">Confirm your entered password</p>
+                <input className="confirm-pw"
+                    
+                    type="password"
                     value={confirmPassword}
                     onChange={(event) => setConfirmPassword(event.target.value)}
                 />
             </div>
-                <button type="submit" className="sign-up">
+                <button type="submit" className="button">
                     Sign Up
                 </button>
             </form>

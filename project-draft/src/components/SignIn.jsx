@@ -33,32 +33,36 @@ export function SignIn(props) {
 
 
     return (
+        
         <div className="container">
+            
                 <form onSubmit={handleSubmit}>
                 
                 <div className="user-input column">
-                <p className="sign-in">Sign in</p>
+                <p className="sign-in-header">Sign in</p>
                 {<p className="text-danger">{error}</p>}
                     <input 
                         type="text" 
-                        placeholder="Enter Username" 
+                        placeholder="Username" 
                         value={username} 
                         onChange={(event) => setUsername(event.target.value)}
                     />
                 </div>
                 <div className="user-input column">
                     <input 
-                        type="text"
-                        placeholder="Enter password"
+                        type="password"
+                        placeholder="Password"
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
                     />
                 </div>
-                <button type="submit" className="sign-in">
+                <button type="submit" className="button">
                     Sign In
                 </button>
-            </form>
+                <p className="new-acc-suggestion">Don't have an account? Register now!</p>
             <Link className="button" to="/register">Register</Link>
+            </form>
+            
         </div>
         
     );

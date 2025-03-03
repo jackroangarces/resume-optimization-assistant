@@ -236,18 +236,22 @@
   
   /* --------- LOG IN --------- */
   
+  #root {
+    background-color: #E3EAFD;
+  }
+
   form {
     border: solid;
     border-radius: 10px;
     text-align: center;
     margin: auto;
-    margin-top: 1.5rem;
+    margin-top: 5rem;
     width: fit-content;
     background-color: #cccccc;
   }
   
   .user-input {
-    padding-top: 1rem;
+    padding: 1rem 1rem 0;
   }
   
   #email, #password {
@@ -269,6 +273,24 @@
   
   .container {
     margin: 1rem;
+  }
+
+  .sign-in-header {
+    font-size: 3rem;
+    font-weight: 400;
+  }
+
+  .text-danger, .new-acc-suggestion {
+    padding: 0 1rem;
+    font-weight: bold;
+  }
+
+  .new-acc-suggestion {
+    margin: 0;
+  }
+
+  .enter-username, .enter-password, .confirm-password {
+    margin: 0;
   }
   
   /* --------- MY RESUMES --------- */
