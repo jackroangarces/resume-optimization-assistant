@@ -14,12 +14,15 @@ export function ExamplesPage(props) {
     });
 
     return (
-        <div>
-            <h1>Example Templates</h1>
-            <div className="d-flex flex-wrap">
+        <div className="examples-page">
+            <h1 className="page-title">Example Resume Templates</h1>
+            <p className="page-subtitle">
+                Browse through these professionally designed resume templates to find the perfect fit for your career.
+            </p>
+            <div className="templates-container">
                 {templateCards}
             </div>
         </div>
-    )
+    );
 
 }
