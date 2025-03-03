@@ -21,6 +21,12 @@
   h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
+    padding: 4rem 5rem 0 4rem;
+  }
+
+  h2 {
+    font-size: 1.25 rem;
+    padding: 1rem 5rem 0 4rem;
   }
 
   /* --------- BUTTON --------- */
@@ -373,7 +379,7 @@
 }
 
 .my-resumes-page {
-  padding: 2rem;
+  padding: 3rem;
 }
 
 @media (max-width: 768px) {
@@ -387,7 +393,7 @@
       width: 90%;
       max-width: 300px;
   }
-  
+
 }
 
   /* --------- RESUME EDITOR --------- */

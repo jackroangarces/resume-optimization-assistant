@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import {ResumeList} from './ResumeList';
-import {ResumeEditor} from './ResumeEditor';
+import { EditorButtons, GenerateButtons } from './ResumeButtons';
+
 
 export function MyResumes({ resumes, setResumes }) {
 
-    const handleCreateResume = () => {
-        const title = window.prompt("Enter resume title:");
+    const handleCreateResume = (name) => {
+        const title = name;
         if (!title) return; 
         const newResume = {
           id: resumes.length + 1,
@@ -21,7 +22,7 @@ export function MyResumes({ resumes, setResumes }) {
         <div>
             <h1>My Resumes</h1>
             <div className="my-resumes-page">
-                <button className="button" onClick={handleCreateResume}>Create New Resume</button>
+                <EditorButtons name="Create Resume" onSave={handleCreateResume}/>
                 <ResumeList resumes={resumes} />
             </div>
         </div>
