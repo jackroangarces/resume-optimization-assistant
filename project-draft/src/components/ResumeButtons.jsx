@@ -28,6 +28,8 @@ export function EditorButtons({name, modalName, onSave}) {
             <button className="button" onClick={handleShow}>
                 {name}
             </button>
+
+            {/* Modal component from React Bootstrap */}
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                 <Modal.Title>{modalName}</Modal.Title>
@@ -57,10 +59,10 @@ export function EditorButtons({name, modalName, onSave}) {
 export function GenerateButtons(props) {
 
     // same with props here
-    const {editName} = props;
+    const {editName, onClick} = props;
 
     return (
-        <button className="button">
+        <button className="button" onClick={onClick}>
             {editName}
         </button>
     )

@@ -220,24 +220,10 @@
   
   
   #homepage .card {
-    /* display: flex; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    /* width: 100%; */
     max-width: 64rem;
-    /* padding: 1rem; */
-    /* background: white; */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 1rem;
-    /* overflow: hidden; */
-    /* margin-top: 3rem; */
-    /* align-self: center; */
   }
-  
-  /* #homepage .card-image {
-    width: 100%;
-    border-radius: 0.75rem;
-  } */
   
   #homepage .button {
     display: inline-block;

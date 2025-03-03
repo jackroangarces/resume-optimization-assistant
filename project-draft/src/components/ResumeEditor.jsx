@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import { useParams } from 'react-router';
 import { EditorButtons, GenerateButtons } from './ResumeButtons';
 import { Document, Page, pdfjs} from 'react-pdf';
-import {ChatScreen} from './ResumeAi.jsx';
+import { ChatScreen } from './ResumeAI.jsx';
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+// pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 
 export function ResumeEditor({ resumes, setResumes }) {
@@ -21,6 +21,24 @@ export function ResumeEditor({ resumes, setResumes }) {
         return <p>Resume not found!</p>;
     }
 
+    // reference to ChatScreen
+    const chatScreenRef = useRef(null);
+    
+    // generate button handlers
+    const handleGenerateClasses = () => {
+        if (chatScreenRef.current) {
+            chatScreenRef.current.handleGenerateClasses();
+        }
+    };
+
+    const handleGenerateProjects = () => {
+        if (chatScreenRef.current) {
+            chatScreenRef.current.handleGenerateProjects();
+        }
+    };
+
+    // ai quality score goes here
+
     return (
         <div>
             <h1 className="pt-4">{resume.title}</h1>
@@ -34,7 +52,7 @@ export function ResumeEditor({ resumes, setResumes }) {
 
                 {/* Resume Preview Card */}
                 <div className="resume-editor d-flex">
-                    <div className="card p-3 mt-3 shadow-lg" style={{ width: "50rem" }}>
+                    <div className="card p-3 mt-3 shadow-lg" style={{ width: "40rem" }}>
                         <h5 className="card-title text-center">Resume Preview</h5>
                         <div className="card-body d-flex justify-content-center">
                             <Document
@@ -60,10 +78,11 @@ export function ResumeEditor({ resumes, setResumes }) {
                 </div>
 
                 <div className='button-container'>
-                    <GenerateButtons editName="Generate Class Recs" />
-                    <GenerateButtons editName="Generate Project Ideas" />
+                    <GenerateButtons editName="Generate Class Recs" onCLick={handleGenerateClasses}/>
+                    <GenerateButtons editName="Generate Project Ideas" onCLick={handleGenerateProjects}/>
                     <GenerateButtons editName="AI Quality Score" />
-                    <button className="button" onClick={() => window.open(pdfUrl, '_blank')}> Download Resume </button>
+                    <button className="button" onClick={() => window.open(pdfUrl, '_blank')}> Download Resume </button>                    
+                    <ChatScreen ref={chatScreenRef}/>
                 </div>
             </div>
         </div>
