@@ -11,7 +11,12 @@ export function ResumeEditor({ resumes, setResumes }) {
     const { id } = useParams();
     const resume = resumes.find(resume => resume.id === parseInt(id));
     const [numPages, setNumPages] = useState(null);
-    const pdfUrl = "/swe-resume-template.pdf";
+    let pdfUrl = null;
+    if(resume.pdfUrl) {
+        pdfUrl = resume.pdfUrl;
+    } else {
+        pdfUrl = "/swe-resume-template.pdf";
+    }
     const [biography, setBiography] = useState("");
     const [projects, setProjects] = useState("");
     const [workExperience, setWorkExperience] = useState("");
@@ -50,7 +55,7 @@ export function ResumeEditor({ resumes, setResumes }) {
                 <div className='button-container'>
                     <EditorButtons name="Edit Biography" modalName="Edit Biography" subtext={biography} onSave={setBiography}/>
                     <EditorButtons name="Edit Work Experience" modalName="Edit Work Experience" subtext={workExperience} onSave={setWorkExperience}/>
-                    <EditorButtons name="Edit Projects" modalName="Edit Projects" subtext={projects} onSave={setProjects}/>
+                    <EditorButtons name="Edit Projects" modalName="Edit Projects" subtext={projects} onSave={setProjects} />
                     <EditorButtons name="Edit Skills" modalName="Edit Skills" subtext={skills} onSave={setSkills}/>
                 </div>
 

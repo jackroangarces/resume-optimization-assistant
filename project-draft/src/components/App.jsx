@@ -32,8 +32,8 @@ function App(props) {
     }
 
     const [resumes, setResumes] = useState([
-      { id: 1, title: "Software Engineer Resume", lastEdited: "2025-02-25", image: null },
-      { id: 2, title: "Data Scientist Resume", lastEdited: "2025-02-20", image: null },
+      { id: 1, title: "Software Engineer Resume", lastEdited: "2025-02-25", image: null, pdfUrl: null, pdf: null },
+      { id: 2, title: "Data Scientist Resume", lastEdited: "2025-02-20", image: null, pdfUrl: null, pdf: null },
     ]);
     {/* what is set in the state default is just sample resumes*/}
 

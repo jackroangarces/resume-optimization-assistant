@@ -12,6 +12,7 @@
   "dependencies": {
     "@google/generative-ai": "^0.22.0",
     "bootstrap": "^5.3.3",
+    "jspdf": "^3.0.0",
     "pdfjs-dist": "^2.10.377",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
