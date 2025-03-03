@@ -31,7 +31,6 @@ export function Navbar(props) {
 
                     
                     <div id="nav-links-container">
-                        <Link id="nav-links" to="/ai">AI Resume Optimizer</Link>
                         <Link id="nav-links" to="/myresumes">My Resumes</Link>
                         <Link id="nav-links" to="/templates">Example Templates</Link>
                         
@@ -62,7 +61,6 @@ export function Navbar(props) {
                 <div className={`navbar-right ${menuOpen ? 'active' : ''}`}>
                     
                     <div id="nav-links-container">
-                        <Link id="nav-links" to="/ai">AI Resume Optimizer</Link>
                         <Link id="nav-links" to="/myresumes">My Resumes</Link>
                         <Link id="nav-links" to="/templates">Example Templates</Link>
                         {/* <Link id="nav-links" to="/login">Login</Link> */}
