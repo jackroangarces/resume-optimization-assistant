@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router';
+import { getDatabase, ref, onValue, push, set } from 'firebase/database';
 import { Navbar } from './Navbar.jsx';
 import { Footer } from './Footer.jsx';
 import { HomePage } from './StaticPages.jsx';
-import { SignIn } from './SignIn.jsx';
+import { SignIn } from './SignIn.jsx';  
 import { MyResumes } from './MyResumes.jsx';
 import { ResumeEditor } from './ResumeEditor.jsx';
 import { Register } from './Register.jsx';
@@ -13,30 +14,55 @@ import '../index.css'
 import { ExamplesPage } from './ExamplesPage.jsx';
 
 function App(props) {
+
+    // GET USERS AND UPDATE USERS
+    const [users, setUsers] = useState([]);
+    useEffect(() => {
+      const db = getDatabase();
+      const usersRef = ref(db, 'userData');
+      const unsubscribe = onValue(usersRef, (snapshot) => {
+        const usersData = snapshot.val();
+        if (usersData) {
+          setUsers(usersData);
+        } else {
+          setUsers([]);
+        }
+      });
+      return () => unsubscribe();
+    }, []);
     
-
-    // Global state variable for username 
-    // (because its needed to access different user's resumes)  
+    // UPDATE USERNAME
     const [username, setUsername] = useState(null);
-
-    // "login" function to set Global username from inside sign in 
-    // component
+    
     const login = (username) => {
       setUsername(username);
-    };
+    }
 
-    // simple logout that can be assigned to a button
-    // (probably in the navbar)
     const logout = () => {
       setUsername(null);
     }
 
-    const [resumes, setResumes] = useState([
-      { id: 1, title: "Software Engineer Resume", lastEdited: "2025-02-25", image: null, pdfUrl: null, pdf: null },
-      { id: 2, title: "Data Scientist Resume", lastEdited: "2025-02-20", image: null, pdfUrl: null, pdf: null },
-    ]);
-    {/* what is set in the state default is just sample resumes*/}
+    // INITIALIZE RESUMES
+    const [resumes, setResumes] = useState([]);
+    useEffect(() => {
+      if (username) {
+        const db = getDatabase();
+        const resumesRef = ref(db, `userData/${username}/resumes`);  // User-specific resumes path
+        const unsubscribeResumes = onValue(resumesRef, (snapshot) => {
+          const resumesData = snapshot.val();
+          if (resumesData) {
+            setResumes(resumesData);
+          } else {
+            setResumes([]);
+          }
+        });
+        return () => unsubscribeResumes();
+      } else {
+        setResumes([]); 
+      }
+    }, [username]); 
 
+    // ROUTING
     return (
       <div>
         <Navbar username={username} logout={logout}/>
@@ -47,7 +73,7 @@ function App(props) {
             <Route path="/register" element={<Register login={login} />} />
             <Route path="/templates" element={<ExamplesPage />} />
             <Route path="*" element={<Navigate to="/"/>} /> {/* Catch-all for bad URLs */}
-            <Route path="/myresumes/*" element={<MyResumes resumes={resumes} setResumes={setResumes} />} />
+            <Route path="/myresumes/*" element={<MyResumes resumes={resumes} setResumes={setResumes} username={username}/>} />
             <Route path="/resume/edit-resume/:id" element={<ResumeEditor resumes={resumes} setResumes={setResumes} />} />
           </Routes>
         </main>

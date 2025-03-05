@@ -1,43 +1,46 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import { getDatabase, ref, get } from 'firebase/database';
 import { Link } from 'react-router';
+import { useNavigate } from 'react-router';
 
 export function SignIn(props) {
 
-    // setting the state of username, password, and error messages
     const {login} = props;
+    const db = getDatabase();
+    const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const registeredUsers = [{username:'redwall4lif', password:'seahawks48'}];
    
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        let user = registeredUsers.find(user => user.username == username);
-        let pw = registeredUsers.find(user => user.password == password);
-
-        // will add conditionals for invalid usernames here
-
-        if (user && pw) {
-            setError('');
-            login(user => username);
-        } else if(!user) {
-            setError('Username not found, please enter a valid username');
-        } else if(!pw) {
-            setError('Please enter the correct password');
-        }
+        setError('');
+        const userRef = ref(db, 'userData/' + username);
+        get(userRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                const userData = snapshot.val();
+                if (userData.password === password) {
+                    login(username);
+                    navigate('/myresumes');
+                } else {
+                    setError('Incorrect password. Please try again.');
+                }
+            } else {
+                setError('Username not found. Please enter a valid username.');
+            }
+        }).catch((error) => {
+            console.error('Error fetching user data: ', error);
+            setError('An error occurred. Please try again later.');
+        });
         setUsername('');
         setPassword('');
     }
 
 
     return (
-        
         <div className="container">
-            
                 <form onSubmit={handleSubmit}>
-                
                 <div className="user-input column">
                 <p className="sign-in-header">Sign in</p>
                 {<p className="text-danger">{error}</p>}
@@ -62,8 +65,6 @@ export function SignIn(props) {
                 <p className="new-acc-suggestion">Don't have an account? Register now!</p>
             <Link className="button" to="/register">Register</Link>
             </form>
-            
         </div>
-        
     );
 }
