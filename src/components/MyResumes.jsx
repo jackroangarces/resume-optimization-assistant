@@ -1,59 +1,65 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { jsPDF } from "jspdf";
 import { Document, Packer, Paragraph } from "docx";
 import {ResumeList} from './ResumeList';
-import { EditorButtons, GenerateButtons } from './ResumeButtons';
-import { getDatabase, ref, set, child } from 'firebase/database';
+import { EditorButtons } from './ResumeButtons';
+import { getDatabase, ref, set} from 'firebase/database';
 
+const blobToBase64 = (blob) => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(blob);
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+    });
+};
 
 export function MyResumes({ resumes, setResumes, username }) {
 
-    const handleCreateResume = (name) => {
+    const handleCreateResume = async (name) => {
         const title = name.trim();
         if (!title) return; 
         const resumeId = title;
+
+        const db = getDatabase();
         
         // CREATE PDF
         const pdf = new jsPDF();
         pdf.text(title, 10, 10);
         const pdfBlob = pdf.output("blob");
-        const pdfUrl = URL.createObjectURL(pdfBlob);
+        const pdfBase64 = await blobToBase64(pdfBlob);
 
-        // CREATE DOCX
+        // CREATE DOCX  
         const docx = new Document({
             sections: [{
                 properties: {},
                 children: [new Paragraph(title)]
             }]
         });
-        Packer.toBlob(docx).then((docxBlob) => {
-            const docxUrl = URL.createObjectURL(docxBlob);
+        const docxBlob = await Packer.toBlob(docx);
+        const docxBase64 = await blobToBase64(docxBlob);
 
-            // CREATE RESUME OBJECT
-            const newResume = {
-                id: resumeId,
-                title,
-                lastEdited: new Date().toISOString().split("T")[0],
-                image: null,
-                pdfUrl,
-                docxUrl,
-            };
-            setResumes([...resumes, newResume]);
+        // CREATE RESUME OBJECT
+        const newResume = {
+            id: resumeId,
+            title,
+            lastEdited: new Date().toISOString().split("T")[0],
+            image: null,
+            pdfBase64,
+            docxBase64,
+        };
+        setResumes([...resumes, newResume]);
 
-            // UPDATE FIREBASE
-            const db = getDatabase();
-            const userResumesRef = ref(db, `userData/${username}/resumes`);
-            const newResumeRef = child(userResumesRef, resumeId.toString());
-            set(newResumeRef, newResume)
-                .then(() => {
-                    console.log("Resume added to Firebase successfully!");
-                })
-                .catch((error) => {
-                    console.error("Error adding resume to Firebase: ", error);
-                });
-        });
+        // UPDATE FIREBASE
+        const resumeRef = ref(db, `userData/${username}/resumes/${resumeId}`);
+        set(resumeRef, newResume)
+            .then(() => {
+                console.log("Resume added to Firebase successfully!");
+            })
+            .catch((error) => {
+                console.error("Error adding resume to Firebase: ", error);
+            });
     };
-
 
     return (
         <div>

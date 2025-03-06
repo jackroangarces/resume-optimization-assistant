@@ -7,7 +7,7 @@ export function ResumeContainer({ resume }) {
             <img src={resume.image} alt={resume.title} className="resume-image" />
             <div className="resume-info">
                 <h3>{resume.title}</h3>
-                <p>Last Edited: {resume.lastEdited}</p>
+                <p>Created: {resume.lastEdited}</p>
             </div>
         </Link>
     );

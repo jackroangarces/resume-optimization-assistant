@@ -47,11 +47,11 @@ function App(props) {
     useEffect(() => {
       if (username) {
         const db = getDatabase();
-        const resumesRef = ref(db, `userData/${username}/resumes`);  // User-specific resumes path
+        const resumesRef = ref(db, `userData/${username}/resumes`);
         const unsubscribeResumes = onValue(resumesRef, (snapshot) => {
           const resumesData = snapshot.val();
           if (resumesData) {
-            setResumes(resumesData);
+            setResumes(Object.values(resumesData));
           } else {
             setResumes([]);
           }
