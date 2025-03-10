@@ -22,6 +22,7 @@ export function ResumeEditor({ resumes, setResumes }) {
     // Reference to ChatScreen
     const chatScreenRef = useRef(null);
 
+    // DECODE + LOAD RESUME
     useEffect(() => {
         const selectedResume = resumes.find((r) => r.id === id);
         
