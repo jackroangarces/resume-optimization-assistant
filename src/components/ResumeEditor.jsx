@@ -21,10 +21,65 @@ export function ResumeEditor({ resumes, setResumes }) {
     const [projects, setProjects] = useState("");
     const [workExperience, setWorkExperience] = useState("");
     const [skills, setSkills] = useState("");
+    // Reference to ChatScreen
+    const chatScreenRef = useRef(null);
 
-    function onDocumentLoadSuccess({ numPages }) {
-        setNumPages(numPages);
-    }
+    // DECODE + LOAD RESUME
+    useEffect(() => {
+        const selectedResume = resumes.find((r) => r.id === id);
+        
+        if (selectedResume) {
+            setResume(selectedResume);
+            
+            // Convert base64 PDF to Blob URL
+            if (selectedResume.pdfBase64) {
+                const pdfBlob = base64ToBlob(selectedResume.pdfBase64);
+                const pdfBlobUrl = URL.createObjectURL(pdfBlob);
+                setPdfUrl(pdfBlobUrl);
+            }
+            
+            // Convert base64 DOCX to Blob URL
+            if (selectedResume.docxBase64) {
+                const docxBlob = base64ToBlob(selectedResume.docxBase64);
+                const docxBlobUrl = URL.createObjectURL(docxBlob);
+                setDocxUrl(docxBlobUrl);
+            }
+
+        } else {
+            setResume(null);
+            setPdfUrl(null);
+            setDocxUrl(null);
+        }
+        
+        return () => {
+            if (pdfUrl) URL.revokeObjectURL(pdfUrl);
+            if (docxUrl) URL.revokeObjectURL(docxUrl);
+        };
+    }, [id, resumes]);
+
+    // CONVERT BASE64 TO BLOB
+    const base64ToBlob = (base64Data) => {
+        const base64Content = base64Data.includes('base64,') 
+            ? base64Data.split('base64,')[1] 
+            : base64Data;
+        
+        let contentType = 'application/octet-stream';
+        if (base64Data.includes('data:')) {
+            contentType = base64Data.split(';')[0].split(':')[1];
+        }
+        const byteCharacters = atob(base64Content);
+        const byteArrays = [];
+        for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+            const slice = byteCharacters.slice(offset, offset + 512);
+            const byteNumbers = new Array(slice.length);
+            for (let i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+            const byteArray = new Uint8Array(byteNumbers);
+            byteArrays.push(byteArray);
+        }
+        return new Blob(byteArrays, { type: contentType });
+    };
 
     if (!resume) {
         return <p>Resume not found!</p>;

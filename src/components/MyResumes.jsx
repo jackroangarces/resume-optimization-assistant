@@ -25,7 +25,6 @@ export function MyResumes({ resumes, setResumes, username }) {
         
         // CREATE PDF
         const pdf = new jsPDF();
-        pdf.text(title, 10, 10);
         const pdfBlob = pdf.output("blob");
         const pdfBase64 = await blobToBase64(pdfBlob);
 
