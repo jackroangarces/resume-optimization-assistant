@@ -1,0 +1,141 @@
+{
+    "courses": {
+      "INFO_102": {
+        "title": "Gender and Information Technology",
+        "description": "Explores the social construction of gender in relation to the history and contemporary development of information technologies. Considers the importance of diversity and difference in the design and construction of innovative information technology solutions. Challenges prevailing viewpoints about who can and does work in the information technology field.",
+        "prerequisites": []
+      },
+      "INFO_103": {
+        "title": "Social Media, Ethics, and Automation",
+        "credits": 5,
+        "attributes": ["SSc", "NSc"],
+        "description": "Explores ethical concerns involving automation on social media platforms. Students learn about social media phenomena (e.g., viral memes, parasocial relationships, harassment campaigns), experiment with computer programs (e.g., bots, data mining programs, recommendation algorithms), and apply ethics frameworks (e.g., Taoism, virtue ethics, Ubuntu ethics). No prior programming experience assumed.",
+        "prerequisites": []
+      },
+      "INFO_104": {
+        "title": "Technology Ethics, Policy, and Law",
+        "description": "Drawing from law, ethics, and science and technology studies, introduces students to the ways contemporary society seeks to mitigate the harms of emerging technology and promote human flourishing.",
+        "prerequisites": []
+      },
+      "INFO_180": {
+        "title": "Introduction to Data Science",
+        "description": "Survey course introducing the essential elements of data science: data collection, management, curation, and cleaning; summarizing and visualizing data; basic ideas of statistical inference, machine learning. Students will gain hands-on experience through computing labs.",
+        "prerequisites": []
+      },
+      "INFO_200": {
+        "title": "Intellectual Foundations of Informatics",
+        "description": "Introduces the intellectual foundations of information, including what it is; how people create, categorize, find, interpret, manipulate and use information; how human values shape the design of information, information technology, and information systems; and how these systems shape people, organizations, and society. Includes analytic, design, empirical, and technical skill development.",
+        "prerequisites": []
+      },
+      "INFO_201": {
+        "title": "Foundational Skills for Data Science",
+        "description": "Introduces fundamental tools, technologies, and skills necessary to transform data into knowledge, including data manipulation, analysis, and visualization, as well as version control and programming languages used in data programming. Students learn to work with real data, and reflect on the power and perils of using data to inform.",
+        "prerequisites": []
+      },
+      "INFO_270": {
+        "title": "Data Reasoning in a Digital World",
+        "credits": 4,
+        "attributes": ["SSc"],
+        "description": "Covers misinformation, causal fallacies, statistical traps, and refutation techniques...",
+        "prerequisites": []
+      },
+      "INFO_310": {
+        "title": "Information Assurance and Cybersecurity",
+        "credits": 5,
+        "attributes": ["SSc", "RSN"],
+        "description": "Introduction to information assurance and cybersecurity (IAC)...",
+        "prerequisites": []
+      },
+      "INFO_330": {
+        "title": "Databases and Data Modeling",
+        "credits": 5,
+        "attributes": ["RSN"],
+        "description": "Introduction to database systems, relational models, and SQL...",
+        "prerequisites": []
+      },
+      "INFO_340": {
+        "title": "Client-Side Development",
+        "credits": 5,
+        "attributes": ["RSN"],
+        "description": "Introduction to client-side web development...",
+        "prerequisites": ["CSE_123", "CSE_143", "CSE_154", "CSE_163", "INFO_201"]
+      },
+      "INFO_351": {
+        "title": "Information Ethics and Policy",
+        "credits": 4,
+        "attributes": ["SSc", "DIV"],
+        "description": "Analyzes ethical, legal, and policy issues surrounding information technologies...",
+        "prerequisites": []
+      },
+      "INFO_370": {
+        "title": "Core Methods in Data Science",
+        "credits": 5,
+        "attributes": ["RSN"],
+        "description": "Surveys major topics within data science including machine learning and cloud computing...",
+        "prerequisites": ["INFO_201", "STAT_220"]
+      },
+      "INFO_371": {
+        "title": "Advanced Methods in Data Science",
+        "credits": 5,
+        "attributes": ["RSN"],
+        "description": "Emphasizes modern data science methods, machine learning, and experimental design...",
+        "prerequisites": ["INFO_370"]
+      },
+      "INFO_376": {
+        "title": "Introduction to Search and Recommender Systems",
+        "credits": 4,
+        "description": "Covers search engines, recommendation systems, and search interface technologies...",
+        "prerequisites": ["INFO_201", "CSE_123"]
+      },
+      "INFO_380": {
+        "title": "Product and Information Systems Management",
+        "credits": 5,
+        "description": "Covers design of information systems and software, analyzing stakeholder needs...",
+        "prerequisites": []
+      },
+      "INFO_430": {
+        "title": "Database Design and Management",
+        "credits": 5,
+        "description": "Perspectives on DBMS theory, architecture, and implementation...",
+        "prerequisites": ["INFO_330"]
+      },
+      "INFO_441": {
+        "title": "Server-Side Development",
+        "credits": 5,
+        "description": "Introduces server-side web development programming, services, tools, and protocols...",
+        "prerequisites": ["INFO_340", "INFO_330"]
+      },
+      "INFO_448": {
+        "title": "Mobile Development: Android",
+        "credits": 5,
+        "description": "Application development for Android devices using Java and XML...",
+        "prerequisites": ["INFO_340", "CSE_143"]
+      },
+      "INFO_449": {
+        "title": "Mobile Development: iOS",
+        "credits": 5,
+        "description": "Application development for iOS devices using Swift and XML...",
+        "prerequisites": ["INFO_340", "CSE_143"]
+      },
+      "INFO_474": {
+        "title": "Interactive Information Visualization",
+        "credits": 5,
+        "attributes": ["RSN"],
+        "description": "Techniques and theory for visualizing and interacting with structured data...",
+        "prerequisites": ["INFO_340", "STAT_220"]
+      },
+      "INFO_490": {
+        "title": "Project Capstone I",
+        "credits": 4,
+        "description": "First part of student-driven team project defining an information problem...",
+        "prerequisites": ["INFO_300", "INFO_360"]
+      },
+      "INFO_491": {
+        "title": "Project Capstone II",
+        "credits": 4,
+        "description": "Continuation of student-driven team project, completing project deliverables...",
+        "prerequisites": ["INFO_490"]
+      }
+    }
+  }
+  

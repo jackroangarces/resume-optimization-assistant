@@ -1,579 +1,594 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* --------- FONT-FAMILY, GENERAL HEADINGS, SPACING --------- */
-  
-  html, body {
-    height: 100%;
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  main {
-    background-color: #E3EAFD;
-    min-height: 84vh; /* "main" takes up whole viewport always (accounting for navbar size) */
-  }
-  
-  /* Page Titles */
-  h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    padding: 4rem 5rem 0 4rem;
-  }
-
-  h2 {
-    font-size: 1.25 rem;
-    padding: 1rem 5rem 0 4rem;
-  }
-
-  /* --------- BUTTON --------- */
-
-  .button, .register {
-    display: inline-block;
-    width: 12rem;
-    padding: 1rem 2rem;
-    margin: 1rem;
-    background-color: #1D2F6F;
-    color: white;
-    font-size: 1.25rem;
-    font-weight: bold;
-    border-radius: .75rem;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-    text-align: center;
-  }
-
-  .button:hover {
-    background-color: #0056b3;
-  }
-  
-  .register {
-    background-color: white;
-    color: #1D2F6F;
-    border: 2px solid #1D2F6F;
-  }
-  
-  .register:hover {
-    background-color: #E3EAFD;
-  }
-
-  
-  /* --------- NAVBAR --------- */
-  
-  .navbar {
-    background-color: #1D2F6F;
-    border-color: #1D2F6F;
-  }
-  
-  .title {
-    display: none;
-  }
-  
-  .title-acronym {
-    font-size: 4rem;
-  }
-  
-  .logo {
-    width: 5rem;
-  }
-  
-  .hamburger-menu {
-    display: none;
-    cursor: pointer;
-    width: 2rem;
-    height: 2rem;
-    margin-right: 1rem;
-}
-  
-
-  /* Will probably replace this container */
-  #nav-links-container {
-    display: flex;
-    align-items: center;
-    font-size: 1rem;
-    font-weight: 500;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-#nav-links-container a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    padding: 0.5rem 1.5rem;
-    position: relative;
-    transition: color 0.3s ease-in-out;
+/* --------- FONT-FAMILY, GENERAL HEADINGS, SPACING --------- */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
 }
 
-#nav-links-container a:not(:last-child)::after {
-    content: "|";
-    position: absolute;
-    right: -10px;
-    color: #aaa;
-    font-weight: normal;
+main {
+  background-color: #E3EAFD;
+  min-height: 84vh; /* "main" takes up whole viewport always (accounting for navbar size) */
 }
 
-#nav-links-container a:hover {
-    color: #0071e3;
+/* Page Titles */
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  padding: 4rem 5rem 0 4rem;
 }
 
-@media (max-width: 768px) {
-  .navbar-right {
-    display: none; /* Hidden by default */
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    top: 1px;
-    left: 0;
-    right: 0;
-    background-color: #1D2F6F;
-    padding: 1rem;
-    z-index: 1000;
-  }
-
-  .hamburger-menu {
-    display: block; /* This ensures it's visible on mobile */
-    position: absolute;
-    top: 2.5rem;
-    right: 1rem;
-    z-index: 100000000;
-  }
-
-  .navbar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-    text-align: center;
-  }
-
-  #nav-links-container {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    align-items: center;
-    width: 100%;
-  }
-
-  #nav-links-container a {
-    padding: 0.5rem;
-    font-size: 1rem;
-  }
-
-  .navbar-right.active {
-    display: flex;
-  }
-
+h2 {
+  font-size: 1.25 rem;
+  padding: 1rem 5rem 0 4rem;
 }
 
-  
-  /* --------- TEMPLATE (Need to reduce) --------- */
-  
-  .templates-header {
-    font-size: larger;
-    text-align: center;
-    margin: 1rem;
-  }
-  
-  .templates {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin-bottom: 5rem;
-  }
-  
-  .templates a {
-    text-decoration: none;
-    color: white;
-    margin: 1rem;
-  }
-  
-  .templates a:hover {
-    color: #1D2F6F;
-  
-  }
-  
-  .template-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 1rem;
-  }
-  
-  .template-card {
-  
-    flex-wrap: wrap;
-    margin: 1rem;
-    text-align: center;
-    border: solid 1px black;
-    max-width: 25rem;
-    background-color: #888;
-  }
-  
-  .template-img {
-    max-width: 25rem;
-    max-height: 30rem;
-  }
-  
-  /* --------- HOME PAGE --------- */
-  
-  
-  #homepage .card {
-    max-width: 64rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 1rem;
-  }
-  
-  #homepage .button {
-    display: inline-block;
-    padding: 1rem 3rem;
-    background-color: #1D2F6F;
-    color: white;
-    font-size: 1.25rem;
-    font-weight: bold;
-    border-radius: 0.75rem;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-    margin-top: 1rem;
-    text-align: left;
-    padding-left: 1rem;
-  }
-  
-  #homepage .button:hover {
-    background-color: #0056b3;
-  }
-    
-  /* --------- FOOTER --------- */
-  
-  footer {
-    background-color: #f9e9ec;
-    color: black;
-    padding: 1rem;
-    font-size: 0.9rem;
-    position: relative;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-  }
-  
-  footer a {
-    text-decoration: none;
-  }
-    
-  footer a:hover {
-    text-decoration: underline;
-  }
-    
-  .footer-content {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    text-align: left;
-    gap: 1rem; 
-  }
-  
-  /* --------- LOG IN --------- */
-  
-  #root {
-    background-color: #E3EAFD;
-  }
+/* --------- BUTTON --------- */
 
-  form {
-    border: solid;
-    border-radius: 10px;
-    text-align: center;
-    margin: auto;
-    margin-top: 5rem;
-    width: fit-content;
-    background-color: #cccccc;
-  }
-  
-  .user-input {
-    padding: 1rem 1rem 0;
-  }
-  
-  #email, #password {
-    font-size: larger;
-    width: 100%;
-  }
-  
-  .forgot-password {
-    font-size: small;
-    padding-top: 0.25rem;
-    color: #1d2f6f;
-    text-align: left;
-    margin-left: 0;
-  }
-  
-  .ors {
-    font-size: larger;
-  }
-  
-  .container {
-    margin: 1rem;
-  }
-
-  .sign-in-header {
-    font-size: 3rem;
-    font-weight: 400;
-  }
-
-  .text-danger, .new-acc-suggestion {
-    padding: 0 1rem;
-    font-weight: bold;
-  }
-
-  .new-acc-suggestion {
-    margin: 0;
-  }
-
-  .enter-username, .enter-password, .confirm-password {
-    margin: 0;
-  }
-  
-  /* --------- MY RESUMES --------- */
-
-.resume-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px; 
-  justify-content: center; 
-  padding: 20px;
-}
-
-.resume-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  width: 250px; 
-  height: 320px; 
-  padding: 16px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
-  text-decoration: none;
-  color: inherit;
-}
-
-{/*}.resume-container:hover {
-  transform: scale(1.05); 
-}*/}
-
-.resume-image {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.resume-info {
-  text-align: center;
-  padding-top: 10px;
-}
-
-.resume-info h3 {
-  font-size: 1.2rem;
-  margin: 5px 0;
-}
-
-.resume-info p {
-  font-size: 0.9rem;
-  color: #666;
-}
-
-.my-resumes-page {
-  padding: 3rem;
-}
-
-@media (max-width: 768px) {
-
-  .resume-list {
-      flex-direction: column;
-      align-items: center;
-  }
-
-  .resume-container {
-      width: 90%;
-      max-width: 300px;
-  }
-
-}
-
-  /* --------- RESUME EDITOR --------- */
-
-.resume-editor {
-    padding: 20px;
-}
-
-.resume-preview {
-    margin-top: 20px;
-}
-
-.button-container {
-  margin: 0rem;
-  justify-content: center;
-  width: 15rem;
-}
-
-.docx-placeholder {
-    background-color: #f0f0f0;
-    padding: 20px;
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    width: 100%;
-}
-
-  /* --------- MEDIA QUERIES --------- */
-  
-  @media (min-width: 598px) {
-    .title-acronym {
-      display: none;
-    }
-    
-    .title {
-      display: inline;
-      font-size: 2rem;
-      padding: .5rem;
-      margin: auto;
-    }
-  }
-  
-  
-  @media (min-width: 768px) {
-    
-    .navbar-right {
-      display: flex !important;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      background-color: transparent;
-      position: static;
-      width: auto;
-  }
-  .navbar-right.active {
-    display: flex;
-}
-  
-    
-    #nav-links {
-      color: black;
-      text-decoration: none;
-      font-weight: 500;
-      padding: 0.5rem 0;
-      transition: color 0.3s ease-in-out;
-  }
-    
-    #nav-links:hover {
-      color: #f9e9ec;
-      text-decoration: underline;
-    }
-  }
-    
-  @media (min-width: 992px) {
-      
-  }
-    
-  @media (min-width: 1200px) {
-      
-  }
-    
-/* Example Templates*/
-  .examples-page {
-    text-align: center;
-    padding: 4rem 2rem;
-    background: linear-gradient(to bottom, #f4f7ff, #ffffff);
-    min-height: 100vh;
-}
-
-.page-title {
-  font-size: 2.5rem;
+.button, .register {
+  display: inline-block;
+  width: 12rem;
+  padding: 1rem 2rem;
+  margin: 1rem;
+  background-color: #1D2F6F;
+  color: white;
+  font-size: 1.25rem;
   font-weight: bold;
-  color: #1D2F6F;
-  margin-bottom: 0.5rem;
-}
-
-.page-subtitle {
-  font-size: 1.2rem;
-  color: #555;
-  margin-bottom: 2rem;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.templates-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.template-card {
-  width: 320px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  padding-bottom: 1rem;
-}
-
-.template-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-.template-img {
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
-  border-bottom: 2px solid #ddd;
-}
-
-.template-card h2 {
-  font-size: 1.1rem;
-  padding: 1rem;
-  color: #1D2F6F;
-}
-
-.template-card {
-  width: 90%;
-  max-width: 350px;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  border-radius: .75rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
   text-align: center;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding-bottom: 1rem;
 }
 
-.template-card a:hover {
+.button:hover {
   background-color: #0056b3;
 }
 
+.register {
+  background-color: white;
+  color: #1D2F6F;
+  border: 2px solid #1D2F6F;
+}
+
+.register:hover {
+  background-color: #E3EAFD;
+}
+
+
+/* --------- NAVBAR --------- */
+
+.navbar {
+  background-color: #1D2F6F;
+  border-color: #1D2F6F;
+}
+
+.title {
+  display: none;
+}
+
+.title-acronym {
+  font-size: 4rem;
+}
+
+.logo {
+  width: 5rem;
+}
+
+.hamburger-menu {
+  display: none;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
+}
+
+
+/* Will probably replace this container */
+#nav-links-container {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+#nav-links-container a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1.5rem;
+  position: relative;
+  transition: color 0.3s ease-in-out;
+}
+
+#nav-links-container a:not(:last-child)::after {
+  content: "|";
+  position: absolute;
+  right: -10px;
+  color: #aaa;
+  font-weight: normal;
+}
+
+#nav-links-container a:hover {
+  color: #0071e3;
+}
+
 @media (max-width: 768px) {
-  .templates-container {
-      flex-direction: column;
-      align-items: center;
-  }
+.navbar-right {
+  display: none; /* Hidden by default */
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 1px;
+  left: 0;
+  right: 0;
+  background-color: #1D2F6F;
+  padding: 1rem;
+  z-index: 1000;
+}
 
-  .template-card {
-      width: 90%;
-      max-width: 350px;
-      height: auto;
-  }
+.hamburger-menu {
+  display: block; /* This ensures it's visible on mobile */
+  position: absolute;
+  top: 2.5rem;
+  right: 1rem;
+  z-index: 100000000;
+}
 
-  .template-img {
-      width: 100%;
-      height: auto;
-      max-height: 500px; 
-      object-fit: contain;
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  text-align: center;
+}
+
+#nav-links-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+  width: 100%;
+}
+
+#nav-links-container a {
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.navbar-right.active {
+  display: flex;
+}
+
+}
+
+
+/* --------- TEMPLATE (Need to reduce) --------- */
+
+.templates-header {
+  font-size: larger;
+  text-align: center;
+  margin: 1rem;
+}
+
+.templates {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: 5rem;
+}
+
+.templates a {
+  text-decoration: none;
+  color: white;
+  margin: 1rem;
+}
+
+.templates a:hover {
+  color: #1D2F6F;
+
+}
+
+.template-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.template-card {
+
+  flex-wrap: wrap;
+  margin: 1rem;
+  text-align: center;
+  border: solid 1px black;
+  max-width: 25rem;
+  background-color: #888;
+}
+
+.template-img {
+  max-width: 25rem;
+  max-height: 30rem;
+}
+
+/* --------- HOME PAGE --------- */
+
+
+#homepage .card {
+  max-width: 64rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+}
+
+#homepage .button {
+  display: inline-block;
+  padding: 1rem 3rem;
+  background-color: #1D2F6F;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: bold;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+  text-align: left;
+  padding-left: 1rem;
+}
+
+#homepage .button:hover {
+  background-color: #0056b3;
+}
+  
+/* --------- FOOTER --------- */
+
+footer {
+  background-color: #f9e9ec;
+  color: black;
+  padding: 1rem;
+  font-size: 0.9rem;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+footer a {
+  text-decoration: none;
+}
+  
+footer a:hover {
+  text-decoration: underline;
+}
+  
+.footer-content {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  text-align: left;
+  gap: 1rem; 
+}
+
+/* --------- LOG IN --------- */
+
+#root {
+  background-color: #E3EAFD;
+}
+
+form {
+  border: solid;
+  border-radius: 10px;
+  text-align: center;
+  margin: auto;
+  margin-top: 5rem;
+  width: fit-content;
+  background-color: #cccccc;
+}
+
+.user-input {
+  padding: 1rem 1rem 0;
+}
+
+#email, #password {
+  font-size: larger;
+  width: 100%;
+}
+
+.forgot-password {
+  font-size: small;
+  padding-top: 0.25rem;
+  color: #1d2f6f;
+  text-align: left;
+  margin-left: 0;
+}
+
+.ors {
+  font-size: larger;
+}
+
+.container {
+  margin: 1rem;
+}
+
+.sign-in-header {
+  font-size: 3rem;
+  font-weight: 400;
+}
+
+.text-danger, .new-acc-suggestion {
+  padding: 0 1rem;
+  font-weight: bold;
+}
+
+.new-acc-suggestion {
+  margin: 0;
+}
+
+.enter-username, .enter-password, .confirm-password {
+  margin: 0;
+}
+
+/* --------- MY RESUMES --------- */
+
+.resume-list {
+display: flex;
+flex-wrap: wrap;
+gap: 16px; 
+justify-content: center; 
+padding: 20px;
+}
+
+.resume-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-between;
+width: 250px; 
+height: 320px; 
+padding: 16px;
+background: #fff;
+border-radius: 12px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+transition: transform 0.2s ease-in-out;
+text-decoration: none;
+color: inherit;
+}
+
+{/*}.resume-container:hover {
+transform: scale(1.05); 
+}*/}
+
+.resume-image {
+width: 100%;
+height: 180px;
+object-fit: cover;
+border-radius: 8px;
+}
+
+.resume-info {
+text-align: center;
+padding-top: 10px;
+}
+
+.resume-info h3 {
+font-size: 1.2rem;
+margin: 5px 0;
+}
+
+.resume-info p {
+font-size: 0.9rem;
+color: #666;
+}
+
+.my-resumes-page {
+padding: 3rem;
+}
+
+@media (max-width: 768px) {
+
+.resume-list {
+    flex-direction: column;
+    align-items: center;
+}
+
+.resume-container {
+    width: 90%;
+    max-width: 300px;
+}
+
+}
+
+/* --------- RESUME EDITOR --------- */
+
+.resume-editor {
+  padding: 20px;
+}
+
+.resume-preview {
+  margin-top: 20px;
+}
+
+.button-container {
+margin: 0rem;
+justify-content: center;
+width: 15rem;
+}
+
+.docx-placeholder {
+  background-color: #f0f0f0;
+  padding: 20px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+@media (min-width: 100px) {
+.editDesktop {
+  display: none;
+}
+}
+
+@media (min-width: 992px) {
+.editMobile {
+  display: none;
+}
+.editDesktop{
+  display: block;
+}
+}
+
+/* --------- MEDIA QUERIES --------- */
+
+@media (min-width: 598px) {
+  .title-acronym {
+    display: none;
   }
+  
+  .title {
+    display: inline;
+    font-size: 2rem;
+    padding: .5rem;
+    margin: auto;
+  }
+}
+
+
+@media (min-width: 768px) {
+  
+  .navbar-right {
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+    position: static;
+    width: auto;
+}
+.navbar-right.active {
+  display: flex;
+}
+
+  
+  #nav-links {
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease-in-out;
+}
+  
+  #nav-links:hover {
+    color: #f9e9ec;
+    text-decoration: underline;
+  }
+}
+  
+@media (min-width: 992px) {
+    
+}
+  
+@media (min-width: 1200px) {
+    
+}
+  
+/* Example Templates*/
+.examples-page {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(to bottom, #f4f7ff, #ffffff);
+  min-height: 100vh;
+}
+
+.page-title {
+font-size: 2.5rem;
+font-weight: bold;
+color: #1D2F6F;
+margin-bottom: 0.5rem;
+}
+
+.page-subtitle {
+font-size: 1.2rem;
+color: #555;
+margin-bottom: 2rem;
+max-width: 700px;
+margin-left: auto;
+margin-right: auto;
+}
+.templates-container {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 2rem;
+}
+
+.template-card {
+width: 320px;
+background: white;
+border-radius: 12px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+overflow: hidden;
+transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+padding-bottom: 1rem;
+}
+
+.template-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.template-img {
+width: 100%;
+height: 320px;
+object-fit: cover;
+border-bottom: 2px solid #ddd;
+}
+
+.template-card h2 {
+font-size: 1.1rem;
+padding: 1rem;
+color: #1D2F6F;
+}
+
+.template-card {
+width: 90%;
+max-width: 350px;
+height: auto;
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+background: white;
+border-radius: 12px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+padding-bottom: 1rem;
+}
+
+.template-card a:hover {
+background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+.templates-container {
+    flex-direction: column;
+    align-items: center;
+}
+
+.template-card {
+    width: 90%;
+    max-width: 350px;
+    height: auto;
+}
+
+.template-img {
+    width: 100%;
+    height: auto;
+    max-height: 500px; 
+    object-fit: contain;
+}
 }
