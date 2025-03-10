@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import { useParams } from 'react-router';
 import { EditorButtons, GenerateButtons } from './ResumeButtons';
 import { Document, Page, pdfjs} from 'react-pdf';
@@ -91,9 +91,6 @@ export function ResumeEditor({ resumes, setResumes }) {
             chatScreenRef.current.getAIQualityScore(resumeContent);
         }
     }
-
-    // reference to ChatScreen
-    const chatScreenRef = useRef(null);
     
     // generate button handlers
     const handleGenerateClasses = () => {
