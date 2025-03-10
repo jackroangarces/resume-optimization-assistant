@@ -15,7 +15,7 @@
     "docx": "^9.2.0",
     "firebase": "^11.4.0",
     "jspdf": "^3.0.0",
-    "pdfjs-dist": "^2.10.377",
+    "pdfjs-dist": "^4.10.38",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-doc-viewer": "^0.1.14",
