@@ -1,7 +1,18 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 export function ChatScreen(props) {
+
+    // closes chat screen
+    const {show, setShow} = props;
+    const handleClose = () => setShow('');
+
+    // closes chat screen contents
+    const {itemsDisplay, setItemsDisplay} = props;
+    const handleCloseItems = () => {
+        setItemsDisplay('d-none');
+    };
+
     const [messages, setMessages] = useState("hello");
     const [input, setInput] = useState("");
 
@@ -70,17 +81,20 @@ export function ChatScreen(props) {
         return <MessageItem key={index} messageData={chatObj} />
     });    
 
-    //console.log(messageItemArray)
+    console.log(itemsDisplay)
     return (
-        <div className="scrollable-pane pt-2 my-2 bg-primary">
-            {/* conditional rendering */}
-            {messageItemArray.length === 0 && 
-            <p>No messages yet</p>
-            }
-
-            {/* Messages */}
-            
-            {messageItemArray}
+        <div className={show}>
+            <button className={itemsDisplay} onClick={() => {handleClose(); handleCloseItems();}}>
+                close button
+            </button>
+            <div >
+                {/* conditional rendering */}
+                {messageItemArray.length === 0 && 
+                <p>No messages yet</p>
+                }
+                {/* Messages */}
+                {/* {messageItemArray} */}
+            </div>
         </div>
     )
 }

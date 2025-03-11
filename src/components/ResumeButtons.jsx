@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { ChatScreen } from './ResumeAI';
 
 export function EditorButtons({name, modalName, subtext, onSave}) {
     
@@ -63,9 +64,26 @@ export function GenerateButtons(props) {
     // same with props here
     const {editName, onClick} = props;
 
+    // opens chatscreen when generate buttons are clicked
+    const [show, setShow] = useState('');
+    const handleShow = () => setShow('chatscreen');
+    
+    // displays chatscreen contents
+    const [itemsDisplay, setItemsDisplay] = useState("d-none");
+    const handleDisplayItems = () => setItemsDisplay('');
+
+
     return (
-        <button className="button" onClick={onClick}>
-            {editName}
-        </button>
+        <div>
+            <button className="button" onClick={() => {handleShow(); handleDisplayItems();}}>
+                {editName}
+            </button>
+            <ChatScreen 
+                show={show} 
+                setShow={setShow} 
+                itemsDisplay={itemsDisplay} 
+                setItemsDisplay={setItemsDisplay}
+            />
+        </div>
     )
 }

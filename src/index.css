@@ -429,18 +429,31 @@ width: 15rem;
 }
 
 @media (min-width: 100px) {
-.editDesktop {
-  display: none;
-}
+  .editDesktop {
+    display: none;
+  }
 }
 
-@media (min-width: 992px) {
-.editMobile {
+@media (min-width: 1120px) {
+  .editMobile {
+    display: none;
+  }
+  .editDesktop{
+    display: block;
+  }
+}
+
+.chatscreen {
+  position: fixed;
+  width: 75%;
+  height: 75%;
+  bottom: 12.5%;
+  right: 12.5%;
+  background-color: yellow;
+}
+
+.chatGone {
   display: none;
-}
-.editDesktop{
-  display: block;
-}
 }
 
 /* --------- MEDIA QUERIES --------- */
