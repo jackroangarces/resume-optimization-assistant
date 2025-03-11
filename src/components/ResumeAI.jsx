@@ -70,7 +70,7 @@ export function ChatScreen(props) {
         return <MessageItem key={index} messageData={chatObj} />
     });    
 
-    console.log(messageItemArray)
+    //console.log(messageItemArray)
     return (
         <div className="scrollable-pane pt-2 my-2 bg-primary">
             {/* conditional rendering */}

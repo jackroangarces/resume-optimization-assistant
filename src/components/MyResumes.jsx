@@ -4,15 +4,7 @@ import { Document, Packer, Paragraph } from "docx";
 import {ResumeList} from './ResumeList';
 import { EditorButtons } from './ResumeButtons';
 import { getDatabase, ref, set} from 'firebase/database';
-
-const blobToBase64 = (blob) => {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(blob);
-        reader.onloadend = () => resolve(reader.result);
-        reader.onerror = (error) => reject(error);
-    });
-};
+import { blobToBase64, generatePdfFromDocx } from './Utils';
 
 export function MyResumes({ resumes, setResumes, username }) {
 
@@ -22,11 +14,6 @@ export function MyResumes({ resumes, setResumes, username }) {
         const resumeId = title;
 
         const db = getDatabase();
-        
-        // CREATE PDF
-        const pdf = new jsPDF();
-        const pdfBlob = pdf.output("blob");
-        const pdfBase64 = await blobToBase64(pdfBlob);
 
         // CREATE DOCX  
         const docx = new Document({
@@ -37,6 +24,9 @@ export function MyResumes({ resumes, setResumes, username }) {
         });
         const docxBlob = await Packer.toBlob(docx);
         const docxBase64 = await blobToBase64(docxBlob);
+
+        // CREATE PDF FROM DOCX
+        const pdfBase64 = await generatePdfFromDocx(docxBlob);
 
         // CREATE RESUME OBJECT
         const newResume = {

@@ -1,8 +1,10 @@
 import React, {useState, useRef, useEffect} from 'react';
 import { useParams } from 'react-router';
-import { getDatabase, ref, get } from 'firebase/database';
+import { getDatabase, ref, set } from 'firebase/database';
 import { EditorButtons, GenerateButtons } from './ResumeButtons';
 import { Document, Page, pdfjs} from 'react-pdf';
+import { Document as DocxDocument, Packer, Paragraph, TextRun } from 'docx';
+import { blobToBase64, generatePdfFromDocx } from './Utils';
 import { ChatScreen } from './ResumeAI.jsx';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -10,13 +12,13 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/b
 
 export function ResumeEditor({ resumes, setResumes }) {
     const { id } = useParams();
-    const [resume, setResume] = useState(null);
+    const [resume, setResume] = useState(null); 
     const [numPages, setNumPages] = useState(null);
     const [pdfUrl, setPdfUrl] = useState(null);
     const [docxUrl, setDocxUrl] = useState(null);
-
+    const [docxBlob, setDocxBlob] = useState(null);
     // Edit Buttons
-    const [biography, setBiography] = useState("");
+    const [biography, setBiography] = useState(""); 
     const [projects, setProjects] = useState("");
     const [workExperience, setWorkExperience] = useState("");
     const [skills, setSkills] = useState("");
@@ -32,14 +34,15 @@ export function ResumeEditor({ resumes, setResumes }) {
             
             // Convert base64 PDF to Blob URL
             if (selectedResume.pdfBase64) {
-                const pdfBlob = base64ToBlob(selectedResume.pdfBase64);
+                const pdfBlob = base64ToBlob(selectedResume.pdfBase64, "pdf");
                 const pdfBlobUrl = URL.createObjectURL(pdfBlob);
                 setPdfUrl(pdfBlobUrl);
             }
             
             // Convert base64 DOCX to Blob URL
             if (selectedResume.docxBase64) {
-                const docxBlob = base64ToBlob(selectedResume.docxBase64);
+                const docxBlob = base64ToBlob(selectedResume.docxBase64, "docx");
+                setDocxBlob(docxBlob);
                 const docxBlobUrl = URL.createObjectURL(docxBlob);
                 setDocxUrl(docxBlobUrl);
             }
@@ -48,6 +51,7 @@ export function ResumeEditor({ resumes, setResumes }) {
             setResume(null);
             setPdfUrl(null);
             setDocxUrl(null);
+            setDocxBlob(null);
         }
         
         return () => {
@@ -56,29 +60,38 @@ export function ResumeEditor({ resumes, setResumes }) {
         };
     }, [id, resumes]);
 
-    // CONVERT BASE64 TO BLOB
-    const base64ToBlob = (base64Data) => {
-        const base64Content = base64Data.includes('base64,') 
-            ? base64Data.split('base64,')[1] 
-            : base64Data;
-        
-        let contentType = 'application/octet-stream';
-        if (base64Data.includes('data:')) {
-            contentType = base64Data.split(';')[0].split(':')[1];
+    const handleSaveResume = async () => {
+        if (resume) {
+            const updatedPdfBase64 = await generatePdfFromDocx(docxBlob);
+            const updatedDocxBase64 = await blobToBase64(docxBlob);
+
+            const updatedResume = { ...resume, pdfBase64: updatedPdfBase64, docxBase64: updatedDocxBase64 };
+
+            const db = getDatabase();
+            const resumeRef = ref(db, `userData/${resume.username}/resumes/${resume.id}`);
+            set(resumeRef, updatedResume);
+
+            setResumes(prevResumes => prevResumes.map(r => r.id === resume.id ? updatedResume : r));
         }
+    };
+
+    // CONVERT BASE64 TO BLOB
+    const base64ToBlob = (base64Data, type) => {
+        const base64Content = base64Data.split('base64,')[1];
         const byteCharacters = atob(base64Content);
         const byteArrays = [];
         for (let offset = 0; offset < byteCharacters.length; offset += 512) {
             const slice = byteCharacters.slice(offset, offset + 512);
-            const byteNumbers = new Array(slice.length);
-            for (let i = 0; i < slice.length; i++) {
-                byteNumbers[i] = slice.charCodeAt(i);
-            }
+            const byteNumbers = Array.from(slice).map(char => char.charCodeAt(0));
             const byteArray = new Uint8Array(byteNumbers);
             byteArrays.push(byteArray);
         }
-        return new Blob(byteArrays, { type: contentType });
-    };
+        if (type === "pdf") {
+            return new Blob(byteArrays, { type: 'application/pdf' });
+        } else {
+            return new Blob(byteArrays, { type: 'application/docx' });
+        }
+     };
 
     if (!resume) {
         return <p>Resume not found!</p>;
@@ -110,7 +123,7 @@ export function ResumeEditor({ resumes, setResumes }) {
 
     // ai quality score goes here
     const  generateQualityScore = async () => {
-
+        /// ???
     }
 
 
@@ -156,6 +169,7 @@ export function ResumeEditor({ resumes, setResumes }) {
                         <GenerateButtons editName="Generate Class Recs" onClick={handleGenerateClasses}/>
                         <GenerateButtons editName="Generate Project Ideas" onClick={handleGenerateProjects}/>
                         <GenerateButtons editName="AI Quality Score" onClick={handleGenerateQualityScore}/>
+                        <button className="button" onClick={handleSaveResume}>Save Changes</button>
                         <button className="button" onClick={() => window.open(pdfUrl, '_blank')}> Download Resume </button>                    
                         <ChatScreen ref={chatScreenRef}/>
                     </div>
@@ -198,6 +212,7 @@ export function ResumeEditor({ resumes, setResumes }) {
                         <GenerateButtons editName="Generate Class Recs" onClick={handleGenerateClasses}/>
                         <GenerateButtons editName="Generate Project Ideas" onClick={handleGenerateProjects}/>
                         <GenerateButtons editName="AI Quality Score" onClick={handleGenerateQualityScore}/>
+                        <button className="button" onClick={handleSaveResume}>Save Changes</button>
                         <button className="button" onClick={() => window.open(resume.pdfUrl, '_blank')}> Download Resume </button>                    
                     </div>
                 </div>
