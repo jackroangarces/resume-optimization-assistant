@@ -6,6 +6,7 @@ export function Footer(props) {
             <div className="footer-content">
                 <p>&copy; 2025 Resume Optimization System</p>
                 <p>Contact: <a href="mailto:info@ros.com">info@ros.com</a></p>
+                <p>Call us </p>
             </div>
         </footer>
     )
