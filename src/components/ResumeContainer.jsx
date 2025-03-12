@@ -10,6 +10,7 @@ export function ResumeContainer({ resume }) {
                 <p>Created: {resume.lastEdited}</p>
             </div>
         </Link>
+        // Add "X" to delete resume
     );
 };
 

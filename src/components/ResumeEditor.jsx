@@ -4,6 +4,9 @@ import { getDatabase, ref, set } from 'firebase/database';
 import { EditorButtons, GenerateButtons } from './ResumeButtons';
 import { Document, Page, pdfjs} from 'react-pdf';
 import { Document as DocxDocument, Packer, Paragraph, TextRun } from 'docx';
+import PizZip from 'pizzip';
+import Docxtemplater from 'docxtemplater';
+import { saveAs } from 'file-saver';
 import { blobToBase64, generatePdfFromDocx } from './Utils';
 import { ChatScreen } from './ResumeAI.jsx';
 
@@ -22,31 +25,29 @@ export function ResumeEditor({ resumes, setResumes }) {
     const [projects, setProjects] = useState("");
     const [workExperience, setWorkExperience] = useState("");
     const [skills, setSkills] = useState("");
+    // Use States for Resume Items
+    const [languages, setLanguages] = useState("");
+    const [developerTools, setDeveloperTools] = useState("");
+    const [concepts, setConcepts] = useState("");
     // Reference to ChatScreen
     const chatScreenRef = useRef(null);
 
     // DECODE + LOAD RESUME
     useEffect(() => {
         const selectedResume = resumes.find((r) => r.id === id);
-        
         if (selectedResume) {
             setResume(selectedResume);
-            
-            // Convert base64 PDF to Blob URL
             if (selectedResume.pdfBase64) {
                 const pdfBlob = base64ToBlob(selectedResume.pdfBase64, "pdf");
                 const pdfBlobUrl = URL.createObjectURL(pdfBlob);
                 setPdfUrl(pdfBlobUrl);
             }
-            
-            // Convert base64 DOCX to Blob URL
             if (selectedResume.docxBase64) {
                 const docxBlob = base64ToBlob(selectedResume.docxBase64, "docx");
                 setDocxBlob(docxBlob);
                 const docxBlobUrl = URL.createObjectURL(docxBlob);
                 setDocxUrl(docxBlobUrl);
             }
-
         } else {
             setResume(null);
             setPdfUrl(null);
@@ -60,6 +61,7 @@ export function ResumeEditor({ resumes, setResumes }) {
         };
     }, [id, resumes]);
 
+    // SAVE RESUME
     const handleSaveResume = async () => {
         if (resume) {
             const updatedPdfBase64 = await generatePdfFromDocx(docxBlob);
@@ -75,10 +77,50 @@ export function ResumeEditor({ resumes, setResumes }) {
         }
     };
 
+    // IF PROMPTS CHANGE, ADD TEXT
+    useEffect(() => {
+        if (biography || workExperience || projects || skills || languages || developerTools || concepts) {
+            handleAddTextToDocx();
+        }
+    }, [biography, workExperience, projects, skills, languages, developerTools, concepts]);
+
+    // ADD TEXT TO DOCX
+    const handleAddTextToDocx = async () => {
+        if (!docxBlob) return;
+        const arrayBuffer = await docxBlob.arrayBuffer();
+        const zip = new PizZip(arrayBuffer);
+        const doc = new Docxtemplater(zip, { paragraphLoop: true, linebreaks: true });
+    
+        doc.render({
+            Biography: biography || "Enter your biography...",
+            Experience: workExperience || "Enter your work experience...",
+            Projects: projects || "Enter your projects...",
+            Skills: skills || "Enter your skills...",
+            Languages: languages.toString() || "Enter your languages..."
+        });
+    
+        const updatedBlob = new Blob([doc.getZip().generate({ type: 'arraybuffer' })], {
+            type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        });
+        const updatedDocxBase64 = await blobToBase64(updatedBlob);
+        const updatedPdfBase64 = await generatePdfFromDocx(updatedBlob);
+        const updatedResume = { 
+            ...resume, 
+            pdfBase64: updatedPdfBase64, 
+            docxBase64: updatedDocxBase64 
+        };
+        const db = getDatabase();
+        const resumeRef = ref(db, `userData/${resume.username}/resumes/${resume.id}`);
+        await set(resumeRef, updatedResume);
+        setResumes(prevResumes => prevResumes.map(r => r.id === resume.id ? updatedResume : r));
+        setDocxBlob(updatedBlob);
+        setPdfUrl(URL.createObjectURL(new Blob([updatedPdfBase64], { type: 'application/pdf' })));
+    };
+
     // CONVERT BASE64 TO BLOB
     const base64ToBlob = (base64Data, type) => {
         const base64Content = base64Data.split('base64,')[1];
-        const byteCharacters = atob(base64Content);
+        const byteCharacters = atob(base64Content) ;
         const byteArrays = [];
         for (let offset = 0; offset < byteCharacters.length; offset += 512) {
             const slice = byteCharacters.slice(offset, offset + 512);
@@ -93,10 +135,12 @@ export function ResumeEditor({ resumes, setResumes }) {
         }
      };
 
+    // ERROR IF NO RESUME
     if (!resume) {
         return <p>Resume not found!</p>;
     }
 
+    // LOAD PAGE #
     function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
     }
@@ -133,7 +177,7 @@ export function ResumeEditor({ resumes, setResumes }) {
             <div className="editDesktop">
                 <div className='d-flex justify-content-between'>
                     <div className='button-container'>
-                        <EditorButtons name="Edit Biography" modalName="Edit Biography" subtext={biography} onSave={setBiography}/>
+                        <EditorButtons name="Edit Biography" modalName="Edit Biography" subtext={biography} onSave={setLanguages()}/>
                         <EditorButtons name="Edit Work Experience" modalName="Edit Work Experience" subtext={workExperience} onSave={setWorkExperience}/>
                         <EditorButtons name="Edit Projects" modalName="Edit Projects" subtext={projects} onSave={setProjects}/>
                         <EditorButtons name="Edit Skills" modalName="Edit Skills" subtext={skills} onSave={setSkills}/>

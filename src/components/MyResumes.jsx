@@ -12,21 +12,18 @@ export function MyResumes({ resumes, setResumes, username }) {
         const title = name.trim();
         if (!title) return; 
         const resumeId = title;
-
         const db = getDatabase();
 
+        // FETCH TEMPLATE FROM PUBLIC FOLDER
+        const templateResponse = await fetch('/template_formatted.docx');
+        const templateArrayBuffer = await templateResponse.arrayBuffer();
+        const templateBlob = new Blob([templateArrayBuffer], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+
         // CREATE DOCX  
-        const docx = new Document({
-            sections: [{
-                properties: {},
-                children: [new Paragraph(title)]
-            }]
-        });
-        const docxBlob = await Packer.toBlob(docx);
-        const docxBase64 = await blobToBase64(docxBlob);
+        const docxBase64 = await blobToBase64(templateBlob);
 
         // CREATE PDF FROM DOCX
-        const pdfBase64 = await generatePdfFromDocx(docxBlob);
+        const pdfBase64 = await generatePdfFromDocx(templateBlob);
 
         // CREATE RESUME OBJECT
         const newResume = {
