@@ -457,11 +457,31 @@ width: 15rem;
   height: 75%;
   bottom: 12.5%;
   right: 12.5%;
-  background-color: yellow;
+  background-color: #ccc;
+  border-radius: 1rem;
+  border: 3px solid black;
 }
 
 .chatGone {
-  display: none;
+  display: none !important;
+}
+
+.closeButton {
+  background-color: red;
+  padding: 0em .5em;
+  margin: 1em;
+  border-radius: 1rem;
+  margin-left: auto;
+}
+
+.message {
+  background-color: #1D2F6F;
+  color: white;
+  border-radius: 1rem;
+  padding: .5em 1em;
+  margin: .5em 1em;
+  max-width: 70%;
+  word-wrap: break-word;
 }
 
 /* --------- MEDIA QUERIES --------- */

@@ -65,22 +65,28 @@ export function GenerateButtons(props) {
     const {editName, onClick} = props;
 
     // opens chatscreen when generate buttons are clicked
-    const [show, setShow] = useState('');
-    const handleShow = () => setShow('chatscreen');
+    const [showChat, setShowChat] = useState('chatGone');
+    const handleShowChat = () => setShowChat('chatscreen');
+
+    // close chatscreen
+    const handleCloseChat = () => {
+        setShowChat('chatGone');
+        setItemsDisplay('chatGone');
+    };
     
     // displays chatscreen contents
-    const [itemsDisplay, setItemsDisplay] = useState("d-none");
+    const [itemsDisplay, setItemsDisplay] = useState("chatGone");
     const handleDisplayItems = () => setItemsDisplay('');
 
 
     return (
         <div>
-            <button className="button" onClick={() => {handleShow(); handleDisplayItems();}}>
+            <button className="button" onClick={() => {handleShowChat(); handleDisplayItems();}}>
                 {editName}
             </button>
             <ChatScreen 
-                show={show} 
-                setShow={setShow} 
+                showChat={showChat} 
+                setShowChat={setShowChat} 
                 itemsDisplay={itemsDisplay} 
                 setItemsDisplay={setItemsDisplay}
             />

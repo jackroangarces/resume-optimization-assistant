@@ -3,33 +3,29 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 
 export function ChatScreen(props) {
 
-    // closes chat screen
-    const {show, setShow} = props;
-    const handleClose = () => setShow('');
+    const {showChat, setShowChat, itemsDisplay, setItemsDisplay} = props;
 
-    // closes chat screen contents
-    const {itemsDisplay, setItemsDisplay} = props;
-    const handleCloseItems = () => {
-        setItemsDisplay('d-none');
+    // closes chat screen
+    const handleClose = () => {
+        if (setShowChat) setShowChat('chatGone');
+        if (setItemsDisplay) setItemsDisplay('chatGone');
     };
 
-    const [messages, setMessages] = useState("hello");
-    const [input, setInput] = useState("");
+    // closes chat screen contents
+    const handleCloseItems = () => {
+        setItemsDisplay('chatGone');
+        setShowChat('chatGone')
+    };
 
-    // Will need to hide this for security purposes
-    const apiKey = "AIzaSyALULJ4WeAf7y-p5Xc_rai0Z5jDGLtndc4";
-
-    // from lecture demo
-
-    //for debugging
-
-    const [messageStateArray, setMessageStateArray] = useState([{text:"Hello"},{text:"This is example text blah blah blah blah"}]);
-    const [genAI, setGenAI] = useState(null);
-    
+    // AI STUFF
 
     // useEffect() and sendPromptToGemini was coded with the assistance of claude.ai
     // it was to understand and learn how to implement AI chat prompts
     // into the webpage.
+    
+    // Will need to hide this for security purposes
+    const apiKey = "AIzaSyALULJ4WeAf7y-p5Xc_rai0Z5jDGLtndc4";
+    const [genAI, setGenAI] = useState(null);
 
     useEffect(() => {
         const API_KEY = "AIzaSyALULJ4WeAf7y-p5Xc_rai0Z5jDGLtndc4"; 
@@ -70,6 +66,15 @@ export function ChatScreen(props) {
         sendPromptToGemini(prompt);
     }
 
+    // MESSAGE STUFF
+
+    // will map these into a "messageArray"
+    const [messages, setMessages] = useState([]);
+    const [input, setInput] = useState("");
+
+    //for debugging (will not be using state for array of messages)
+    const [messageArray, setMessageArray] = useState([{text:"Hello"},{text:"This is example text blah blah blah blah"}]);
+
     // add message to message obj array
     const addMessage = (messageText) => {
         const newMessage = {text: messageText}
@@ -77,23 +82,24 @@ export function ChatScreen(props) {
     }
 
     // format message to readable content
-    const messageItemArray = messageStateArray.map((chatObj, index) => {
+    const messageItemArray = messageArray.map((chatObj, index) => {
         return <MessageItem key={index} messageData={chatObj} />
     });    
 
-    console.log(itemsDisplay)
-    return (
-        <div className={show}>
-            <button className={itemsDisplay} onClick={() => {handleClose(); handleCloseItems();}}>
-                close button
-            </button>
-            <div >
+    return (     
+        <div className={showChat + " " + itemsDisplay}>
+            <div className='d-flex'> {/* Chatscreen header */}
+                <button className={"closeButton " + itemsDisplay} onClick={() => {handleClose(); handleCloseItems();}}>
+                    X
+                </button>
+            </div>
+            <div className={itemsDisplay}>
                 {/* conditional rendering */}
                 {messageItemArray.length === 0 && 
                 <p>No messages yet</p>
                 }
                 {/* Messages */}
-                {/* {messageItemArray} */}
+                {messageItemArray}
             </div>
         </div>
     )
