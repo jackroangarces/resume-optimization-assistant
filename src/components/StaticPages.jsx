@@ -16,9 +16,6 @@ export function HomePage(props) {
         }
     }
 
-
-
-
     return (
         <section id="homepage">
             <h1>Start building your astonishing resume now!</h1>

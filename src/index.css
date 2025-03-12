@@ -64,6 +64,10 @@ h2 {
   color: #0d6efd
 }
 
+.logout-button {
+  margin-left: 1rem;
+  border-radius: 5px;
+}
 
 /* --------- NAVBAR --------- */
 

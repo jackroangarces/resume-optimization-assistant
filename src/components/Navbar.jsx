@@ -37,10 +37,15 @@ export function Navbar(props) {
                         
                 </div>
                 <div className="navbar-center">
-                    <p>Welcome, {username}!</p>              {/* Displays username */}
-                    <button onClick={logout}>Logout</button> {/* Displays logout button */}
-                    </div>
+                <tr>
+                    <div>Welcome, {username}!</div>            {/* Displays username */}
+                    <th>                                     
+                    <button className="logout-button" onClick={logout}>Logout</button> {/* Displays logout button */}
+                    </th>   
+                </tr>                                
                 </div>
+                </div>
+                
             </nav>
         )
     }
