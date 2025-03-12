@@ -1,51 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {ResumeContainer} from './ResumeContainer';
 import _ from 'lodash';
 
 export function ResumeList({ resumes }) {
 
-    /* const [sortByCriteria, setSortByCriteria] = useState(null);
-    const [isAscending, setIsAscending] = useState(null); 
+    const [sortByCriteria, setSortByCriteria] = useState(null);
+    const [isAscending, setIsAscending] = useState(true); 
 
     const handleClick = (event) => {
 
-        const {name} = event.currentTarget;
+        const {title} = event.currentTarget;
     
-        if (name !== sortByCriteria) {
-          setSortByCriteria(name);
+        if (title !== sortByCriteria) {
+          setSortByCriteria(title);
           setIsAscending(true);
         } else {
-          if (isAscending === null) {
-            setIsAscending(true);
-          } else if (isAscending) {
-            setIsAscending(false);
-          } else {
-            setSortByCriteria(null); 
-            setIsAscending(null);
-          }
+          setIsAscending(prevState => !prevState);
         }
       }
 
-      let sortedData = _.sortBy(resumes.title, sortByCriteria);
-      if (sortByCriteria && isAscending === false) {
-        sortedData.reverse();
-      } */
+      let sortedData = [...resumes];
+      if (sortByCriteria == "alphabetical") {
 
-     /* <p>Sort by: Alphabetical</p>
-            <SortButton name="alphabetical" 
-            active={sortByCriteria == "alphabetical"}
-            ascending={isAscending}
-            onClick={handleClick} /> */
+      sortedData = _.sortBy(resume => resume.id, sortedData);
+      if (!isAscending) {
+        sortedData.reverse();
+      } 
+    }
 
     return (
         <div className="resume-list">
+             <div>Sort by: Alphabetical
+            <SortButton name="alphabetical" 
+            active={sortByCriteria == "alphabetical"}
+            ascending={isAscending}
+            onClick={handleClick} /> 
+            </div> 
+
             {resumes.map(resume => (
-                <ResumeContainer key={resume.id} resume={resume} />
-            ))}
+          <ResumeContainer key={resume.id} resume={resume} />
+        ))}
         </div>
     );
 }
-
 //comitting draft 2!
 
 function SortButton(props) {
@@ -54,8 +51,8 @@ function SortButton(props) {
     if (props.ascending) { iconClasses += ` flip` };
   
     return (
-      <button className="btn btn-sm btn-sort" name={props.name} onClick={props.onClick}>
-        <span className={"material-icons" + iconClasses} aria-label={`sort by ${props.name}`}>sort</span>
+      <button className="btn btn-sm btn-sort" title={props.name} onClick={props.onClick}>
+        <span className={"material-icons" + iconClasses} aria-label={`sort by ${props.name}`}>Sort</span>
       </button>
     );
   }
