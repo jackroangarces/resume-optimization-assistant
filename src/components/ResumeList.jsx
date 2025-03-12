@@ -22,7 +22,7 @@ export function ResumeList({ resumes }) {
       let sortedData = [...resumes];
       if (sortByCriteria == "alphabetical") {
 
-      sortedData = _.sortBy(resume => resume.id, sortedData);
+      sortedData = _.sortBy(resume => resume.title, sortedData);
       if (!isAscending) {
         sortedData.reverse();
       } 

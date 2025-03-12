@@ -21,6 +21,7 @@ export function SignIn(props) {
             if (snapshot.exists()) {
                 const userData = snapshot.val();
                 if (userData.password === password) {
+                    localStorage.setItem('loggedInUser', username);
                     login(username);
                     navigate('/myresumes');
                 } else {
