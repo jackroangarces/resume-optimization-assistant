@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {ResumeContainer} from './ResumeContainer';
 import _ from 'lodash';
 
-export function ResumeList({ resumes }) {
+export function ResumeList({ resumes, setResumes, username }) {
 
     const [sortByCriteria, setSortByCriteria] = useState(null);
     const [isAscending, setIsAscending] = useState(true); 
@@ -38,7 +38,7 @@ export function ResumeList({ resumes }) {
             </div> 
 
             {resumes.map(resume => (
-          <ResumeContainer key={resume.id} resume={resume} />
+          <ResumeContainer key={resume.id} resume={resume} resumes={resumes} setResumes={setResumes} username={username} />
         ))}
         </div>
     );

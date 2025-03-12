@@ -28,20 +28,19 @@ export function Navbar(props) {
                 </div>
                 
                 <div className={`navbar-right ${menuOpen ? 'active' : ''}`}>
-
-                    
-                    <div id="nav-links-container">
-                        <Link id="nav-links" to="/myresumes">My Resumes</Link>
-                        <Link id="nav-links" to="/templates">Example Templates</Link>
-                        
-                        
+ 
+ 
+                     <div id="nav-links-container">
+                         <Link id="nav-links" to="/myresumes">My Resumes</Link>
+                         <Link id="nav-links" to="/templates">Example Templates</Link>
+ 
+ 
+                 </div>
+                 <div className="navbar-center">
+                        <span>Welcome, {username}!</span>
+                        <button className="logout-button ms-3" onClick={logout}>Logout</button>
+                    </div>
                 </div>
-                <div className="navbar-center">
-                    <span>Welcome, {username}!</span>
-                    <button className="logout-button ms-3" onClick={logout}>Logout</button>
-                </div>
-                </div>
-                
             </nav>
         )
     }

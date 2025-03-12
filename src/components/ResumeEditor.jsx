@@ -13,7 +13,7 @@ import { ChatScreen } from './ResumeAI.jsx';
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 
-export function ResumeEditor({ resumes, setResumes }) {
+export function ResumeEditor({ resumes, setResumes, username }) {
     const { id } = useParams();
     const [resume, setResume] = useState(null); 
     const [numPages, setNumPages] = useState(null);
@@ -31,6 +31,7 @@ export function ResumeEditor({ resumes, setResumes }) {
     const [concepts, setConcepts] = useState("");
     // Reference to ChatScreen
     const chatScreenRef = useRef(null);
+    // Template Blob
 
     // DECODE + LOAD RESUME
     useEffect(() => {
@@ -54,6 +55,8 @@ export function ResumeEditor({ resumes, setResumes }) {
             setDocxUrl(null);
             setDocxBlob(null);
         }
+
+        
         
         return () => {
             if (pdfUrl) URL.revokeObjectURL(pdfUrl);
@@ -70,24 +73,27 @@ export function ResumeEditor({ resumes, setResumes }) {
             const updatedResume = { ...resume, pdfBase64: updatedPdfBase64, docxBase64: updatedDocxBase64 };
 
             const db = getDatabase();
-            const resumeRef = ref(db, `userData/${resume.username}/resumes/${resume.id}`);
+            const resumeRef = ref(db, `userData/${username}/resumes/${resume.id}`);
             set(resumeRef, updatedResume);
 
             setResumes(prevResumes => prevResumes.map(r => r.id === resume.id ? updatedResume : r));
         }
     };
 
-    // IF PROMPTS CHANGE, ADD TEXT
+    // TESTING
     useEffect(() => {
-        if (biography || workExperience || projects || skills || languages || developerTools || concepts) {
+        if(languages){
             handleAddTextToDocx();
         }
-    }, [biography, workExperience, projects, skills, languages, developerTools, concepts]);
+    }, [languages])
 
     // ADD TEXT TO DOCX
     const handleAddTextToDocx = async () => {
         if (!docxBlob) return;
-        const arrayBuffer = await docxBlob.arrayBuffer();
+        const templateResponse = await fetch('/template_formatted.docx');
+        const templateArrayBuffer = await templateResponse.arrayBuffer();
+        const templateBlob = new Blob([templateArrayBuffer], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+        const arrayBuffer = await templateBlob.arrayBuffer();
         const zip = new PizZip(arrayBuffer);
         const doc = new Docxtemplater(zip, { paragraphLoop: true, linebreaks: true });
     
@@ -102,19 +108,18 @@ export function ResumeEditor({ resumes, setResumes }) {
         const updatedBlob = new Blob([doc.getZip().generate({ type: 'arraybuffer' })], {
             type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         });
+        setDocxBlob(updatedBlob);
         const updatedDocxBase64 = await blobToBase64(updatedBlob);
         const updatedPdfBase64 = await generatePdfFromDocx(updatedBlob);
+        const pdfBlob = base64ToBlob(updatedPdfBase64, "pdf");
+        const newPdfUrl = URL.createObjectURL(pdfBlob);
+        setPdfUrl(newPdfUrl);
         const updatedResume = { 
             ...resume, 
             pdfBase64: updatedPdfBase64, 
             docxBase64: updatedDocxBase64 
         };
-        const db = getDatabase();
-        const resumeRef = ref(db, `userData/${resume.username}/resumes/${resume.id}`);
-        await set(resumeRef, updatedResume);
         setResumes(prevResumes => prevResumes.map(r => r.id === resume.id ? updatedResume : r));
-        setDocxBlob(updatedBlob);
-        setPdfUrl(URL.createObjectURL(new Blob([updatedPdfBase64], { type: 'application/pdf' })));
     };
 
     // CONVERT BASE64 TO BLOB
@@ -170,17 +175,17 @@ export function ResumeEditor({ resumes, setResumes }) {
         /// ???
     }
 
-
     return (
         <div>
             <h1 className="pt-4">{resume.title}</h1>
             <div className="editDesktop">
                 <div className='d-flex justify-content-between'>
                     <div className='button-container'>
-                        <EditorButtons name="Edit Biography" modalName="Edit Biography" subtext={biography} onSave={setLanguages()}/>
+                        <EditorButtons name="Edit Biography" modalName="Edit Biography" subtext={biography} onSave={setLanguages}/>
                         <EditorButtons name="Edit Work Experience" modalName="Edit Work Experience" subtext={workExperience} onSave={setWorkExperience}/>
                         <EditorButtons name="Edit Projects" modalName="Edit Projects" subtext={projects} onSave={setProjects}/>
                         <EditorButtons name="Edit Skills" modalName="Edit Skills" subtext={skills} onSave={setSkills}/>
+                        <button className="button" onClick={handleSaveResume}>Save Changes</button>
                     </div>
 
                     <div className="resume-editor d-flex">
@@ -213,7 +218,6 @@ export function ResumeEditor({ resumes, setResumes }) {
                         <GenerateButtons editName="Generate Class Recs" onClick={handleGenerateClasses}/>
                         <GenerateButtons editName="Generate Project Ideas" onClick={handleGenerateProjects}/>
                         <GenerateButtons editName="AI Quality Score" onClick={handleGenerateQualityScore}/>
-                        <button className="button" onClick={handleSaveResume}>Save Changes</button>
                         <button className="button" onClick={() => window.open(pdfUrl, '_blank')}> Download Resume </button>                    
                         <ChatScreen ref={chatScreenRef}/>
                     </div>
@@ -251,12 +255,12 @@ export function ResumeEditor({ resumes, setResumes }) {
                         <EditorButtons name="Edit Work Experience" modalName="Edit Work Experience" subtext={workExperience} onSave={setWorkExperience}/>
                         <EditorButtons name="Edit Projects" modalName="Edit Projects" subtext={projects} onSave={setProjects}/>
                         <EditorButtons name="Edit Skills" modalName="Edit Skills" subtext={skills} onSave={setSkills}/>
+                        <button className="button" onClick={handleSaveResume}>Save Changes</button>
                     </div>
                     <div className='button-container'>
                         <GenerateButtons editName="Generate Class Recs" onClick={handleGenerateClasses}/>
                         <GenerateButtons editName="Generate Project Ideas" onClick={handleGenerateProjects}/>
                         <GenerateButtons editName="AI Quality Score" onClick={handleGenerateQualityScore}/>
-                        <button className="button" onClick={handleSaveResume}>Save Changes</button>
                         <button className="button" onClick={() => window.open(resume.pdfUrl, '_blank')}> Download Resume </button>                    
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { jsPDF } from "jspdf";
 import { Document, Packer, Paragraph } from "docx";
-import {ResumeList} from './ResumeList';
+import { ResumeList } from './ResumeList';
 import { EditorButtons } from './ResumeButtons';
 import { getDatabase, ref, set} from 'firebase/database';
 import { blobToBase64, generatePdfFromDocx } from './Utils';
@@ -52,7 +52,7 @@ export function MyResumes({ resumes, setResumes, username }) {
             <h1>My Resumes</h1>
             <div className="my-resumes-page">
                 <EditorButtons name="Create Resume" modalName="Enter Resume Title" onSave={handleCreateResume}/>
-                <ResumeList resumes={resumes} />
+                <ResumeList resumes={resumes} setResumes={setResumes} username={username}/>
             </div>
         </div>
     );
