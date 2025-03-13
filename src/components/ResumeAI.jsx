@@ -3,7 +3,9 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 
 export function ChatScreen(props) {
 
-    const {showChat, setShowChat, itemsDisplay, setItemsDisplay} = props;
+    const {showChat, setShowChat, itemsDisplay, setItemsDisplay, userPrompt} = props;
+
+    console.log(userPrompt)
 
     // closes chat screen
     const handleClose = () => {
@@ -11,11 +13,11 @@ export function ChatScreen(props) {
         if (setItemsDisplay) setItemsDisplay('chatGone');
     };
 
-    // closes chat screen contents
-    const handleCloseItems = () => {
-        setItemsDisplay('chatGone');
-        setShowChat('chatGone')
-    };
+    // add message to message obj array
+    const addMessage = (messageText) => {
+        const newMessage = {text: messageText}
+        setMessages((prevMessages) => [...prevMessages, newMessage]);
+    }
 
     // AI STUFF
 
@@ -36,35 +38,28 @@ export function ChatScreen(props) {
     }, []);
 
     const sendPromptToGemini = async (prompt) => {
+        if (!genAI) {
+            console.error("bruh wya");
+            return;
+        }
         try {
-            const model = genAI.getGenerativeModel({ model:"gemini-pro" });
+            const model = genAI.getGenerativeModel({ model:"gemini-pro", apiVersion: "v1" });
             const result = await model.generateContent(prompt);
             const response = result.response;
-            const text = response.text();
+            const text = await response.getContent();
             addMessage(text);
         }
         catch (error) {
-            console.error("Error")
-            addMessage("Error");
+            console.error("Error boi ain no way")
+            addMessage("Error boi ain no way");
         }
     }
 
-    // when user presses "Generate Classes" button
-    const handleGenerateClasses = () => {
-        // prompts will be refined later
-        const prompt = "What classes should i take to be a software engineer?"
-
-        sendPromptToGemini(prompt);
-    }
-
-    // when user presses "Generate Projects" button
-    const handleGenerateProjects = () => {
-        
-        // AI will eventually look through a database of other user resumes to determine
-        // project examples. Same with classes
-        const prompt = "What projects should I do to improve my resume as a software engineer."
-        sendPromptToGemini(prompt);
-    }
+    useEffect(() => {
+        if (userPrompt) {
+            sendPromptToGemini(userPrompt);
+        }
+    }, [userPrompt]);
 
     // MESSAGE STUFF
 
@@ -75,21 +70,15 @@ export function ChatScreen(props) {
     //for debugging (will not be using state for array of messages)
     const [messageArray, setMessageArray] = useState([{text:"Hello"},{text:"This is example text blah blah blah blah"}]);
 
-    // add message to message obj array
-    const addMessage = (messageText) => {
-        const newMessage = {text: messageText}
-        setMessageStateArray((prevMessages) => [...prevMessages, newMessage]);
-    }
-
     // format message to readable content
-    const messageItemArray = messageArray.map((chatObj, index) => {
+    const messageItemArray = messages.map((chatObj, index) => {
         return <MessageItem key={index} messageData={chatObj} />
     });    
 
     return (     
-        <div className={showChat + " " + itemsDisplay}>
+        <div className={showChat}>
             <div className='d-flex'> {/* Chatscreen header */}
-                <button className={"closeButton " + itemsDisplay} onClick={() => {handleClose(); handleCloseItems();}}>
+                <button className={"closeButton " + itemsDisplay} onClick={handleClose}>
                     X
                 </button>
             </div>
