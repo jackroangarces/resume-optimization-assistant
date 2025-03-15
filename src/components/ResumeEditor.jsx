@@ -22,6 +22,7 @@ export function ResumeEditor({ resumes, setResumes, username }) {
     const [docxBlob, setDocxBlob] = useState(null);
     const [reloadTrigger, setReloadTrigger] = useState(0);
     // Edit Buttons
+    const [job, setJob] = useState(""); 
     const [biography, setBiography] = useState(""); 
     const [projects, setProjects] = useState("");
     const [workExperience, setWorkExperience] = useState("");
@@ -179,12 +180,13 @@ export function ResumeEditor({ resumes, setResumes, username }) {
             <div className="editDesktop">
                 <div className='d-flex justify-content-between'>
                     <div className='button-container'>
-                        <EditorButtons name="Edit Biography" modalName="Edit Biography" subtext={biography} onSave={setLanguages}/>
+                        <EditorButtons name="Edit Job Goal" modalName="Landing what kind of job is your goal for this resume? (be as specific as you like!)" subtext={job} onSave={setJob}/>
+                        <EditorButtons name="Edit Biography" modalName="Edit Biography" subtext={job} onSave={setJob}/>
                         <EditorButtons name="Edit Work Experience" modalName="Edit Work Experience" subtext={workExperience} onSave={setWorkExperience}/>
                         <EditorButtons name="Edit Projects" modalName="Edit Projects" subtext={projects} onSave={setProjects}/>
                         <EditorButtons name="Edit Skills" modalName="Edit Skills" subtext={skills} onSave={setSkills}/>
                         <button className="button" onClick={handleSaveResume}>Save Changes</button>
-                    </div>
+                    </div>  
 
                     <div className="resume-editor d-flex">
                         <div className="card p-3 mt-3 shadow-lg" style={{ width: "40rem" }}>
