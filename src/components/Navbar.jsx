@@ -36,13 +36,12 @@ export function Navbar(props) {
                         
                         
                 </div>
-                <div className="navbar-center">
-                <tr>
-                    <div>Welcome, {username}!</div>            {/* Displays username */}
-                    <th>                                     
-                    <button className="logout-button" onClick={logout}>Logout</button> {/* Displays logout button */}
-                    </th>   
-                </tr>                                
+                <div className="navbar">
+                
+                    <div >Welcome, {username}!</div>            {/* Displays username */}                                   
+                    <div ><button className="logout-button" onClick={logout}>Logout</button></div> {/* Displays logout button */}
+                      
+                                                
                 </div>
                 </div>
                 

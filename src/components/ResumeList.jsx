@@ -31,7 +31,7 @@ export function ResumeList({ resumes }) {
     return (
         <div className="resume-list">
              <div>Sort by: Alphabetical
-            <SortButton name="alphabetical" 
+            <SortButton title="alphabetical" 
             active={sortByCriteria == "alphabetical"}
             ascending={isAscending}
             onClick={handleClick} /> 
@@ -52,7 +52,7 @@ function SortButton(props) {
   
     return (
       <button className="btn btn-sm btn-sort" title={props.name} onClick={props.onClick}>
-        <span className={"material-icons" + iconClasses} aria-label={`sort by ${props.name}`}>Sort</span>
+        <span className={"material-icons" + iconClasses} aria-label={`sort by ${props.title}`}>Sort</span>
       </button>
     );
   }

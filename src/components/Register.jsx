@@ -46,6 +46,7 @@ export function Register(props) {
                     setUsername('');
                     setPassword('');
                     setConfirmPassword('');
+                    
                     login(username); 
                     navigate('/myresumes');
                 }).catch((error) => {
