@@ -74,7 +74,7 @@ function App(props) {
             <Route path="/templates" element={<ExamplesPage />} />
             <Route path="*" element={<Navigate to="/"/>} /> {/* Catch-all for bad URLs */}
             <Route path="/myresumes/*" element={<MyResumes resumes={resumes} setResumes={setResumes} username={username}/>} />
-            <Route path="/resume/edit-resume/:id" element={<ResumeEditor resumes={resumes} setResumes={setResumes} />} />
+            <Route path="/resume/edit-resume/:id" element={<ResumeEditor resumes={resumes} setResumes={setResumes} username={username} />} />
           </Routes>
         </main>
         <Footer />

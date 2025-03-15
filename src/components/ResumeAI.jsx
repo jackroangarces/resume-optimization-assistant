@@ -3,33 +3,31 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 
 export function ChatScreen(props) {
 
-    // closes chat screen
-    const {show, setShow} = props;
-    const handleClose = () => setShow('');
+    const {showChat, setShowChat, itemsDisplay, setItemsDisplay, userPrompt} = props;
 
-    // closes chat screen contents
-    const {itemsDisplay, setItemsDisplay} = props;
-    const handleCloseItems = () => {
-        setItemsDisplay('d-none');
+    //console.log(userPrompt) TURNED OFF FOR DEBUGGING BECAUSE IT PRINTS TOO MANY THINGS IN CONSOLE FEEL FREE TO TURN BACK ON
+
+    // closes chat screen
+    const handleClose = () => {
+        if (setShowChat) setShowChat('chatGone');
+        if (setItemsDisplay) setItemsDisplay('chatGone');
     };
 
-    const [messages, setMessages] = useState("hello");
-    const [input, setInput] = useState("");
+    // add message to message obj array
+    const addMessage = (messageText) => {
+        const newMessage = {text: messageText}
+        setMessages((prevMessages) => [...prevMessages, newMessage]);
+    }
 
-    // Will need to hide this for security purposes
-    const apiKey = "AIzaSyALULJ4WeAf7y-p5Xc_rai0Z5jDGLtndc4";
-
-    // from lecture demo
-
-    //for debugging
-
-    const [messageStateArray, setMessageStateArray] = useState([{text:"Hello"},{text:"This is example text blah blah blah blah"}]);
-    const [genAI, setGenAI] = useState(null);
-    
+    // AI STUFF
 
     // useEffect() and sendPromptToGemini was coded with the assistance of claude.ai
     // it was to understand and learn how to implement AI chat prompts
     // into the webpage.
+    
+    // Will need to hide this for security purposes
+    const apiKey = "AIzaSyALULJ4WeAf7y-p5Xc_rai0Z5jDGLtndc4";
+    const [genAI, setGenAI] = useState(null);
 
     useEffect(() => {
         const API_KEY = "AIzaSyALULJ4WeAf7y-p5Xc_rai0Z5jDGLtndc4"; 
@@ -40,60 +38,57 @@ export function ChatScreen(props) {
     }, []);
 
     const sendPromptToGemini = async (prompt) => {
+        if (!genAI) {
+            console.error("bruh wya");
+            return;
+        }
         try {
-            const model = genAI.getGenerativeModel({ model:"gemini-pro" });
+            const model = genAI.getGenerativeModel({ model:"gemini-pro", apiVersion: "v1" });
             const result = await model.generateContent(prompt);
             const response = result.response;
-            const text = response.text();
+            const text = await response.getContent();
             addMessage(text);
         }
         catch (error) {
-            console.error("Error")
-            addMessage("Error");
+            console.error("Error boi ain no way")
+            addMessage("Error boi ain no way");
         }
     }
 
-    // when user presses "Generate Classes" button
-    const handleGenerateClasses = () => {
-        // prompts will be refined later
-        const prompt = "What classes should i take to be a software engineer?"
+    useEffect(() => {
+        if (userPrompt) {
+            sendPromptToGemini(userPrompt);
+        }
+    }, [userPrompt]);
 
-        sendPromptToGemini(prompt);
-    }
+    // MESSAGE STUFF
 
-    // when user presses "Generate Projects" button
-    const handleGenerateProjects = () => {
-        
-        // AI will eventually look through a database of other user resumes to determine
-        // project examples. Same with classes
-        const prompt = "What projects should I do to improve my resume as a software engineer."
-        sendPromptToGemini(prompt);
-    }
+    // will map these into a "messageArray"
+    const [messages, setMessages] = useState([]);
+    const [input, setInput] = useState("");
 
-    // add message to message obj array
-    const addMessage = (messageText) => {
-        const newMessage = {text: messageText}
-        setMessageStateArray((prevMessages) => [...prevMessages, newMessage]);
-    }
+    //for debugging (will not be using state for array of messages)
+    const [messageArray, setMessageArray] = useState([{text:"Hello"},{text:"This is example text blah blah blah blah"}]);
 
     // format message to readable content
-    const messageItemArray = messageStateArray.map((chatObj, index) => {
+    const messageItemArray = messages.map((chatObj, index) => {
         return <MessageItem key={index} messageData={chatObj} />
     });    
 
-    console.log(itemsDisplay)
-    return (
-        <div className={show}>
-            <button className={itemsDisplay} onClick={() => {handleClose(); handleCloseItems();}}>
-                close button
-            </button>
-            <div >
+    return (     
+        <div className={showChat}>
+            <div className='d-flex'> {/* Chatscreen header */}
+                <button className={"closeButton " + itemsDisplay} onClick={handleClose}>
+                    X
+                </button>
+            </div>
+            <div className={itemsDisplay}>
                 {/* conditional rendering */}
                 {messageItemArray.length === 0 && 
                 <p>No messages yet</p>
                 }
                 {/* Messages */}
-                {/* {messageItemArray} */}
+                {messageItemArray}
             </div>
         </div>
     )
