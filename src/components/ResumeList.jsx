@@ -8,9 +8,7 @@ export function ResumeList({ resumes, setResumes, username }) {
     const [isAscending, setIsAscending] = useState(true); 
 
     const handleClick = (event) => {
-
         const {title} = event.currentTarget;
-    
         if (title !== sortByCriteria) {
           setSortByCriteria(title);
           setIsAscending(true);
@@ -21,38 +19,58 @@ export function ResumeList({ resumes, setResumes, username }) {
 
       let sortedData = [...resumes];
       if (sortByCriteria == "alphabetical") {
-
-      sortedData = _.sortBy(resume => resume.title, sortedData);
-      if (!isAscending) {
-        sortedData.reverse();
-      } 
+        sortedData = _.sortBy(sortedData, resume => resume.title.toLowerCase());
+        if (!isAscending) {
+            sortedData.reverse();
+        }
+      } else if (sortByCriteria === "date") {
+        sortedData.sort((a, b) => {
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+            if (isAscending) {
+                return dateA - dateB;
+            } else {
+                return dateB - dateA;
+            }
+        });
     }
 
     return (
+        <div>
+          <div>Sort
+            <SortButton
+              name="alphabetical" 
+              active={sortByCriteria === "alphabetical"}
+              ascending={isAscending && sortByCriteria === "alphabetical"}
+              onClick={handleClick}>
+              Alphabetical
+            </SortButton>
+            <SortButton
+              name="date"
+              active={sortByCriteria === "date"}
+              ascending={isAscending && sortByCriteria === "date"}
+              onClick={handleClick}>
+              Date
+            </SortButton>
+          </div> 
         <div className="resume-list">
-             <div>Sort by: Alphabetical
-            <SortButton name="alphabetical" 
-            active={sortByCriteria == "alphabetical"}
-            ascending={isAscending}
-            onClick={handleClick} /> 
-            </div> 
-
-            {resumes.map(resume => (
+            {sortedData.map(resume => (
           <ResumeContainer key={resume.id} resume={resume} resumes={resumes} setResumes={setResumes} username={username} />
         ))}
         </div>
+      </div>
     );
 }
-//comitting draft 2!
 
 function SortButton(props) {
-    let iconClasses = ""
+    let iconClasses = "material-icons"
     if (props.active) { iconClasses += ` active` }
     if (props.ascending) { iconClasses += ` flip` };
   
     return (
       <button className="btn btn-sm btn-sort" title={props.name} onClick={props.onClick}>
-        <span className={"material-icons" + iconClasses} aria-label={`sort by ${props.name}`}>Sort</span>
+          <span>{props.children}</span>
+          <span className={iconClasses} aria-label={`sort by ${props.name}`}>Sort</span>
       </button>
     );
   }

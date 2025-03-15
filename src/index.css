@@ -484,6 +484,17 @@ width: 15rem;
   word-wrap: break-word;
 }
 
+.reload-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #1D2F6F;
+  color: white; 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
 /* --------- MEDIA QUERIES --------- */
 
 @media (min-width: 598px) {

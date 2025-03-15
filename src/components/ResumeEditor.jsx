@@ -20,6 +20,7 @@ export function ResumeEditor({ resumes, setResumes, username }) {
     const [pdfUrl, setPdfUrl] = useState(null);
     const [docxUrl, setDocxUrl] = useState(null);
     const [docxBlob, setDocxBlob] = useState(null);
+    const [reloadTrigger, setReloadTrigger] = useState(0);
     // Edit Buttons
     const [biography, setBiography] = useState(""); 
     const [projects, setProjects] = useState("");
@@ -32,8 +33,6 @@ export function ResumeEditor({ resumes, setResumes, username }) {
 
     // Prompts
     const [userPrompt, setUserPrompt] = useState(null);
-
-    // Template Blob
 
     // DECODE + LOAD RESUME
     useEffect(() => {
@@ -56,15 +55,11 @@ export function ResumeEditor({ resumes, setResumes, username }) {
             setPdfUrl(null);
             setDocxUrl(null);
             setDocxBlob(null);
-        }
-
-        
-        
-        return () => {
+        } return () => {
             if (pdfUrl) URL.revokeObjectURL(pdfUrl);
             if (docxUrl) URL.revokeObjectURL(docxUrl);
         };
-    }, [id, resumes]);
+    }, [id, resumes, reloadTrigger]);
 
     // SAVE RESUME
     const handleSaveResume = async () => {
@@ -92,36 +87,49 @@ export function ResumeEditor({ resumes, setResumes, username }) {
     // ADD TEXT TO DOCX
     const handleAddTextToDocx = async () => {
         if (!docxBlob) return;
-        const templateResponse = await fetch('/template_formatted.docx');
-        const templateArrayBuffer = await templateResponse.arrayBuffer();
-        const templateBlob = new Blob([templateArrayBuffer], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
-        const arrayBuffer = await templateBlob.arrayBuffer();
-        const zip = new PizZip(arrayBuffer);
-        const doc = new Docxtemplater(zip, { paragraphLoop: true, linebreaks: true });
-    
-        doc.render({
-            Biography: biography || "Enter your biography...",
-            Experience: workExperience || "Enter your work experience...",
-            Projects: projects || "Enter your projects...",
-            Skills: skills || "Enter your skills...",
-            Languages: languages.toString() || "Enter your languages..."
-        });
-    
-        const updatedBlob = new Blob([doc.getZip().generate({ type: 'arraybuffer' })], {
-            type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-        });
-        setDocxBlob(updatedBlob);
-        const updatedDocxBase64 = await blobToBase64(updatedBlob);
-        const updatedPdfBase64 = await generatePdfFromDocx(updatedBlob);
-        const pdfBlob = base64ToBlob(updatedPdfBase64, "pdf");
-        const newPdfUrl = URL.createObjectURL(pdfBlob);
-        setPdfUrl(newPdfUrl);
-        const updatedResume = { 
-            ...resume, 
-            pdfBase64: updatedPdfBase64, 
-            docxBase64: updatedDocxBase64 
-        };
-        setResumes(prevResumes => prevResumes.map(r => r.id === resume.id ? updatedResume : r));
+        const originalPdfUrl = pdfUrl;  
+        try {
+            setPdfUrl(null); // trigger the loading indicator
+            const templateResponse = await fetch('/template_formatted.docx');
+            const templateArrayBuffer = await templateResponse.arrayBuffer();
+            const templateBlob = new Blob([templateArrayBuffer], { 
+                type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' 
+            });
+            const arrayBuffer = await templateBlob.arrayBuffer();
+            const zip = new PizZip(arrayBuffer);
+            const doc = new Docxtemplater(zip, { paragraphLoop: true, linebreaks: true });
+        
+            doc.render({
+                Biography: biography || "Enter your biography...",
+                Experience: workExperience || "Enter your work experience...",
+                Projects: projects || "Enter your projects...",
+                Skills: skills || "Enter your skills...",
+                Languages: languages || "Enter your languages..."
+            });
+        
+            const updatedBlob = new Blob([doc.getZip().generate({ type: 'arraybuffer' })], {
+                type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            });
+            setDocxBlob(updatedBlob);
+            const updatedDocxBase64 = await blobToBase64(updatedBlob);
+            const updatedPdfBase64 = await generatePdfFromDocx(updatedBlob);
+            if (!updatedPdfBase64 || !updatedDocxBase64) {
+                throw new Error("Failed to generate PDF or DOCX base64");
+            }
+            const pdfBlob = await base64ToBlob(updatedPdfBase64, "pdf");
+            const newPdfUrl = URL.createObjectURL(pdfBlob);
+            setPdfUrl(newPdfUrl);
+            const updatedResume = { 
+                ...resume, 
+                pdfBase64: updatedPdfBase64, 
+                docxBase64: updatedDocxBase64 
+            };
+            setResumes(prevResumes => prevResumes.map(r => r.id === resume.id ? updatedResume : r));
+            console.log("PDF and DOCX updated successfully");
+        } catch (error) {
+            console.error("Error generating PDF:", error);
+            setPdfUrl(originalPdfUrl);
+        }
     };
 
     // CONVERT BASE64 TO BLOB
@@ -138,7 +146,7 @@ export function ResumeEditor({ resumes, setResumes, username }) {
         if (type === "pdf") {
             return new Blob(byteArrays, { type: 'application/pdf' });
         } else {
-            return new Blob(byteArrays, { type: 'application/docx' });
+            return new Blob(byteArrays, { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
         }
      };
 
@@ -201,7 +209,8 @@ export function ResumeEditor({ resumes, setResumes, username }) {
                                     Page 1 of {numPages}
                                 </div>
                             )}
-                        </div>
+                            <button className="reload-button mt-3" onClick={() => setReloadTrigger(prev => prev + 1)}>Reload</button>
+                        </div>  
                     </div>
 
                     <div className='button-container'>

@@ -5,7 +5,7 @@ export function ChatScreen(props) {
 
     const {showChat, setShowChat, itemsDisplay, setItemsDisplay, userPrompt} = props;
 
-    console.log(userPrompt)
+    //console.log(userPrompt) TURNED OFF FOR DEBUGGING BECAUSE IT PRINTS TOO MANY THINGS IN CONSOLE FEEL FREE TO TURN BACK ON
 
     // closes chat screen
     const handleClose = () => {
