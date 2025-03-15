@@ -6,7 +6,7 @@ export function ResumeList({ resumes, setResumes, username }) {
 
     const [sortByCriteria, setSortByCriteria] = useState(null);
     const [isAscending, setIsAscending] = useState(true); 
-
+    // Testing my user settings
     const handleClick = (event) => {
         const {title} = event.currentTarget;
         if (title !== sortByCriteria) {
