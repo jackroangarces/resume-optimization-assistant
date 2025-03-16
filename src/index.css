@@ -460,18 +460,11 @@ width: 15rem;
   background-color: #ccc;
   border-radius: 1rem;
   border: 3px solid black;
+  overflow-y: auto;
 }
 
 .chatGone {
   display: none !important;
-}
-
-.closeButton {
-  background-color: red;
-  padding: 0em .5em;
-  margin: 1em;
-  border-radius: 1rem;
-  margin-left: auto;
 }
 
 .message {
