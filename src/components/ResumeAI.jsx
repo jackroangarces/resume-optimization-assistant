@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { CloseButton } from 'react-bootstrap';
 
 export function ChatScreen(props) {
 
     const {showChat, setShowChat, itemsDisplay, setItemsDisplay, userPrompt} = props;
 
-    //console.log(userPrompt) TURNED OFF FOR DEBUGGING BECAUSE IT PRINTS TOO MANY THINGS IN CONSOLE FEEL FREE TO TURN BACK ON
+    console.log(userPrompt) // TURNED OFF FOR DEBUGGING BECAUSE IT PRINTS TOO MANY THINGS IN CONSOLE FEEL FREE TO TURN BACK ON
 
     // closes chat screen
     const handleClose = () => {
@@ -26,35 +27,30 @@ export function ChatScreen(props) {
     // into the webpage.
     
     // Will need to hide this for security purposes
-    const apiKey = "AIzaSyALULJ4WeAf7y-p5Xc_rai0Z5jDGLtndc4";
-    const [genAI, setGenAI] = useState(null);
-
-    useEffect(() => {
-        const API_KEY = "AIzaSyALULJ4WeAf7y-p5Xc_rai0Z5jDGLtndc4"; 
-        if (API_KEY) {
-            const ai = new GoogleGenerativeAI(API_KEY);
-            setGenAI(ai);
-        }
-    }, []);
-
+    const API_KEY = "AIzaSyALULJ4WeAf7y-p5Xc_rai0Z5jDGLtndc4";
+    
     const sendPromptToGemini = async (prompt) => {
-        if (!genAI) {
-            console.error("bruh wya");
-            return;
-        }
+        if (!prompt) return;
+        
         try {
-            const model = genAI.getGenerativeModel({ model:"gemini-pro", apiVersion: "v1" });
-            const result = await model.generateContent(prompt);
-            const response = result.response;
-            const text = await response.getContent();
-            addMessage(text);
-        }
-        catch (error) {
-            console.error("Error boi ain no way")
-            addMessage("Error boi ain no way");
-        }
-    }
+            const genAI = new GoogleGenerativeAI(API_KEY);
+            const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
+            const result = await model.generateContent({
+                contents: [{parts: [{ text: prompt }]}] });
+            
+            if (result.response) {
+                const responseText = result.response.text();
+                addMessage(responseText);
+            } else {
+                addMessage("No response received from AI");
+            }
+        } catch (error) {
+            console.error("Error details:", error );
+            addMessage("Failed to get AI response: " + (error.message || "Unknown error"));
+        }
+    };
+    
     useEffect(() => {
         if (userPrompt) {
             sendPromptToGemini(userPrompt);
@@ -76,11 +72,9 @@ export function ChatScreen(props) {
     });    
 
     return (     
-        <div className={showChat}>
+        <div className={showChat + " "}>
             <div className='d-flex'> {/* Chatscreen header */}
-                <button className={"closeButton " + itemsDisplay} onClick={handleClose}>
-                    X
-                </button>
+                <CloseButton className={"m-1 p-2" + itemsDisplay} onClick={handleClose} />
             </div>
             <div className={itemsDisplay}>
                 {/* conditional rendering */}

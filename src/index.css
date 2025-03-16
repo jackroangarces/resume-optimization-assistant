@@ -74,6 +74,11 @@ h2 {
 .navbar {
   background-color: #1D2F6F;
   border-color: #1D2F6F;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  width: 100%;
 }
 
 .title {
@@ -81,7 +86,12 @@ h2 {
 }
 
 .title-acronym {
+  top: -1.5rem;
   font-size: 4rem;
+  margin-left: -1rem;
+  display: flex;
+  align-items: center;
+  position: relative; 
 }
 
 .logo {
@@ -143,7 +153,7 @@ h2 {
 .hamburger-menu {
   display: block; /* This ensures it's visible on mobile */
   position: absolute;
-  top: 2.5rem;
+  top: 4.5rem;
   right: 1rem;
   z-index: 100000000;
 }
@@ -172,6 +182,8 @@ h2 {
 .navbar-right.active {
   display: flex;
 }
+
+
 
 }
 
@@ -368,9 +380,9 @@ text-decoration: none;
 color: inherit;
 }
 
-{/*}.resume-container:hover {
+/*}.resume-container:hover {
 transform: scale(1.05); 
-}*/}
+}*/
 
 .resume-image {
 width: 100%;
@@ -460,18 +472,11 @@ width: 15rem;
   background-color: #ccc;
   border-radius: 1rem;
   border: 3px solid black;
+  overflow-y: auto;
 }
 
 .chatGone {
   display: none !important;
-}
-
-.closeButton {
-  background-color: red;
-  padding: 0em .5em;
-  margin: 1em;
-  border-radius: 1rem;
-  margin-left: auto;
 }
 
 .message {
@@ -500,6 +505,7 @@ width: 15rem;
 @media (min-width: 598px) {
   .title-acronym {
     display: none;
+    
   }
   
   .title {

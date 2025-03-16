@@ -162,8 +162,11 @@ export function ResumeEditor({ resumes, setResumes, username }) {
     }
 
     const handleGenerateQualityScore = () => {
-        setUserPrompt("Generate a score out of 10 for the following resume")
+        return "Generate a score out of 10 for the following resume";
     }
+
+    // debugging
+    const Classes = "What classes should i take to be a software engineer?";
     
     // generate button handlers
     const handleGenerateClasses = () => {
@@ -220,11 +223,13 @@ export function ResumeEditor({ resumes, setResumes, username }) {
                         <GenerateButtons editName="Generate Project Ideas" onClick={handleGenerateProjects}/>
                         <GenerateButtons editName="AI Quality Score" onClick={handleGenerateQualityScore}/>
                         <button className="button" onClick={() => window.open(pdfUrl, '_blank')}> Download Resume </button>                    
-                        <ChatScreen userPrompt={userPrompt}/>
                     </div>
                 </div>
             </div>
-            <div className="editMobile">
+
+            {/* WILL REENABLE MOBILE SCREEN AFTER FIXING AI*/}
+
+            {/* <div className="editMobile">
                 <div className="resume-editor d-flex justify-content-center">
                     <div className="card p-3 mt-3 shadow-lg" style={{ width: "40rem" }}>
                         <h5 className="card-title text-center">Resume Preview</h5>
@@ -265,7 +270,7 @@ export function ResumeEditor({ resumes, setResumes, username }) {
                         <button className="button" onClick={() => window.open(resume.pdfUrl, '_blank')}> Download Resume </button>                    
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }
