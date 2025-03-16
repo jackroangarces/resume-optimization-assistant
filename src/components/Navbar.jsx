@@ -18,10 +18,10 @@ export function Navbar(props) {
 
         return (
             <nav className="navbar d-flex justify-content-between align-items-center text-white">
-                <div className="navbar-left d-flex m-1">
+                <div className="navbar-left d-flex align-items-center m-1">
                     <Link to="/"><img className="logo" src="img/website_icon.jpeg" alt="Website Icon" /></Link>
                     <h1 className="title fs-1">Resume Optimization System</h1>
-                    <h1 className="title-acronym mx-auto pl-1 ">ROS</h1>
+                    <h1 className="title-acronym">ROS</h1>
                 </div>
                 <div id="nav-menu" className="mobile-only" onClick={() => setMenuOpen(!menuOpen)}>
                     <img className="hamburger-menu" src="img/hamburger.png" alt="Menu" />
@@ -48,10 +48,10 @@ export function Navbar(props) {
     else {
         return (
             <nav className="navbar d-flex justify-content-between align-items-center text-white">
-                <div className="navbar-left d-flex m-1">
+                <div className="navbar-left d-flex align-items-center m-1">
                     <Link to="/"><img className="logo" src="img/website_icon.jpeg" alt="Website Icon" /></Link>
                     <h1 className="title fs-1">Resume Optimization System</h1>
-                    <h1 className="title-acronym mx-auto pl-1 ">ROS</h1>
+                    <h1 className="title-acronym">ROS</h1>
                 </div>
 
                 <div id="nav-menu" className="mobile-only" onClick={() => setMenuOpen(!menuOpen)}>
