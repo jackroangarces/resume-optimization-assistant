@@ -2,7 +2,7 @@ import React, {useState, useRef, useEffect} from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { useParams } from 'react-router';
 import { getDatabase, ref, set } from 'firebase/database';
-import { EditorButtons, GenerateButtons, MultiEditorButtons } from './ResumeButtons';
+import { EditorButtons, GenerateButtons, MultiEditorButtons, PrivacyPopUp } from './ResumeButtons';
 import { Document, Page, pdfjs} from 'react-pdf';
 import { Document as DocxDocument, Packer, Paragraph, TextRun } from 'docx';
 import PizZip from 'pizzip';
@@ -330,6 +330,7 @@ export function ResumeEditor({ resumes, setResumes, username }) {
                     </div>
 
                     <div className='button-container'>
+                        <PrivacyPopUp />
                         <GenerateButtons editName="Generate Class Recs" onClick={handleGenerateClasses} messages={messages} loading={loading}/>
                         <GenerateButtons editName="Generate Project Ideas" onClick={handleGenerateProjects} messages={messages} loading={loading}/>
                         <GenerateButtons editName="AI Quality Score" onClick={handleGenerateQualityScore} messages={messages} loading={loading}/>

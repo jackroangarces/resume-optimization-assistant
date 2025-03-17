@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { CloseButton } from 'react-bootstrap';
 import { ChatScreen } from './ResumeAI';
 
 // SINGLE PROMPT EDITOR BUTTONS
@@ -96,6 +97,47 @@ export function GenerateButtons(props) {
                 loading={loading}
             />
         </div>
+    )
+}
+
+export function PrivacyPopUp(props) {
+    const [showChat, setShowChat] = useState('chatGone');
+    const handleShowChat = () => {
+        if(showChat === 'chatGone') {
+            setShowChat('chatscreen');
+        }
+        else {
+            setShowChat('chatGone')
+        }
+        
+    }
+
+    // close chatscreen
+    const handleCloseChat = () => {
+        setShowChat('chatGone');
+        setItemsDisplay('chatGone');
+    };
+
+    const handleFollowUp = () => {
+
+    };
+
+    const message = "privacy here";
+
+    return (
+        <>
+            <button className="button" onClick={handleShowChat}>
+                Privacy Disclaimer
+            </button>     
+            <div className={showChat + " "}>
+                <div className='d-flex'> {/* Chatscreen header */}
+                    <CloseButton className={"m-1 p-2"} onClick={() => {handleFollowUp(), handleShowChat()}} />
+                </div>
+                <div>
+                    {message}
+                </div>
+            </div>
+        </>
     )
 }
 
