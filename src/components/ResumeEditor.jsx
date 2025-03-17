@@ -7,7 +7,7 @@ import { Document as DocxDocument, Packer, Paragraph, TextRun } from 'docx';
 import PizZip from 'pizzip';
 import Docxtemplater from 'docxtemplater';
 import { saveAs } from 'file-saver';
-import { blobToBase64, generatePdfFromDocx } from './Utils';
+import { blobToBase64, generatePdfFromDocx, base64ToBlob } from './Utils';
 import { ChatScreen } from './ResumeAI.jsx';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -133,23 +133,7 @@ export function ResumeEditor({ resumes, setResumes, username }) {
         }
     };
 
-    // CONVERT BASE64 TO BLOB
-    const base64ToBlob = (base64Data, type) => {
-        const base64Content = base64Data.split('base64,')[1];
-        const byteCharacters = atob(base64Content) ;
-        const byteArrays = [];
-        for (let offset = 0; offset < byteCharacters.length; offset += 512) {
-            const slice = byteCharacters.slice(offset, offset + 512);
-            const byteNumbers = Array.from(slice).map(char => char.charCodeAt(0));
-            const byteArray = new Uint8Array(byteNumbers);
-            byteArrays.push(byteArray);
-        }
-        if (type === "pdf") {
-            return new Blob(byteArrays, { type: 'application/pdf' });
-        } else {
-            return new Blob(byteArrays, { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
-        }
-     };
+    
 
     // ERROR IF NO RESUME
     if (!resume) {
@@ -184,7 +168,7 @@ export function ResumeEditor({ resumes, setResumes, username }) {
                 <div className='d-flex justify-content-between'>
                     <div className='button-container'>
                         <EditorButtons name="Edit Job Goal" modalName="Landing what kind of job is your goal for this resume? (be as specific as you like!)" subtext={job} onSave={setJob}/>
-                        <EditorButtons name="Edit Biography" modalName="Edit Biography" subtext={job} onSave={setJob}/>
+                        <EditorButtons name="Edit Biography" modalName="Edit Biography" subtext={languages} onSave={setLanguages}/>
                         <EditorButtons name="Edit Work Experience" modalName="Edit Work Experience" subtext={workExperience} onSave={setWorkExperience}/>
                         <EditorButtons name="Edit Projects" modalName="Edit Projects" subtext={projects} onSave={setProjects}/>
                         <EditorButtons name="Edit Skills" modalName="Edit Skills" subtext={skills} onSave={setSkills}/>
