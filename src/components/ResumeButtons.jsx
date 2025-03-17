@@ -64,7 +64,7 @@ export function EditorButtons({name, modalName, subtext, onSave}) {
 export function GenerateButtons(props) {
 
     // same with props here
-    const {editName, onClick, messages} = props;
+    const {editName, onClick, messages, loading} = props;
 
     // opens chatscreen when generate buttons are clicked
     const [showChat, setShowChat] = useState('chatGone');
@@ -93,6 +93,7 @@ export function GenerateButtons(props) {
                 setItemsDisplay={setItemsDisplay}
                 userPrompt={onClick}
                 messages={messages || []}
+                loading={loading}
             />
         </div>
     )

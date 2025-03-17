@@ -11,6 +11,10 @@ import { saveAs } from 'file-saver';
 import { blobToBase64, generatePdfFromDocx, base64ToBlob } from './Utils';
 
 
+// json
+// AI was used to format the classes into JSON
+import courses from '../data/classes.json'
+
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 
@@ -32,7 +36,9 @@ export function ResumeEditor({ resumes, setResumes, username }) {
 
     // Prompts
     const [userPrompt, setUserPrompt] = useState(null);
-    const [messages, setMessages] = useState([{text:"example message"}]);
+    const [messages, setMessages] = useState([]);
+    const [loading, setLoading] = useState(false);
+
 
     // DECODE + LOAD RESUME
     useEffect(() => {
@@ -171,8 +177,6 @@ export function ResumeEditor({ resumes, setResumes, username }) {
         }
     };
 
-    
-
     // ERROR IF NO RESUME
     if (!resume) {
         return <p>Resume not found!</p>;
@@ -182,21 +186,42 @@ export function ResumeEditor({ resumes, setResumes, username }) {
     function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
     }
+    
+    const handleGenerateQualityScore = async () => {
+        const pdf = await pdfjs.getDocument(pdfUrl).promise;
+        let text = "";
+        
+        for (let i = 1; i <= pdf.numPages; i++) {
+            const page = await pdf.getPage(i);
+            const textContent = await page.getTextContent();
+            text += textContent.items.map((item) => item.str).join(" ") + "\n";
+        }
+        console.log("pdf is: ", pdfUrl)
+        console.log("text is:", text);
 
-    const handleGenerateQualityScore = () => {
-        return "Generate a score out of 10 for the following resume";
+        const prompt = `please give me a score from 1-10 based off
+                        my resume ${text}`;
+        setUserPrompt(prompt);
     }
 
-    // debugging
-    const Classes = "What classes should i take to be a software engineer?";
-    
     // generate button handlers
     const handleGenerateClasses = () => {
-        setUserPrompt("classes for software engineer");
+        const classes = JSON.stringify(courses);
+        console.log(classes);
+        const prompt = `ive taken these classes ${academics},
+                        give me 3 classes to take in ${classes}
+                        based off me wanting a career in ${job}
+                        format your answer as a list.`;
+
+        setUserPrompt(prompt);
     };
 
     const handleGenerateProjects = () => {
-        setUserPrompt("projects for software engineer");
+        const prompt = `based off my current project: ${projects}
+                        and my current skillset ${skills},
+                        give me 3 example projects i could do to help
+                        me become a ${job}`
+        setUserPrompt(prompt);
     };
 
     // SUBTEXTS
@@ -225,11 +250,8 @@ export function ResumeEditor({ resumes, setResumes, username }) {
         if (!prompt) return;
 
         try {
+            setLoading(true);
             const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
-            console.log(genAI);
-            console.log(model);
-            console.log("prompt is:", prompt);
             
             const result = await model.generateContent(prompt);
                 // {
@@ -240,12 +262,15 @@ export function ResumeEditor({ resumes, setResumes, username }) {
             if (result.response) {
                 const responseText = result.response.text();
                 addMessage(responseText);
+                setLoading(false);
             } else {
                 addMessage("No response received from AI");
+                setLoading(false);
             }
         } catch (error) {
             console.error("Error details:", error );
             addMessage("Failed to get AI response: " + (error.message || "Unknown error"));
+            setLoading(false);
         }
     };
 
@@ -292,9 +317,9 @@ export function ResumeEditor({ resumes, setResumes, username }) {
                     </div>
 
                     <div className='button-container'>
-                        <GenerateButtons editName="Generate Class Recs" onClick={handleGenerateClasses} messages={messages}/>
-                        <GenerateButtons editName="Generate Project Ideas" onClick={handleGenerateProjects} messages={messages}/>
-                        <GenerateButtons editName="AI Quality Score" onClick={handleGenerateQualityScore} messages={messages}/>
+                        <GenerateButtons editName="Generate Class Recs" onClick={handleGenerateClasses} messages={messages} loading={loading}/>
+                        <GenerateButtons editName="Generate Project Ideas" onClick={handleGenerateProjects} messages={messages} loading={loading}/>
+                        <GenerateButtons editName="AI Quality Score" onClick={handleGenerateQualityScore} messages={messages} loading={loading}/>
                         <GenerateButtons editName="Open Chatpage" onClick={() => {}} messages={messages} />
                         <button className="button" onClick={() => window.open(pdfUrl, '_blank')}> Download Resume </button>
                         <button className="button" onClick={handleUploadResume}> Upload Resume </button>                    

@@ -3,7 +3,7 @@ import { CloseButton } from 'react-bootstrap';
 
 export function ChatScreen(props) {
 
-    const {showChat, setShowChat, itemsDisplay, setItemsDisplay, messages} = props;
+    const {showChat, setShowChat, itemsDisplay, setItemsDisplay, messages, loading} = props;
 
     //console.log(userPrompt) // TURNED OFF FOR DEBUGGING BECAUSE IT PRINTS TOO MANY THINGS IN CONSOLE FEEL FREE TO TURN BACK ON
 
@@ -41,8 +41,10 @@ export function ChatScreen(props) {
             <div className={itemsDisplay}>
                 {/* conditional rendering */}
                 {messageItemArray.length === 0 && 
-                <p>No messages yet</p>
+                <p className='p-1'>No messages yet</p>
                 }
+                {loading === true &&
+                <p className='p-1'>LOADING ...</p>}
                 {/* Messages */}
                 {messageItemArray}
             </div>
