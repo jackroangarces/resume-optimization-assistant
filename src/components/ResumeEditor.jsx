@@ -40,12 +40,24 @@ export function ResumeEditor({ resumes, setResumes, username }) {
     const [loading, setLoading] = useState(false);
 
 
+    // SET UP STATE VARS
+    useEffect(() => {
+        const selectedResume = resumes.find((r) => r.id === id);
+        if (selectedResume) {    
+            setJob(selectedResume.jobGoal);
+            setBiography(selectedResume.biography);
+            setAcademics(selectedResume.academics);
+            setProjects(selectedResume.projects);
+            setWorkExperience(selectedResume.workExperience);
+            setSkills(selectedResume.skills);
+        };
+    }, []);
+
     // DECODE + LOAD RESUME
     useEffect(() => {
         const selectedResume = resumes.find((r) => r.id === id);
         if (selectedResume) {
-            setResume(selectedResume);
-            setJob(selectedResume.jobGoal);
+            setResume(selectedResume);            
             if (selectedResume.pdfBase64) {
                 const pdfBlob = base64ToBlob(selectedResume.pdfBase64, "pdf");
                 const pdfBlobUrl = URL.createObjectURL(pdfBlob);
@@ -88,7 +100,8 @@ export function ResumeEditor({ resumes, setResumes, username }) {
             const updatedPdfBase64 = await generatePdfFromDocx(docxBlob);
             const updatedDocxBase64 = await blobToBase64(docxBlob);
 
-            const updatedResume = { ...resume, pdfBase64: updatedPdfBase64, docxBase64: updatedDocxBase64, jobGoal: job };
+            const updatedResume = { ...resume, pdfBase64: updatedPdfBase64, docxBase64: updatedDocxBase64, 
+                jobGoal: job, biography: biography, academics: academics, projects: projects, workExperience: workExperience, skills: skills };
 
             const db = getDatabase();
             const resumeRef = ref(db, `userData/${username}/resumes/${resume.id}`);
