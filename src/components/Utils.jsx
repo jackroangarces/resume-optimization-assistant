@@ -24,3 +24,20 @@ export const generatePdfFromDocx = async (docxBlob) => {
     document.body.removeChild(container);
     return blobToBase64(pdfBlob);
 };
+
+export const base64ToBlob = (base64Data, type) => {
+    const base64Content = base64Data.split('base64,')[1];
+    const byteCharacters = atob(base64Content) ;
+    const byteArrays = [];
+    for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+        const slice = byteCharacters.slice(offset, offset + 512);
+        const byteNumbers = Array.from(slice).map(char => char.charCodeAt(0));
+        const byteArray = new Uint8Array(byteNumbers);
+        byteArrays.push(byteArray);
+    }
+    if (type === "pdf") {
+        return new Blob(byteArrays, { type: 'application/pdf' });
+    } else {
+        return new Blob(byteArrays, { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+    }
+};
