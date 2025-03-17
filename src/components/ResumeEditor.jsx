@@ -78,6 +78,22 @@ export function ResumeEditor({ resumes, setResumes, username }) {
         }
     };
 
+    // UPLOAD RESUME
+
+    const handleUploadResume = async () => {
+        if (resume) {
+            await handleSaveResume();
+            const db = getDatabase();
+            const updatedPdfBase64 = await generatePdfFromDocx(docxBlob);
+            const uploadRef = ref(db, `resumeData/${"title: " + resume.id + " username: " + username}`);
+            set(uploadRef, {
+                pdfBase64: updatedPdfBase64,
+                username: username,
+                timestamp: Date.now()
+            });
+        }
+    };
+
     // TESTING
     useEffect(() => {
         if(languages){
@@ -206,7 +222,8 @@ export function ResumeEditor({ resumes, setResumes, username }) {
                         <GenerateButtons editName="Generate Class Recs" onClick={handleGenerateClasses} />
                         <GenerateButtons editName="Generate Project Ideas" onClick={handleGenerateProjects}/>
                         <GenerateButtons editName="AI Quality Score" onClick={handleGenerateQualityScore}/>
-                        <button className="button" onClick={() => window.open(pdfUrl, '_blank')}> Download Resume </button>                    
+                        <button className="button" onClick={() => window.open(pdfUrl, '_blank')}> Download Resume </button>
+                        <button className="button" onClick={handleUploadResume}> Upload Resume </button>                    
                     </div>
                 </div>
             </div>
