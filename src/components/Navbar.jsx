@@ -33,6 +33,7 @@ export function Navbar(props) {
                      <div id="nav-links-container">
                          <Link id="nav-links" to="/myresumes">My Resumes</Link>
                          <Link id="nav-links" to="/templates">Example Templates</Link>
+                         <Link id="nav-links" to="/shared-resumes">Shared Resumes</Link>
  
  
                  </div>
@@ -63,6 +64,7 @@ export function Navbar(props) {
                     <div id="nav-links-container">
                         <Link id="nav-links" to="/myresumes">My Resumes</Link>
                         <Link id="nav-links" to="/templates">Example Templates</Link>
+                        <Link id="nav-links" to="/shared-resumes">Shared Resumes</Link>
                         {/* <Link id="nav-links" to="/login">Login</Link> */}
                         {username ? (
                         <span className="user-info">

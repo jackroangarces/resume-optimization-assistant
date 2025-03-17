@@ -8,6 +8,7 @@ import { SignIn } from './SignIn.jsx';
 import { MyResumes } from './MyResumes.jsx';
 import { ResumeEditor } from './ResumeEditor.jsx';
 import { Register } from './Register.jsx';
+import { SharedResumes } from './SharedResumes.jsx'; 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../index.css'
@@ -72,6 +73,7 @@ function App(props) {
             <Route path="/login" element={<SignIn login={login} />} />
             <Route path="/register" element={<Register login={login} />} />
             <Route path="/templates" element={<ExamplesPage />} />
+            <Route path="/shared-resumes" element={<SharedResumes />} />
             <Route path="*" element={<Navigate to="/"/>} /> {/* Catch-all for bad URLs */}
             
             <Route element={<ProtectedPage username={username} />} >
