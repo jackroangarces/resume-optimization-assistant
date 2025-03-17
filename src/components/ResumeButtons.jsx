@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { ChatScreen } from './ResumeAI';
 
+// SINGLE PROMPT EDITOR BUTTONS
 export function EditorButtons({name, modalName, subtext, onSave}) {
     
     //modal state
@@ -36,7 +37,7 @@ export function EditorButtons({name, modalName, subtext, onSave}) {
                 <Modal.Title>{modalName}</Modal.Title>
                 </Modal.Header>
             <Modal.Body>
-                <p>Current: {subtext}</p>
+                <p>{subtext}</p>
                 <br />
                 <input 
                 type="text" 
@@ -59,6 +60,7 @@ export function EditorButtons({name, modalName, subtext, onSave}) {
     ) 
 }
 
+// GENERATE BUTTONS
 export function GenerateButtons(props) {
 
     // same with props here
@@ -93,4 +95,63 @@ export function GenerateButtons(props) {
             />
         </div>
     )
+}
+
+// MULTI PROMPT EDITOR BUTTONS
+export function MultiEditorButtons({ name, modalName, subtext, numPrompts, onSave }) {
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const [buttonInputs, setButtonInputs] = useState(Array(numPrompts).fill(""));
+    
+    const handleButtonInput = (index, event) => {
+        const newInputs = [...buttonInputs];
+        newInputs[index] = event.target.value;
+        setButtonInputs(newInputs);
+    };
+
+    const handleSave = () => {
+        if (onSave) {
+            onSave(buttonInputs);
+        }
+        handleClose();
+    };
+
+    return (
+        <>
+            <button className="button" onClick={handleShow}>
+                {name}
+            </button>
+
+            {/* Modal component from React Bootstrap */}
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>{modalName}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p style={{ whiteSpace: 'pre-line' }}>{subtext}</p>
+                    <br />
+                    {Array.from({ length: numPrompts }, (_, index) => (
+                        <div key={index}>
+                            <input 
+                                key={index} 
+                                type="text" 
+                                placeholder={`Input ${index + 1}`} 
+                                onChange={(event) => handleButtonInput(index, event)}
+                            />
+                            <br />
+                        </div>
+                    ))}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={handleSave}>
+                        Save Changes
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    );
 }

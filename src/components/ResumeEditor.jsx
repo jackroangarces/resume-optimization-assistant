@@ -1,7 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import { useParams } from 'react-router';
 import { getDatabase, ref, set } from 'firebase/database';
-import { EditorButtons, GenerateButtons } from './ResumeButtons';
+import { EditorButtons, GenerateButtons, MultiEditorButtons } from './ResumeButtons';
 import { Document, Page, pdfjs} from 'react-pdf';
 import { Document as DocxDocument, Packer, Paragraph, TextRun } from 'docx';
 import PizZip from 'pizzip';
@@ -24,6 +24,7 @@ export function ResumeEditor({ resumes, setResumes, username }) {
     // Edit Buttons
     const [job, setJob] = useState(""); 
     const [biography, setBiography] = useState(""); 
+    const [academics, setAcademics] = useState(""); 
     const [projects, setProjects] = useState("");
     const [workExperience, setWorkExperience] = useState("");
     const [skills, setSkills] = useState("");
@@ -40,6 +41,7 @@ export function ResumeEditor({ resumes, setResumes, username }) {
         const selectedResume = resumes.find((r) => r.id === id);
         if (selectedResume) {
             setResume(selectedResume);
+            setJob(selectedResume.jobGoal);
             if (selectedResume.pdfBase64) {
                 const pdfBlob = base64ToBlob(selectedResume.pdfBase64, "pdf");
                 const pdfBlobUrl = URL.createObjectURL(pdfBlob);
@@ -68,7 +70,7 @@ export function ResumeEditor({ resumes, setResumes, username }) {
             const updatedPdfBase64 = await generatePdfFromDocx(docxBlob);
             const updatedDocxBase64 = await blobToBase64(docxBlob);
 
-            const updatedResume = { ...resume, pdfBase64: updatedPdfBase64, docxBase64: updatedDocxBase64 };
+            const updatedResume = { ...resume, pdfBase64: updatedPdfBase64, docxBase64: updatedDocxBase64, jobGoal: job };
 
             const db = getDatabase();
             const resumeRef = ref(db, `userData/${username}/resumes/${resume.id}`);
@@ -96,10 +98,10 @@ export function ResumeEditor({ resumes, setResumes, username }) {
 
     // TESTING
     useEffect(() => {
-        if(languages){
+        if(resume){
             handleAddTextToDocx();
         }
-    }, [languages])
+    }, [languages, skills])
 
     // ADD TEXT TO DOCX
     const handleAddTextToDocx = async () => {
@@ -121,7 +123,9 @@ export function ResumeEditor({ resumes, setResumes, username }) {
                 Experience: workExperience || "Enter your work experience...",
                 Projects: projects || "Enter your projects...",
                 Skills: skills || "Enter your skills...",
-                Languages: languages || "Enter your languages..."
+                Languages: skills[0] || "Enter your languages...",
+                DeveloperTools: skills[1] || "Enter your languages...",
+                Concepts: skills[2] || "Enter your languages..."
             });
         
             const updatedBlob = new Blob([doc.getZip().generate({ type: 'arraybuffer' })], {
@@ -177,17 +181,21 @@ export function ResumeEditor({ resumes, setResumes, username }) {
         setUserPrompt("What personal projects can i work on to improve my software engineering skills?")
     };
 
+    // SUBTEXTS
+    const skillsSubtext = `Fill in Languages, Developer Tools, and Concepts.\nCurrent:\nLanguages: ${skills[0]}\nDeveloper Tools: ${skills[1]}\nConcepts: ${skills[2]}`;
+
     return (
         <div>
             <h1 className="pt-4">{resume.title}</h1>
             <div className="editDesktop">
                 <div className='d-flex justify-content-between'>
                     <div className='button-container'>
-                        <EditorButtons name="Edit Job Goal" modalName="Landing what kind of job is your goal for this resume? (be as specific as you like!)" subtext={job} onSave={setJob}/>
+                        <EditorButtons name="Edit Job Goal" modalName="Landing what kind of job is your goal for this resume? (be as specific as you like!)" subtext={`Current: ${job}`} onSave={setJob}/>
                         <EditorButtons name="Edit Biography" modalName="Edit Biography" subtext={languages} onSave={setLanguages}/>
+                        <EditorButtons name="Edit Academics" modalName="Edit Academics" subtext={academics} onSave={setAcademics}/>
                         <EditorButtons name="Edit Work Experience" modalName="Edit Work Experience" subtext={workExperience} onSave={setWorkExperience}/>
                         <EditorButtons name="Edit Projects" modalName="Edit Projects" subtext={projects} onSave={setProjects}/>
-                        <EditorButtons name="Edit Skills" modalName="Edit Skills" subtext={skills} onSave={setSkills}/>
+                        <MultiEditorButtons name="Edit Skills" modalName="Edit Skills" subtext={skillsSubtext} onSave={setSkills} numPrompts={3}/>
                         <button className="button" onClick={handleSaveResume}>Save Changes</button>
                     </div>  
 

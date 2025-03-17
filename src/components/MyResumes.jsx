@@ -33,6 +33,7 @@ export function MyResumes({ resumes, setResumes, username }) {
             image: null,
             pdfBase64,
             docxBase64,
+            jobGoal: "nothing yet!",
         };
         setResumes([...resumes, newResume]);
 
