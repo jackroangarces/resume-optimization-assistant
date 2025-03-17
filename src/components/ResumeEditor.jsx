@@ -28,10 +28,6 @@ export function ResumeEditor({ resumes, setResumes, username }) {
     const [projects, setProjects] = useState("");
     const [workExperience, setWorkExperience] = useState("");
     const [skills, setSkills] = useState("");
-    // Use States for Resume Items
-    const [languages, setLanguages] = useState("");
-    const [developerTools, setDeveloperTools] = useState("");
-    const [concepts, setConcepts] = useState("");
 
     // Prompts
     const [userPrompt, setUserPrompt] = useState(null);
@@ -101,7 +97,7 @@ export function ResumeEditor({ resumes, setResumes, username }) {
         if(resume){
             handleAddTextToDocx();
         }
-    }, [languages, skills])
+    }, [biography, academics, skills])
 
     // ADD TEXT TO DOCX
     const handleAddTextToDocx = async () => {
@@ -119,13 +115,26 @@ export function ResumeEditor({ resumes, setResumes, username }) {
             const doc = new Docxtemplater(zip, { paragraphLoop: true, linebreaks: true });
         
             doc.render({
-                Biography: biography || "Enter your biography...",
+                // BIOGRAPHY
+                First: biography[0] || "First",
+                Last: biography[1] || "Last",
+                PhoneNumber: biography[2] || "Phone Number",
+                Email: biography[3] || "Email",
+                LinkedIn: biography[4] || "LinkedIn",
+                Github: biography[5] || "Github",
+                // ACADEMICS
+                University: academics[0] || "Enter your university...",
+                Degree: academics[1] || "Enter your degree name...",
+                GPA: academics[2] || "Enter your GPA...",
+                Classes: academics[3] || "Enter your relevant coursework...",
+                // EXPERIENCE
                 Experience: workExperience || "Enter your work experience...",
+                // PROJECTS
                 Projects: projects || "Enter your projects...",
-                Skills: skills || "Enter your skills...",
-                Languages: skills[0] || "Enter your languages...",
-                DeveloperTools: skills[1] || "Enter your languages...",
-                Concepts: skills[2] || "Enter your languages..."
+                // SKILLS
+                Languages: skills[0] || "Enter your languages (ex. Python)...",
+                DeveloperTools: skills[1] || "Enter your developer tools (ex. React)...",
+                Concepts: skills[2] || "Enter your concepts (ex. Agile Methodology)..."
             });
         
             const updatedBlob = new Blob([doc.getZip().generate({ type: 'arraybuffer' })], {
@@ -182,7 +191,12 @@ export function ResumeEditor({ resumes, setResumes, username }) {
     };
 
     // SUBTEXTS
-    const skillsSubtext = `Fill in Languages, Developer Tools, and Concepts.\nCurrent:\nLanguages: ${skills[0]}\nDeveloper Tools: ${skills[1]}\nConcepts: ${skills[2]}`;
+    const bioSubtext = `Fill in First Name, Last Name, Phone Number, Email, LinkedIn, and Github.
+    \nCurrent:\nFirst Name: ${biography[0]}\nLast Name: ${biography[1]}\nPhone Number: ${biography[2]}\nEmail: ${biography[3]}\nLinkedIn: ${biography[4]}\nGithub: ${biography[5]}`;
+    const academicsSubtext = `Fill in University, Degree, GPA, and Relevant Classes.
+    \nCurrent:\nUniversity: ${academics[0]}\nDegree: ${academics[1]}\nGPA: ${academics[2]}\nClasses: ${academics[3]}`;
+    const skillsSubtext = `Fill in Languages, Developer Tools, and Concepts.
+    \nCurrent:\nLanguages: ${skills[0]}\nDeveloper Tools: ${skills[1]}\nConcepts: ${skills[2]}`;
 
     return (
         <div>
@@ -191,8 +205,8 @@ export function ResumeEditor({ resumes, setResumes, username }) {
                 <div className='d-flex justify-content-between'>
                     <div className='button-container'>
                         <EditorButtons name="Edit Job Goal" modalName="Landing what kind of job is your goal for this resume? (be as specific as you like!)" subtext={`Current: ${job}`} onSave={setJob}/>
-                        <EditorButtons name="Edit Biography" modalName="Edit Biography" subtext={languages} onSave={setLanguages}/>
-                        <EditorButtons name="Edit Academics" modalName="Edit Academics" subtext={academics} onSave={setAcademics}/>
+                        <MultiEditorButtons name="Edit Biography" modalName="Edit Biography" subtext={bioSubtext} onSave={setBiography} numPrompts={6}/>
+                        <MultiEditorButtons name="Edit Academics" modalName="Edit Academics" subtext={academicsSubtext} onSave={setAcademics} numPrompts={4}/>
                         <EditorButtons name="Edit Work Experience" modalName="Edit Work Experience" subtext={workExperience} onSave={setWorkExperience}/>
                         <EditorButtons name="Edit Projects" modalName="Edit Projects" subtext={projects} onSave={setProjects}/>
                         <MultiEditorButtons name="Edit Skills" modalName="Edit Skills" subtext={skillsSubtext} onSave={setSkills} numPrompts={3}/>
