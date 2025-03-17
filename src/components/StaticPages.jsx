@@ -2,19 +2,15 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 
 export function HomePage(props) {
-
+    
     const navigate = useNavigate();
 
     const isLoggedIn = localStorage.getItem("loggedInUser");
     
     const handleGetStartedClick = () => {
-
-        if(isLoggedIn) {
             navigate("/myresumes");
-        } else {
-            navigate("/login");
-        }
     }
+        
 
     return (
         <section id="homepage">

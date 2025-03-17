@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { getDatabase, ref, get } from 'firebase/database';
 import { Link } from 'react-router';
 import { useNavigate } from 'react-router';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import { getAuth, EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 
 export function SignIn(props) {
 
@@ -38,8 +40,24 @@ export function SignIn(props) {
         setPassword('');
     }
 
+    const auth = getAuth();
+
+    const firebaseUIConfig = {
+        signInOptions: [ GoogleAuthProvider.PROVIDER_ID,
+          { provider: EmailAuthProvider.PROVIDER_ID, requiredDisplayName: true },
+        ],
+        signInFlow: 'popup', //don't redirect to authenticate
+        credentialHelper: 'none', //don't show the email account chooser
+        callbacks: { //"lifecycle" callbacks
+          signInSuccessWithAuthResult: () => {
+            return false; //don't redirect after authentication
+          }
+        }
+      }
 
     return (
+        <div>
+
         <div className="container">
                 <form onSubmit={handleSubmit}>
                 <div className="user-input column">
@@ -66,6 +84,11 @@ export function SignIn(props) {
                 <p className="new-acc-suggestion">Don't have an account? Register now!</p>
             <Link className="button" to="/register">Register</Link>
             </form>
+        </div>
+
+        <div>
+            <StyledFirebaseAuth firebaseAuth={auth} uiConfig={firebaseUIConfig} />
+        </div>
         </div>
     );
 }

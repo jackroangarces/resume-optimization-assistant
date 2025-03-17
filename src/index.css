@@ -410,6 +410,12 @@ color: #666;
 padding: 3rem;
 }
 
+.sign-in-text {
+  text-align:center;
+  font-size:large;
+  margin-top: 1rem;
+}
+
 @media (max-width: 768px) {
 
 .resume-list {

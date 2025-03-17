@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router';
+import { Routes, Route, Navigate, Outlet, Link } from 'react-router';
 import { getDatabase, ref, onValue, push, set } from 'firebase/database';
 import { Navbar } from './Navbar.jsx';
 import { Footer } from './Footer.jsx';
@@ -73,13 +73,29 @@ function App(props) {
             <Route path="/register" element={<Register login={login} />} />
             <Route path="/templates" element={<ExamplesPage />} />
             <Route path="*" element={<Navigate to="/"/>} /> {/* Catch-all for bad URLs */}
+            
+            <Route element={<ProtectedPage username={username} />} >
             <Route path="/myresumes/*" element={<MyResumes resumes={resumes} setResumes={setResumes} username={username}/>} />
             <Route path="/resume/edit-resume/:id" element={<ResumeEditor resumes={resumes} setResumes={setResumes} username={username} />} />
+            </Route>
           </Routes>
         </main>
         <Footer />
       </div>
     );
+}
+
+function ProtectedPage(props) {
+  if(props.username == null) {
+    return (
+      <div className="sign-in-text">
+      <p className="sign-in-text">Sign in to see your resumes.</p>
+      <Link className="button" to="/login">Sign In</Link>
+      </div>
+    )
+  } else {
+    return <Outlet />
+  }
 }
 
 export default App;
