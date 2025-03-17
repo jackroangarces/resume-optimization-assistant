@@ -39,14 +39,14 @@ export function ResumeList({ resumes, setResumes, username }) {
         <div>
           <div>Sort by:
             <SortButton
-              name="Alphabetical" 
+              name="alphabetical" 
               active={sortByCriteria === "alphabetical"}
               ascending={isAscending && sortByCriteria === "alphabetical"}
               onClick={handleClick}>
              
             </SortButton>
             <SortButton
-              name="Date"
+              name="date"
               active={sortByCriteria === "date"}
               ascending={isAscending && sortByCriteria === "date"}
               onClick={handleClick}>

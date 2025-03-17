@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router';
+
 
 export function HomePage(props) {
     
     const navigate = useNavigate();
-
-    const isLoggedIn = localStorage.getItem("loggedInUser");
     
     const handleGetStartedClick = () => {
+
+        if(props.username == null) {
+            navigate("/login");
+        } else {
             navigate("/myresumes");
+        }
     }
         
 

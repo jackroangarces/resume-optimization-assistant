@@ -68,7 +68,7 @@ function App(props) {
         <Navbar username={username} logout={logout}/>
         <main>
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage username={username} />} />
             <Route path="/login" element={<SignIn login={login} />} />
             <Route path="/register" element={<Register login={login} />} />
             <Route path="/templates" element={<ExamplesPage />} />
