@@ -9,7 +9,7 @@ import PizZip from 'pizzip';
 import Docxtemplater from 'docxtemplater';
 import { saveAs } from 'file-saver';
 import { blobToBase64, generatePdfFromDocx, base64ToBlob } from './Utils';
-import { ChatScreen } from './ResumeAI.jsx';
+
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
@@ -220,19 +220,20 @@ export function ResumeEditor({ resumes, setResumes, username }) {
         setMessages((prevMessages) => [...prevMessages, newMessage]);
     }
     
+    const genAI = new GoogleGenerativeAI("AIzaSyALULJ4WeAf7y-p5Xc_rai0Z5jDGLtndc4");
     const sendPromptToGemini = async (prompt) => {
         if (!prompt) return;
 
         try {
-            const genAI = new GoogleGenerativeAI("AIzaSyALULJ4WeAf7y-p5Xc_rai0Z5jDGLtndc4", { apiVersion: "v1" });
-            const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
             console.log(genAI);
             console.log(model);
-            console.log(prompt);
+            console.log("prompt is:", prompt);
             
-            const result = await model.generateContent({
-                contents: [{parts: [{ text: prompt }]}] });
+            const result = await model.generateContent(prompt);
+                // {
+                // contents: [{parts: [{ text: prompt }]}] });
             
             console.log("RESULT IS:", result);
             
@@ -294,7 +295,7 @@ export function ResumeEditor({ resumes, setResumes, username }) {
                         <GenerateButtons editName="Generate Class Recs" onClick={handleGenerateClasses} messages={messages}/>
                         <GenerateButtons editName="Generate Project Ideas" onClick={handleGenerateProjects} messages={messages}/>
                         <GenerateButtons editName="AI Quality Score" onClick={handleGenerateQualityScore} messages={messages}/>
-                        <GenerateButtons editName="Open Chatpage" onClick={() => {}} />
+                        <GenerateButtons editName="Open Chatpage" onClick={() => {}} messages={messages} />
                         <button className="button" onClick={() => window.open(pdfUrl, '_blank')}> Download Resume </button>
                         <button className="button" onClick={handleUploadResume}> Upload Resume </button>                    
                     </div>

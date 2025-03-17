@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import React, { useState } from 'react';
 import { CloseButton } from 'react-bootstrap';
 
 export function ChatScreen(props) {
