@@ -1,4 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import { useParams } from 'react-router';
 import { getDatabase, ref, set } from 'firebase/database';
 import { EditorButtons, GenerateButtons, MultiEditorButtons } from './ResumeButtons';
@@ -31,6 +32,7 @@ export function ResumeEditor({ resumes, setResumes, username }) {
 
     // Prompts
     const [userPrompt, setUserPrompt] = useState(null);
+    const [messages, setMessages] = useState([{text:"example message"}]);
 
     // DECODE + LOAD RESUME
     useEffect(() => {
@@ -59,6 +61,20 @@ export function ResumeEditor({ resumes, setResumes, username }) {
             if (docxUrl) URL.revokeObjectURL(docxUrl);
         };
     }, [id, resumes, reloadTrigger]);
+
+    // TESTING
+    useEffect(() => {
+        if(resume){
+            handleAddTextToDocx();
+        }
+    }, [biography, academics, skills])
+
+    // prompt sender
+    useEffect(() => {
+        if (userPrompt) {
+            sendPromptToGemini(userPrompt);
+        }
+    }, [userPrompt]);
 
     // SAVE RESUME
     const handleSaveResume = async () => {
@@ -91,13 +107,6 @@ export function ResumeEditor({ resumes, setResumes, username }) {
             });
         }
     };
-
-    // TESTING
-    useEffect(() => {
-        if(resume){
-            handleAddTextToDocx();
-        }
-    }, [biography, academics, skills])
 
     // ADD TEXT TO DOCX
     const handleAddTextToDocx = async () => {
@@ -183,11 +192,60 @@ export function ResumeEditor({ resumes, setResumes, username }) {
     
     // generate button handlers
     const handleGenerateClasses = () => {
-        setUserPrompt("What classes should i take to be a software engineer?")
+        setUserPrompt("classes for software engineer");
     };
 
     const handleGenerateProjects = () => {
-        setUserPrompt("What personal projects can i work on to improve my software engineering skills?")
+        setUserPrompt("projects for software engineer");
+    };
+
+    // SUBTEXTS
+    const bioSubtext = `Fill in First Name, Last Name, Phone Number, Email, LinkedIn, and Github.
+    \nCurrent:\nFirst Name: ${biography[0]}\nLast Name: ${biography[1]}\nPhone Number: ${biography[2]}\nEmail: ${biography[3]}\nLinkedIn: ${biography[4]}\nGithub: ${biography[5]}`;
+    const academicsSubtext = `Fill in University, Degree, GPA, and Relevant Classes.
+    \nCurrent:\nUniversity: ${academics[0]}\nDegree: ${academics[1]}\nGPA: ${academics[2]}\nClasses: ${academics[3]}`;
+    const skillsSubtext = `Fill in Languages, Developer Tools, and Concepts.
+    \nCurrent:\nLanguages: ${skills[0]}\nDeveloper Tools: ${skills[1]}\nConcepts: ${skills[2]}`;
+
+    
+    // AI STUFF
+
+    // useEffect() and sendPromptToGemini was coded with the assistance of claude.ai
+    // it was to understand and learn how to implement AI chat prompts
+    // into the webpage.
+
+
+    const addMessage = (messageText) => {
+        const newMessage = {text: messageText}
+        setMessages((prevMessages) => [...prevMessages, newMessage]);
+    }
+    
+    const sendPromptToGemini = async (prompt) => {
+        if (!prompt) return;
+
+        try {
+            const genAI = new GoogleGenerativeAI("AIzaSyALULJ4WeAf7y-p5Xc_rai0Z5jDGLtndc4", { apiVersion: "v1" });
+            const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+
+            console.log(genAI);
+            console.log(model);
+            console.log(prompt);
+            
+            const result = await model.generateContent({
+                contents: [{parts: [{ text: prompt }]}] });
+            
+            console.log("RESULT IS:", result);
+            
+            if (result.response) {
+                const responseText = result.response.text();
+                addMessage(responseText);
+            } else {
+                addMessage("No response received from AI");
+            }
+        } catch (error) {
+            console.error("Error details:", error );
+            addMessage("Failed to get AI response: " + (error.message || "Unknown error"));
+        }
     };
 
     return (
@@ -233,9 +291,10 @@ export function ResumeEditor({ resumes, setResumes, username }) {
                     </div>
 
                     <div className='button-container'>
-                        <GenerateButtons editName="Generate Class Recs" onClick={handleGenerateClasses} />
-                        <GenerateButtons editName="Generate Project Ideas" onClick={handleGenerateProjects}/>
-                        <GenerateButtons editName="AI Quality Score" onClick={handleGenerateQualityScore}/>
+                        <GenerateButtons editName="Generate Class Recs" onClick={handleGenerateClasses} messages={messages}/>
+                        <GenerateButtons editName="Generate Project Ideas" onClick={handleGenerateProjects} messages={messages}/>
+                        <GenerateButtons editName="AI Quality Score" onClick={handleGenerateQualityScore} messages={messages}/>
+                        <GenerateButtons editName="Open Chatpage" onClick={() => {}} />
                         <button className="button" onClick={() => window.open(pdfUrl, '_blank')}> Download Resume </button>
                         <button className="button" onClick={handleUploadResume}> Upload Resume </button>                    
                     </div>
