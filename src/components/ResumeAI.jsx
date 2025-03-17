@@ -6,7 +6,7 @@ export function ChatScreen(props) {
 
     const {showChat, setShowChat, itemsDisplay, setItemsDisplay, userPrompt} = props;
 
-    console.log(userPrompt) // TURNED OFF FOR DEBUGGING BECAUSE IT PRINTS TOO MANY THINGS IN CONSOLE FEEL FREE TO TURN BACK ON
+    //console.log(userPrompt) // TURNED OFF FOR DEBUGGING BECAUSE IT PRINTS TOO MANY THINGS IN CONSOLE FEEL FREE TO TURN BACK ON
 
     // closes chat screen
     const handleClose = () => {
@@ -31,13 +31,13 @@ export function ChatScreen(props) {
     
     const sendPromptToGemini = async (prompt) => {
         if (!prompt) return;
-        
-        try {
-            const genAI = new GoogleGenerativeAI(API_KEY);
-            const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
+        try {
+            const genAI = new GoogleGenerativeAI(API_KEY, {apiVersion: "v1"});
+            const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+            
             const result = await model.generateContent({
-                contents: [{parts: [{ text: prompt }]}] });
+                contents: [{parts: [{ text: "hello gemini. please respond with bruh" }]}] });
             
             if (result.response) {
                 const responseText = result.response.text();

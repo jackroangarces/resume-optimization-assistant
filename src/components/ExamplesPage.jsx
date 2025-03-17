@@ -14,15 +14,20 @@ export function ExamplesPage(props) {
     });
 
     return (
-        <div className="examples-page">
-            <h1 className="page-title">Example Resume Templates</h1>
-            <p className="page-subtitle">
-                Browse through these professionally designed resume templates to find the perfect fit for your career.
-            </p>
-            <div className="templates-container">
-                {templateCards}
+        <>
+            <div className=''> {/* Resume Sharing */}
+                <p></p>
             </div>
-        </div>
+            <div className="examples-page">
+                <h1 className="page-title">Example Resume Templates</h1>
+                <p className="page-subtitle">
+                    Browse through these professionally designed resume templates to find the perfect fit for your career.
+                </p>
+                <div className="templates-container">
+                    {templateCards}
+                </div>
+            </div>
+        </>
     );
 
 }

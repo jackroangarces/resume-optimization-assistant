@@ -190,14 +190,6 @@ export function ResumeEditor({ resumes, setResumes, username }) {
         setUserPrompt("What personal projects can i work on to improve my software engineering skills?")
     };
 
-    // SUBTEXTS
-    const bioSubtext = `Fill in First Name, Last Name, Phone Number, Email, LinkedIn, and Github.
-    \nCurrent:\nFirst Name: ${biography[0]}\nLast Name: ${biography[1]}\nPhone Number: ${biography[2]}\nEmail: ${biography[3]}\nLinkedIn: ${biography[4]}\nGithub: ${biography[5]}`;
-    const academicsSubtext = `Fill in University, Degree, GPA, and Relevant Classes.
-    \nCurrent:\nUniversity: ${academics[0]}\nDegree: ${academics[1]}\nGPA: ${academics[2]}\nClasses: ${academics[3]}`;
-    const skillsSubtext = `Fill in Languages, Developer Tools, and Concepts.
-    \nCurrent:\nLanguages: ${skills[0]}\nDeveloper Tools: ${skills[1]}\nConcepts: ${skills[2]}`;
-
     return (
         <div>
             <h1 className="pt-4">{resume.title}</h1>
