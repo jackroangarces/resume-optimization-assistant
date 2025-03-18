@@ -227,24 +227,38 @@ export function ResumeEditor({ resumes, setResumes, username }) {
     }
     
     const handleGenerateQualityScore = async () => {
-
-        console.log(resume);
-
-        const pdf = await pdfjs.getDocument(pdfUrl).promise;
-        let text = "";
-        
-        for (let i = 1; i <= pdf.numPages; i++) {
-            const page = await pdf.getPage(i);
-            const textContent = await page.getTextContent();
-            text += textContent.items.map((item) => item.str).join(" ") + "\n";
-        }
-        console.log("pdf is: ", pdfUrl)
-        console.log("text is:", text);
-
+        const projectString = projects.name
+        .map((name, index) => {
+            const skills = projects.skills[index];
+            const description = projects.description[index];
+            return `${index + 1}. Name: ${name} | Skills: ${skills} | Description: ${description}`;
+        })
+        const workString = workExperience.company
+        .map((company, index) => {
+            const role = workExperience.role[index];
+            const description = workExperience.description[index];
+            return `${index + 1}. Company: ${company} | Role: ${role} | Description: ${description}`;
+        })
         const prompt = `please give me a score from 1-10 based off
-                        my resume ${resume.pdfBase64}`;
+                        my resume ${resume.biography} ${resume.academics} ${projectString} ${workString} ${resume.skills}`;
         setUserPrompt(prompt);
     }
+
+    const handleGenerateProjects = () => {
+        const projectString = projects.name
+        .map((name, index) => {
+            const skills = projects.skills[index];
+            const description = projects.description[index];
+            return `${index + 1}. Name: ${name} | Skills: ${skills} | Description: ${description}`;
+        })
+    .join(' ');
+        const prompt = `based off my current project ${projectString}
+                        and my current skillset ${skills},
+                        give me 3 example projects i could do to help
+                        me become a ${job}`
+        setUserPrompt(prompt);
+    }
+    
 
     // generate button handlers
     const handleGenerateClasses = () => {
@@ -405,7 +419,7 @@ export function ResumeEditor({ resumes, setResumes, username }) {
                     <div className='button-container'>
                         <PrivacyPopUp /> {/* changed generate project ideas temporarily for testing */}
                         <GenerateButtons editName="Generate Class Recs" onClick={handleGenerateClasses} messages={messages} loading={loading}/>
-                        <GenerateButtons editName="Generate Project Ideas" onClick={handleGenerateClasses} messages={messages} loading={loading}/>
+                        <GenerateButtons editName="Generate Project Ideas" onClick={handleGenerateProjects} messages={messages} loading={loading}/>
                         <GenerateButtons editName="AI Quality Score" onClick={handleGenerateQualityScore} messages={messages} loading={loading}/>
                         <GenerateButtons editName="Open Chatpage" onClick={() => {}} messages={messages} />
                         <button className="button" onClick={() => window.open(pdfUrl, '_blank')}> Download Resume </button>
@@ -448,15 +462,17 @@ export function ResumeEditor({ resumes, setResumes, username }) {
                         <EditorButtons name="Edit Job Goal" modalName="Landing what kind of job is your goal for this resume? (be as specific as you like!)" subtext={`Current: ${job}`} onSave={setJob}/>
                         <MultiEditorButtons name="Edit Biography" modalName="Edit Biography" subtext={bioSubtext} onSave={setBiography} numPrompts={6}/>
                         <MultiEditorButtons name="Edit Academics" modalName="Edit Academics" subtext={academicsSubtext} onSave={setAcademics} numPrompts={4}/>
-                        <EditorButtons name="Edit Work Experience" modalName="Edit Work Experience" subtext={"hey"} onSave={setWorkExperience}/>
-                        <EditorButtons name="Edit Projects" modalName="Edit Projects" subtext={"hey"} onSave={setProjects}/>
+                        <MultiEditorButtons name="Add Work Experience" modalName="Add Work Experience" subtext={"Fill in Company, Role, and Job Description"} onSave={(value) => handleAddWork(value)} numPrompts={3}/>
+                        <button className="button" onClick={handleDeleteWorkExperience}>Delete Recent Work Experience</button>
+                        <MultiEditorButtons name="Add Project" modalName="Add Project" subtext={"Fill in Project Name, Skills, and Project Description"} onSave={(value) => handleAddProject(value)} numPrompts={3}/>
+                        <button className="button" onClick={handleDeleteProject}>Delete Recent Project</button>
                         <MultiEditorButtons name="Edit Skills" modalName="Edit Skills" subtext={skillsSubtext} onSave={setSkills} numPrompts={3}/>
                         <button className="button" onClick={handleSaveResume}>Save Changes</button>
                     </div> 
                     <div className='button-container'>
                         <PrivacyPopUp />
                         <GenerateButtons editName="Generate Class Recs" onClick={handleGenerateClasses} messages={messages} loading={loading}/>
-                        <GenerateButtons editName="Generate Project Ideas" onClick={handleGenerateClasses} messages={messages} loading={loading}/>
+                        <GenerateButtons editName="Generate Project Ideas" onClick={handleGenerateProjects} messages={messages} loading={loading}/>
                         <GenerateButtons editName="AI Quality Score" onClick={handleGenerateQualityScore} messages={messages} loading={loading}/>
                         <GenerateButtons editName="Open Chatpage" onClick={() => {}} messages={messages} />
                         <button className="button" onClick={() => window.open(pdfUrl, '_blank')}> Download Resume </button>
