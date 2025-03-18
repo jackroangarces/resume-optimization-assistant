@@ -36,8 +36,16 @@ export function MyResumes({ resumes, setResumes, username }) {
             jobGoal: "nothing yet!",
             biography: ["nothing", "nothing", "nothing", "nothing", "nothing", "nothing"], 
             academics: ["nothing", "nothing", "nothing", "nothing"], 
-            projects: "nothing", 
-            workExperience: "nothing",
+            projects: { 
+                name: ["Project"], 
+                skills: ["Skills"], 
+                description: ["Description"] 
+            },
+            workExperience: { 
+                company: ["Company"], 
+                role: ["Role"], 
+                description: ["Description"] 
+            },
             skills: ["nothing", "nothing", "nothing"] 
         };
         setResumes([...resumes, newResume]);

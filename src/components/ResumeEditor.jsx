@@ -30,10 +30,17 @@ export function ResumeEditor({ resumes, setResumes, username }) {
     const [job, setJob] = useState(""); 
     const [biography, setBiography] = useState(""); 
     const [academics, setAcademics] = useState(""); 
-    const [projects, setProjects] = useState("");
-    const [workExperience, setWorkExperience] = useState("");
+    const [projects, setProjects] = useState({
+        name: [],
+        skills: [],
+        description: []
+    });
+    const [workExperience, setWorkExperience] = useState({
+        company: [],
+        role: [],
+        description: []
+    });
     const [skills, setSkills] = useState("");
-
     // Prompts
     const [userPrompt, setUserPrompt] = useState(null);
     const [messages, setMessages] = useState([]);
@@ -80,12 +87,12 @@ export function ResumeEditor({ resumes, setResumes, username }) {
         };
     }, [id, resumes, reloadTrigger]);
 
-    // TESTING
+    // LISTEN FOR ADDING TEXT
     useEffect(() => {
         if(resume){
             handleAddTextToDocx();
         }
-    }, [biography, academics, skills])
+    }, [biography, academics, skills, projects, workExperience])
 
     // prompt sender
     useEffect(() => {
@@ -142,6 +149,24 @@ export function ResumeEditor({ resumes, setResumes, username }) {
             const arrayBuffer = await templateBlob.arrayBuffer();
             const zip = new PizZip(arrayBuffer);
             const doc = new Docxtemplater(zip, { paragraphLoop: true, linebreaks: true });
+
+            let formattedWorkExperience = "Enter your work experience...";
+                if (workExperience && workExperience.company && workExperience.company.length > 1) {
+                    formattedWorkExperience = workExperience.company.slice(1).map((company, index) => {
+                    const workExperienceRole = workExperience.role[index + 1] || "";  
+                    const workExperienceDescription = workExperience.description[index + 1] || "";
+                    return `${company} | ${workExperienceRole}\n• ${workExperienceDescription}`;
+                }).join('\n\n');
+            }
+
+            let formattedProjects = "Enter your projects...";
+            if (projects && projects.name && projects.name.length > 1) {
+                formattedProjects = projects.name.slice(1).map((name, index) => {
+                    const projectSkills = projects.skills[index + 1] || "";
+                    const projectDescription = projects.description[index + 1] || "";
+                    return `${name} | ${projectSkills}\n• ${projectDescription}`;
+                }).join('\n\n');
+            }
         
             doc.render({
                 // BIOGRAPHY
@@ -157,9 +182,9 @@ export function ResumeEditor({ resumes, setResumes, username }) {
                 GPA: academics[2] || "Enter your GPA...",
                 Classes: academics[3] || "Enter your relevant coursework...",
                 // EXPERIENCE
-                Experience: workExperience || "Enter your work experience...",
+                Experience: formattedWorkExperience || "Enter your work experience...",
                 // PROJECTS
-                Projects: projects || "Enter your projects...",
+                Projects: formattedProjects  || "Enter your projects...",
                 // SKILLS
                 Languages: skills[0] || "Enter your languages (ex. Python)...",
                 DeveloperTools: skills[1] || "Enter your developer tools (ex. React)...",
@@ -233,13 +258,59 @@ export function ResumeEditor({ resumes, setResumes, username }) {
         setUserPrompt(prompt);
     };
 
-    const handleGenerateProjects = () => {
-        const prompt = `based off my current project: ${projects}
-                        and my current skillset ${skills},
-                        give me 3 example projects i could do to help
-                        me become a ${job}`
-        setUserPrompt(prompt);
+    // ADD PROJECT
+    const handleAddProject = (newProjectData) => {
+        if (!newProjectData || newProjectData.length < 3) {
+            console.error("Invalid project data:", newProjectData);
+            return;
+        }
+        const [name, skills, description] = newProjectData;
+        setProjects((prevProjects) => ({
+            name: [...prevProjects.name, name],
+            skills: [...prevProjects.skills, skills],
+            description: [...prevProjects.description, description]
+        }));
     };
+
+    // ADD WORK EXPERIENCE
+    const handleAddWork = (newWorkData) => {
+        if (!newWorkData || newWorkData.length < 3) {
+            console.error("Invalid work experience data:", newWorkData);
+            return;
+        }
+        const [company, role, description] = newWorkData;
+        setWorkExperience((prevWork) => ({
+            company: [...prevWork.company, company],
+            role: [...prevWork.role, role],
+            description: [...prevWork.description, description]
+        }));
+    };
+
+    // DELETE PROJECT
+    function handleDeleteProject() {
+        if (projects && projects.name && projects.name.length > 1) {
+            setProjects((prevProjects) => ({
+                name: prevProjects.name.slice(0, -1),
+                skills: prevProjects.skills.slice(0, -1),
+                description: prevProjects.description.slice(0, -1),
+            }));
+        } else {
+            console.log("Cannot delete, there must be at least one project.");
+        }
+    }
+
+    // DELETE WORK EXPERIENCE
+    function handleDeleteWorkExperience() {
+        if (workExperience && workExperience.company && workExperience.company.length > 1) {
+            setWorkExperience((prevWork) => ({
+                company: prevWork.company.slice(0, -1), 
+                role: prevWork.role.slice(0, -1),
+                description: prevWork.description.slice(0, -1)
+            }));
+        } else {
+            console.log("Cannot delete, there must be at least one work experience.");
+        }
+    }
 
     // SUBTEXTS
     const bioSubtext = `Fill in First Name, Last Name, Phone Number, Email, LinkedIn, and Github.
@@ -296,8 +367,10 @@ export function ResumeEditor({ resumes, setResumes, username }) {
                         <EditorButtons name="Edit Job Goal" modalName="Landing what kind of job is your goal for this resume? (be as specific as you like!)" subtext={`Current: ${job}`} onSave={setJob}/>
                         <MultiEditorButtons name="Edit Biography" modalName="Edit Biography" subtext={bioSubtext} onSave={setBiography} numPrompts={6}/>
                         <MultiEditorButtons name="Edit Academics" modalName="Edit Academics" subtext={academicsSubtext} onSave={setAcademics} numPrompts={4}/>
-                        <EditorButtons name="Edit Work Experience" modalName="Edit Work Experience" subtext={workExperience} onSave={setWorkExperience}/>
-                        <EditorButtons name="Edit Projects" modalName="Edit Projects" subtext={projects} onSave={setProjects}/>
+                        <MultiEditorButtons name="Add Work Experience" modalName="Add Work Experience" subtext={"Fill in Company, Role, and Job Description"} onSave={(value) => handleAddWork(value)} numPrompts={3}/>
+                        <button className="button" onClick={handleDeleteWorkExperience}>Delete Recent Work Experience</button>
+                        <MultiEditorButtons name="Add Project" modalName="Add Project" subtext={"Fill in Project Name, Skills, and Project Description"} onSave={(value) => handleAddProject(value)} numPrompts={3}/>
+                        <button className="button" onClick={handleDeleteProject}>Delete Recent Project</button>
                         <MultiEditorButtons name="Edit Skills" modalName="Edit Skills" subtext={skillsSubtext} onSave={setSkills} numPrompts={3}/>
                         <button className="button" onClick={handleSaveResume}>Save Changes</button>
                     </div>  
@@ -330,9 +403,9 @@ export function ResumeEditor({ resumes, setResumes, username }) {
                     </div>
 
                     <div className='button-container'>
-                        <PrivacyPopUp />
+                        <PrivacyPopUp /> {/* changed generate project ideas temporarily for testing */}
                         <GenerateButtons editName="Generate Class Recs" onClick={handleGenerateClasses} messages={messages} loading={loading}/>
-                        <GenerateButtons editName="Generate Project Ideas" onClick={handleGenerateProjects} messages={messages} loading={loading}/>
+                        <GenerateButtons editName="Generate Project Ideas" onClick={handleGenerateClasses} messages={messages} loading={loading}/>
                         <GenerateButtons editName="AI Quality Score" onClick={handleGenerateQualityScore} messages={messages} loading={loading}/>
                         <GenerateButtons editName="Open Chatpage" onClick={() => {}} messages={messages} />
                         <button className="button" onClick={() => window.open(pdfUrl, '_blank')}> Download Resume </button>
@@ -375,15 +448,15 @@ export function ResumeEditor({ resumes, setResumes, username }) {
                         <EditorButtons name="Edit Job Goal" modalName="Landing what kind of job is your goal for this resume? (be as specific as you like!)" subtext={`Current: ${job}`} onSave={setJob}/>
                         <MultiEditorButtons name="Edit Biography" modalName="Edit Biography" subtext={bioSubtext} onSave={setBiography} numPrompts={6}/>
                         <MultiEditorButtons name="Edit Academics" modalName="Edit Academics" subtext={academicsSubtext} onSave={setAcademics} numPrompts={4}/>
-                        <EditorButtons name="Edit Work Experience" modalName="Edit Work Experience" subtext={workExperience} onSave={setWorkExperience}/>
-                        <EditorButtons name="Edit Projects" modalName="Edit Projects" subtext={projects} onSave={setProjects}/>
+                        <EditorButtons name="Edit Work Experience" modalName="Edit Work Experience" subtext={"hey"} onSave={setWorkExperience}/>
+                        <EditorButtons name="Edit Projects" modalName="Edit Projects" subtext={"hey"} onSave={setProjects}/>
                         <MultiEditorButtons name="Edit Skills" modalName="Edit Skills" subtext={skillsSubtext} onSave={setSkills} numPrompts={3}/>
                         <button className="button" onClick={handleSaveResume}>Save Changes</button>
                     </div> 
                     <div className='button-container'>
                         <PrivacyPopUp />
                         <GenerateButtons editName="Generate Class Recs" onClick={handleGenerateClasses} messages={messages} loading={loading}/>
-                        <GenerateButtons editName="Generate Project Ideas" onClick={handleGenerateProjects} messages={messages} loading={loading}/>
+                        <GenerateButtons editName="Generate Project Ideas" onClick={handleGenerateClasses} messages={messages} loading={loading}/>
                         <GenerateButtons editName="AI Quality Score" onClick={handleGenerateQualityScore} messages={messages} loading={loading}/>
                         <GenerateButtons editName="Open Chatpage" onClick={() => {}} messages={messages} />
                         <button className="button" onClick={() => window.open(pdfUrl, '_blank')}> Download Resume </button>
