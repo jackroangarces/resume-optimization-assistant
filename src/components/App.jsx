@@ -35,7 +35,7 @@ function App(props) {
       return () => unsubscribe();
     }, []);
 
-    /*
+    
     useEffect(() => {
 
       const auth = getAuth();
@@ -55,7 +55,7 @@ function App(props) {
       });
       return () => unsubscribe();
     }, []);
-    */
+    
 
     // UPDATE USERNAME
     const [user, setUser] = useState(null);
