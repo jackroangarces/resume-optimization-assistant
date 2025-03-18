@@ -342,6 +342,55 @@ export function ResumeEditor({ resumes, setResumes, username }) {
 
             {/* WILL REENABLE MOBILE SCREEN AFTER FIXING AI*/}
 
+            <div className='editMobile'>
+                <div className="resume-editor d-flex">
+                    <div className="card p-3 mt-3 shadow-lg" style={{ width: "40rem" }}>
+                        <h5 className="card-title text-center">Resume Preview</h5>
+                        <div className="card-body d-flex justify-content-center">
+                            <Document
+                                file={pdfUrl}
+                                onLoadSuccess={onDocumentLoadSuccess}
+                                loading={<p>Loading PDF...</p>}
+                                error={<p>Failed to load PDF. Please ensure the file exists.</p>}
+                            >
+                                <Page 
+                                    pageNumber={1} 
+                                    width={400} 
+                                    renderTextLayer={false}
+                                    renderAnnotationLayer={false}
+                                />
+                            </Document>
+                        </div>
+                        {numPages && (
+                            <div className="text-center mt-2">
+                                Page 1 of {numPages}
+                            </div>
+                        )}
+                        <button className="reload-button mt-3" onClick={() => setReloadTrigger(prev => prev + 1)}>Reload</button>
+                    </div>  
+                </div>
+                <div className="d-flex justify-content-center">
+                    <div className='button-container'>
+                        <EditorButtons name="Edit Job Goal" modalName="Landing what kind of job is your goal for this resume? (be as specific as you like!)" subtext={`Current: ${job}`} onSave={setJob}/>
+                        <MultiEditorButtons name="Edit Biography" modalName="Edit Biography" subtext={bioSubtext} onSave={setBiography} numPrompts={6}/>
+                        <MultiEditorButtons name="Edit Academics" modalName="Edit Academics" subtext={academicsSubtext} onSave={setAcademics} numPrompts={4}/>
+                        <EditorButtons name="Edit Work Experience" modalName="Edit Work Experience" subtext={workExperience} onSave={setWorkExperience}/>
+                        <EditorButtons name="Edit Projects" modalName="Edit Projects" subtext={projects} onSave={setProjects}/>
+                        <MultiEditorButtons name="Edit Skills" modalName="Edit Skills" subtext={skillsSubtext} onSave={setSkills} numPrompts={3}/>
+                        <button className="button" onClick={handleSaveResume}>Save Changes</button>
+                    </div> 
+                    <div className='button-container'>
+                        <PrivacyPopUp />
+                        <GenerateButtons editName="Generate Class Recs" onClick={handleGenerateClasses} messages={messages} loading={loading}/>
+                        <GenerateButtons editName="Generate Project Ideas" onClick={handleGenerateProjects} messages={messages} loading={loading}/>
+                        <GenerateButtons editName="AI Quality Score" onClick={handleGenerateQualityScore} messages={messages} loading={loading}/>
+                        <GenerateButtons editName="Open Chatpage" onClick={() => {}} messages={messages} />
+                        <button className="button" onClick={() => window.open(pdfUrl, '_blank')}> Download Resume </button>
+                        <button className="button" onClick={handleUploadResume}> Upload Resume </button>                    
+                    </div>
+                </div>
+            </div>
+
             {/* <div className="editMobile">
                 <div className="resume-editor d-flex justify-content-center">
                     <div className="card p-3 mt-3 shadow-lg" style={{ width: "40rem" }}>
