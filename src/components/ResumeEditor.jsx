@@ -391,49 +391,6 @@ export function ResumeEditor({ resumes, setResumes, username }) {
                     </div>
                 </div>
             </div>
-
-            {/* <div className="editMobile">
-                <div className="resume-editor d-flex justify-content-center">
-                    <div className="card p-3 mt-3 shadow-lg" style={{ width: "40rem" }}>
-                        <h5 className="card-title text-center">Resume Preview</h5>
-                        <div className="card-body d-flex justify-content-center">
-                            <Document
-                                file={pdfUrl}
-                                onLoadSuccess={onDocumentLoadSuccess}
-                                loading={<p>Loading PDF...</p>}
-                                error={<p>Failed to load PDF. Please ensure the file exists.</p>}
-                            >
-                                <Page 
-                                    pageNumber={1} 
-                                    width={600} 
-                                    renderTextLayer={false}
-                                    renderAnnotationLayer={false}
-                                />
-                            </Document>
-                        </div>
-                        {numPages && (
-                            <div className="text-center mt-2">
-                                Page 1 of {numPages}
-                            </div>
-                        )}
-                    </div>
-                </div>
-                <div className="d-flex justify-content-center">
-                    <div className='button-container'>
-                        <EditorButtons name="Edit Biography" modalName="Edit Biography" subtext={biography} onSave={setBiography}/>
-                        <EditorButtons name="Edit Work Experience" modalName="Edit Work Experience" subtext={workExperience} onSave={setWorkExperience}/>
-                        <EditorButtons name="Edit Projects" modalName="Edit Projects" subtext={projects} onSave={setProjects}/>
-                        <EditorButtons name="Edit Skills" modalName="Edit Skills" subtext={skills} onSave={setSkills}/>
-                        <button className="button" onClick={handleSaveResume}>Save Changes</button>
-                    </div>
-                    <div className='button-container'>
-                        <GenerateButtons editName="Generate Class Recs" onClick={handleGenerateClasses}/>
-                        <GenerateButtons editName="Generate Project Ideas" onClick={handleGenerateProjects}/>
-                        <GenerateButtons editName="AI Quality Score" onClick={handleGenerateQualityScore}/>
-                        <button className="button" onClick={() => window.open(resume.pdfUrl, '_blank')}> Download Resume </button>                    
-                    </div>
-                </div>
-            </div> */}
         </div>
     );
 }

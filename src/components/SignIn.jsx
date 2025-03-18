@@ -44,14 +44,16 @@ export function SignIn(props) {
     const firebaseUIConfig = {
         
         signInOptions: [ GoogleAuthProvider.PROVIDER_ID,
-          { provider: EmailAuthProvider.PROVIDER_ID, requiredDisplayName: true },
         ],
         signInFlow: 'popup', //don't redirect to authenticate
         credentialHelper: 'none', //don't show the email account chooser
         callbacks: { //"lifecycle" callbacks
           signInSuccessWithAuthResult: () => {
+            setUsername(GoogleAuthProvider.PROVIDER_ID);
+            // console.log(GoogleAuthProvider.PROVIDER_ID);
             login(username);
             navigate('/myresumes');
+            window.location.reload(false);
             return false; //don't redirect after authentication
           }
         }
@@ -61,32 +63,6 @@ export function SignIn(props) {
         <div>
 
          <div className="container">
-                <form onSubmit={handleSubmit}>
-                <div className="user-input column">
-                <p className="sign-in-header">Sign in</p>
-                {<p className="text-danger">{error}</p>}
-                    <input 
-                        type="text" 
-                        placeholder="Username" 
-                        value={username} 
-                        onChange={(event) => setUsername(event.target.value)}
-                    />
-                </div>
-                <div className="user-input column">
-                    <input 
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(event) => setPassword(event.target.value)}
-                    />
-                </div>
-                <button type="submit" className="button">
-                    Sign In
-                </button>
-                <p className="new-acc-suggestion">Don't have an account? Register now!</p> 
-            <Link className="button" to="/register">Register</Link> 
-            </form>
-
             
             <StyledFirebaseAuth firebaseAuth={auth} uiConfig={firebaseUIConfig} />
 

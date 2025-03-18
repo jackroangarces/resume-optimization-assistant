@@ -58,6 +58,7 @@ export function MyResumes({ resumes, setResumes, username }) {
             <h1>My Resumes</h1>
             <div className="my-resumes-page">
                 <EditorButtons name="Create Resume" modalName="Enter Resume Title" onSave={handleCreateResume}/>
+                
                 <ResumeList resumes={resumes} setResumes={setResumes} username={username}/>
             </div>
         </div>
