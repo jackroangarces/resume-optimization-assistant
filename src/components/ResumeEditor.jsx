@@ -122,7 +122,8 @@ export function ResumeEditor({ resumes, setResumes, username }) {
             set(uploadRef, {
                 pdfBase64: updatedPdfBase64,
                 username: username,
-                timestamp: Date.now()
+                timestamp: Date().toISOString().split("T")[0],
+                jobObtained: job
             });
         }
     };
