@@ -15,6 +15,8 @@ export function SharedResumes() {
                 let resumeArray = Object.keys(resumesObject).map((key) => ({
                     id: key,
                     title: key.split("username:")[0].replace("title:", "").trim(),
+                    username: resumesObject[key].username || "Unknown", // Extract username
+                    timestamp: resumesObject[key].timestamp || "No date", // Extract timestamp
                     pdfBase64: resumesObject[key].pdfBase64 || null,
                 }));
 
@@ -56,6 +58,8 @@ export function SharedResumes() {
                                     className="resume-button"
                                 >
                                     <h2>{resume.title}</h2>
+                                    <p><strong>Shared by:</strong> {resume.username}</p>
+                                    <p><strong>Uploaded on:</strong> {resume.timestamp}</p>
                                 </button>
                             </div>
                         ))
