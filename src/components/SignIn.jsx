@@ -50,8 +50,6 @@ export function SignIn(props) {
         credentialHelper: 'none', //don't show the email account chooser
         callbacks: { //"lifecycle" callbacks
           signInSuccessWithAuthResult: () => {
-            setUsername(GoogleAuthProvider.PROVIDER_ID || EmailAuthProvider.PROVIDER_ID);
-            console.log(GoogleAuthProvider.PROVIDER_ID);
             login(username);
             navigate('/myresumes');
             return false; //don't redirect after authentication
@@ -63,7 +61,7 @@ export function SignIn(props) {
         <div>
 
          <div className="container">
-                { /*<form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                 <div className="user-input column">
                 <p className="sign-in-header">Sign in</p>
                 {<p className="text-danger">{error}</p>}
@@ -87,7 +85,7 @@ export function SignIn(props) {
                 </button>
                 <p className="new-acc-suggestion">Don't have an account? Register now!</p> 
             <Link className="button" to="/register">Register</Link> 
-            </form>*/ }
+            </form>
 
             
             <StyledFirebaseAuth firebaseAuth={auth} uiConfig={firebaseUIConfig} />
