@@ -32,8 +32,6 @@ export function ChatScreen(props) {
     //for debugging (will not be using state for array of messages)
     const [messageArray, setMessageArray] = useState([{text:"Hello"},{text:"This is example text blah blah blah blah"}]);
 
-    console.log(messages);
-
     // format message to readable content
     const messageItemArray = messages?.map((chatObj, index) => {
         return <MessageItem key={index} messageData={chatObj} />

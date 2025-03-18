@@ -201,6 +201,9 @@ export function ResumeEditor({ resumes, setResumes, username }) {
     }
     
     const handleGenerateQualityScore = async () => {
+
+        console.log(resume);
+
         const pdf = await pdfjs.getDocument(pdfUrl).promise;
         let text = "";
         
@@ -213,7 +216,7 @@ export function ResumeEditor({ resumes, setResumes, username }) {
         console.log("text is:", text);
 
         const prompt = `please give me a score from 1-10 based off
-                        my resume ${text}`;
+                        my resume ${resume.pdfBase64}`;
         setUserPrompt(prompt);
     }
 
@@ -267,10 +270,6 @@ export function ResumeEditor({ resumes, setResumes, username }) {
             const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
             
             const result = await model.generateContent(prompt);
-                // {
-                // contents: [{parts: [{ text: prompt }]}] });
-            
-            console.log("RESULT IS:", result);
             
             if (result.response) {
                 const responseText = result.response.text();
