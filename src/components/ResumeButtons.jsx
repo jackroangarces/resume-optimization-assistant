@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { CloseButton } from 'react-bootstrap';
 import { ChatScreen } from './ResumeAI';
 
 // SINGLE PROMPT EDITOR BUTTONS
@@ -96,6 +97,91 @@ export function GenerateButtons(props) {
                 loading={loading}
             />
         </div>
+    )
+}
+
+export function PrivacyPopUp(props) {
+    const [showChat, setShowChat] = useState('chatGone');
+    const handleShowChat = () => {
+        if(showChat === 'chatGone') {
+            setShowChat('chatscreen');
+        }
+        else {
+            setShowChat('chatGone')
+        }
+        
+    }
+
+    // close chatscreen
+    const handleCloseChat = () => {
+        setShowChat('chatGone');
+        setItemsDisplay('chatGone');
+    };
+
+    const handleFollowUp = () => {
+
+    };
+
+    return (
+        <>
+            <button className="button" onClick={handleShowChat}>
+                Privacy Disclaimer
+            </button>     
+            <div className={showChat + " "}>
+                <div className='d-flex'> {/* Chatscreen header */}
+                    <CloseButton className={"m-1 p-2"} onClick={() => {handleFollowUp(), handleShowChat()}} />
+                </div>
+                <div>
+                    <h2>Privacy Disclaimer</h2>
+                    <p className='p-4'>
+                        The Resume Optimization System (ROS) prioritizes your privacy. Here's
+                        how we use your information and data:
+                        <ol>
+                            <li>
+                                Use of AI for Recommendations
+                                <ul>
+                                    <li>
+                                        To provide you with better course and project recomendations
+                                        we may share details about the courses you've taken and projects
+                                        you've completed to Google's Gemini ChatBot.
+                                    </li>
+                                    <li>
+                                        No personal data (such as your name, contact information, 
+                                        or other identifying details) is shared.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Resume Database (Optional Sharing)
+                                <ul>
+                                    <li>
+                                        You have the option to share your resume 
+                                        with our database to contribute to industry insights 
+                                        and trends.
+                                    </li>
+                                    <li>
+                                        No personal data is included in these shared resumes.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Data Protection
+                                <ul>
+                                    <li>
+                                        We do not sell, rent, or distribute any personal information.
+                                    </li>
+                                    <li>
+                                        Any data shared is strictly used to improve your resume-building experience.
+                                    </li>
+                                </ul>
+                            </li>
+                        </ol>
+                        By using our platform, you acknowledge and agree to these terms. Thank you for
+                        utilizing the Resume Optimization System!
+                    </p>
+                </div>
+            </div>
+        </>
     )
 }
 

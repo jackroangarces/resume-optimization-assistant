@@ -19,42 +19,6 @@ export function ChatScreen(props) {
         setMessages((prevMessages) => [...prevMessages, newMessage]);
     }
 
-    // AI STUFF
-
-    // useEffect() and sendPromptToGemini was coded with the assistance of claude.ai
-    // it was to understand and learn how to implement AI chat prompts
-    // into the webpage.
-    
-    // Will need to hide this for security purposes
-    const API_KEY = "AIzaSyALULJ4WeAf7y-p5Xc_rai0Z5jDGLtndc4";
-    
-    const sendPromptToGemini = async (prompt) => {
-        if (!prompt) return;
-
-        try {
-            const genAI = new GoogleGenerativeAI(API_KEY, {apiVersion: "v1"});
-            const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-            
-            const result = await model.generateContent({
-                contents: [{parts: [{ text: "hello gemini. please respond with bruh" }]}] });
-            
-            if (result.response) {
-                const responseText = result.response.text();
-                addMessage(responseText);
-            } else {
-                addMessage("No response received from AI");
-            }
-        } catch (error) {
-            console.error("Error details:", error );
-            addMessage("Failed to get AI response: " + (error.message || "Unknown error"));
-        }
-    };
-    
-    useEffect(() => {
-        if (userPrompt) {
-            sendPromptToGemini(userPrompt);
-        }
-    }, [userPrompt]);
     // follow up pop up
     const handleFollowUp = () => {
 
@@ -67,8 +31,6 @@ export function ChatScreen(props) {
 
     //for debugging (will not be using state for array of messages)
     const [messageArray, setMessageArray] = useState([{text:"Hello"},{text:"This is example text blah blah blah blah"}]);
-
-    console.log(messages);
 
     // format message to readable content
     const messageItemArray = messages?.map((chatObj, index) => {

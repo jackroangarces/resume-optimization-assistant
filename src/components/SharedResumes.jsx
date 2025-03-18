@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { getDatabase, ref, get } from 'firebase/database';
+import React, { useEffect, useState } from "react";
+import { getDatabase, ref, get } from "firebase/database";
 
 export function SharedResumes() {
     const [resumes, setResumes] = useState([]);
@@ -7,15 +7,19 @@ export function SharedResumes() {
     useEffect(() => {
         const fetchResumes = async () => {
             const db = getDatabase();
-            const resumesRef = ref(db, "resumeData"); // Fetch all resumes
+            const resumesRef = ref(db, "resumeData");
             const snapshot = await get(resumesRef);
 
             if (snapshot.exists()) {
-                const resumeArray = Object.entries(snapshot.val()).map(([id, resume]) => ({
-                    id,
-                    title: resume.title,
-                    pdfBase64: resume.pdfBase64
+                const resumesObject = snapshot.val();
+                let resumeArray = Object.keys(resumesObject).map((key) => ({
+                    id: key,
+                    title: key.split("username:")[0].replace("title:", "").trim(),
+                    username: resumesObject[key].username || "Unknown", // Extract username
+                    timestamp: resumesObject[key].timestamp || "No date", // Extract timestamp
+                    pdfBase64: resumesObject[key].pdfBase64 || null,
                 }));
+
                 setResumes(resumeArray);
             } else {
                 console.log("No resumes found.");
@@ -25,18 +29,43 @@ export function SharedResumes() {
         fetchResumes();
     }, []);
 
+    // **Function to Open PDF in a New Tab**
+    const openPdf = (base64Data) => {
+        if (!base64Data) return;
+        const byteCharacters = atob(base64Data.split(",")[1]);
+        const byteArray = new Uint8Array(new Array(byteCharacters.length).fill(0).map((_, i) => byteCharacters.charCodeAt(i)));
+
+        const blob = new Blob([byteArray], { type: "application/pdf" });
+        const blobUrl = URL.createObjectURL(blob);
+        window.open(blobUrl, "_blank");
+    };
+
     return (
-        <div>
-            <h1>Shared Resumes</h1>
-            <ul>
-                {resumes.map((resume) => (
-                    <li key={resume.id}>
-                        <a href={resume.pdfBase64} target="_blank" rel="noopener noreferrer">
-                            {resume.title}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <>
+            <div className="examples-page">
+                <h1 className="page-title">Shared Resumes</h1>
+                <p className="page-subtitle">
+                    Browse resumes from professionals who have succeeded in the field.
+                </p>
+                <div className="templates-container">
+                    {resumes.length === 0 ? (
+                        <p>No resumes available.</p>
+                    ) : (
+                        resumes.map((resume) => (
+                            <div key={resume.id} className="template-card w-50">
+                                <button
+                                    onClick={() => openPdf(resume.pdfBase64)}
+                                    className="resume-button"
+                                >
+                                    <h2>{resume.title}</h2>
+                                    <p><strong>Shared by:</strong> {resume.username}</p>
+                                    <p><strong>Uploaded on:</strong> {resume.timestamp}</p>
+                                </button>
+                            </div>
+                        ))
+                    )}
+                </div>
+            </div>
+        </>
     );
 }

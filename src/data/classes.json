@@ -1853,8 +1853,559 @@
       "prerequisites": [],
       "attributes": [],
       "offered": "A"
+    },
+    {
+      "code": "HCDE 210",
+      "title": "Explorations in Human Centered Design",
+      "credits": 3,
+      "description": "Explores the core principles, methodologies, and applications of human centered design practice. Areas of investigation include user research, ideation, interaction design, visualization, prototyping, and usability.",
+      "link": "View course details in MyPlan: HCDE 210"
+    },
+    {
+      "code": "HCDE 298",
+      "title": "Introductory Special Topics",
+      "credits": "1-5, max. 10",
+      "description": "Introductory special topics in human centered design and engineering to be offered occasionally by permanent or visiting faculty members.",
+      "link": "View course details in MyPlan: HCDE 298"
+    },
+    {
+      "code": "HCDE 300",
+      "title": "Foundations of Human Centered Design and Engineering",
+      "credits": 5,
+      "description": "Examines principles and practices of human centered design and engineering. Includes overview of conceptual problems in human centered design and engineering, issues related to communicating scientific and technical information to a variety of audiences, and human centered design approaches. Includes attention to social contexts and environments (legal, ethical, cultural).",
+      "link": "View course details in MyPlan: HCDE 300"
+    },
+    {
+      "code": "HCDE 301",
+      "title": "Advanced Communication in HCDE",
+      "credits": 5,
+      "description": "Examines various communication genres in HCDE. Students conduct primary and secondary research; analyze results; write, design, and orally present communications that meet the needs of stakeholders with differing priorities and cultures. The course is taught through the lens of sustainable and ethical HCDE practices.",
+      "prerequisite": "HCDE 231 or ENGR 231",
+      "link": "View course details in MyPlan: HCDE 301"
+    },
+    {
+      "code": "HCDE 302",
+      "title": "Foundations of Human Centered Design I",
+      "credits": 5,
+      "description": "Explores the human-centered design paradigm from a broad perspective. Emphasizes the importance of developing and applying design processes and strategies. Students learn to think like a user-centered designer and carry out activities that are key to user-centered design.",
+      "link": "View course details in MyPlan: HCDE 302"
+    },
+    {
+      "code": "HCDE 303",
+      "title": "Foundations of Human Centered Design II",
+      "credits": 5,
+      "description": "Explores the human-centered design paradigm from a broad perspective. Emphasizes the importance of developing and applying design processes and strategies. Students learn to think like a user-centered designer and carry out activities that are key to user-centered design.",
+      "prerequisite": "HCDE 302",
+      "link": "View course details in MyPlan: HCDE 303"
+    },
+    {
+      "code": "HCDE 308",
+      "title": "Visual Communication in Human Centered Design and Engineering",
+      "credits": 5,
+      "description": "Introduces principles of visual communication and design used in human centered design and engineering so that students gain a systematic understanding as they create visual communication components of print, interactive, and video media. Students develop this understanding through hands-on exercises, design critiques, discussions, lectures, and readings in a studio environment.",
+      "link": "View course details in MyPlan: HCDE 308"
+    },
+    {
+      "code": "HCDE 310",
+      "title": "Interactive Systems Design and Technology",
+      "credits": 5,
+      "description": "Provides opportunities to identify and build interactive systems to solve problems in human centered design and engineering. Students specify, design, build, and justify design solutions in terms of user experience and technical design choices.",
+      "prerequisite": "either CSE 121, CSE 122, CSE 123, CSE 142, or CSE 160",
+      "link": "View course details in MyPlan: HCDE 310"
+    },
+    {
+      "code": "HCDE 313",
+      "title": "Introduction to User Research",
+      "credits": 5,
+      "description": "Introduces user research methods, such as interviews, surveys, usability tests, content analysis, and focus groups. Reviews selecting an appropriate research method, how to conduct research and analyze results, conveying research data in the form of design requirements, and ethics.",
+      "link": "View course details in MyPlan: HCDE 313"
+    },
+    {
+      "code": "HCDE 315",
+      "title": "Inclusive Design and Engineering",
+      "credits": 5,
+      "description": "Surveys a range of methods that examine, support, and interrogate design and engineering for disability and inclusivity. Students enact inclusive methods, reflect on their capacities to broaden design and engineering goals, and critique and evaluate their effectiveness from a variety of perspectives.",
+      "link": "View course details in MyPlan: HCDE 315"
+    },
+    {
+      "code": "HCDE 316",
+      "title": "Sustainable Design",
+      "credits": 5,
+      "description": "Explores the environmental and societal impacts of digital products and services while mastering sustainable design principles. Introduces key concepts like lifecycle assessment and cradle-to-cradle design. Through hands-on projects, students build a sustainable design framework that applies to both physical and digital materials.",
+      "link": "View course details in MyPlan: HCDE 316"
+    },
+    {
+      "code": "HCDE 318",
+      "title": "Introduction to User-Centered Design",
+      "credits": 5,
+      "description": "Explores the user-centered design paradigm from a broad perspective, with an emphasis on the importance of developing and applying design processes and strategies. Students learn to think like a user-centered designer and carry out activities that are key to user-centered design.",
+      "link": "View course details in MyPlan: HCDE 318"
+    },
+    {
+      "code": "HCDE 321",
+      "title": "Professional Portfolio",
+      "credits": 2,
+      "description": "Prepares students for professional practice by developing expertise and artifacts that make up an effective professional portfolio for careers in human centered design and engineering. Covers job searches, networking, recruiting, and interviewing, as well as development of resumes, cover letters, and online portfolios. Credit/no-credit only.",
+      "link": "View course details in MyPlan: HCDE 321"
+    },
+    {
+      "code": "HCDE 322",
+      "title": "Organizational Teamwork",
+      "credits": 2,
+      "description": "Introduces students to teamwork and leadership competencies of particular significance to interdisciplinary, design-oriented, creative, and distributed work of human-centered design and engineering. Particular emphasis on competencies related to interpersonal interactions, group dynamics, and civic responsibility. Credit/no-credit only.",
+      "link": "View course details in MyPlan: HCDE 322"
+    },
+    {
+      "code": "HCDE 351",
+      "title": "User Experience Prototyping Techniques",
+      "credits": 5,
+      "description": "Introduces students to a variety of prototyping techniques for different kinds of user experience design problems. Structured as a series of independent explorations, each on a different prototyping methodology, aimed at many platforms.",
+      "prerequisite": "either HCDE 300 and HCDE 318, or HCDE 303, which may be taken concurrently",
+      "link": "View course details in MyPlan: HCDE 351"
+    },
+    {
+      "code": "HCDE 398",
+      "title": "Special Topics",
+      "credits": "1-5, max. 10",
+      "description": "Special topics in human centered design and engineering to be offered occasionally by permanent or visiting faculty members.",
+      "link": "View course details in MyPlan: HCDE 398"
+    },
+    {
+      "code": "HCDE 410",
+      "title": "Human Data Interaction",
+      "credits": 5,
+      "description": "Builds data science literacy anchored in the principles and methods of human centered design. Focuses on principles of data science and its human implications, including research ethics; data privacy; legal frameworks; algorithmic bias, transparency, fairness and accountability; data provenance, curation, preservation, and reproducibility; user experience design and research for big data; human computation; social impacts of data science.",
+      "prerequisite": "either CSE 121, CSE 122, CSE 123, CSE 142, CSE 143, CSE 160, or CSE 163; either HCDE 300 and HCDE 318, or HCDE 303; and HCDE 310, which may be taken concurrently",
+      "link": "View course details in MyPlan: HCDE 410"
+    },
+    {
+      "code": "HCDE 411",
+      "title": "Information Visualization",
+      "credits": 5,
+      "description": "Introduces the design and presentation of digital information. Covers the use of graphics, animation, sound, and other modalities in presenting information to the user; understanding vision and perception; methods of presenting complex information to enhance comprehension and analysis; and the incorporation of visualization techniques into human-computer interfaces.",
+      "prerequisite": "HCDE 310; and either HCDE 300 and HCDE 318, or HCDE 303",
+      "link": "View course details in MyPlan: HCDE 411"
+    },
+    {
+      "code": "HCDE 412",
+      "title": "Qualitative Research Methods in Human Centered Design and Engineering",
+      "credits": 5,
+      "description": "Explores qualitative research methodologies, particularly the use of grounded theory methods to conduct field research for design and engineering. Develops skills for understanding and investigating why and how people experience, make meaning, and participate in their own social worlds, including how to create and iterate research questions, observations, and interviews.",
+      "prerequisite": "HCDE 313; and either HCDE 300 and HCDE 318, or HCDE 303",
+      "link": "View course details in MyPlan: HCDE 412"
+    },
+    {
+      "code": "HCDE 417",
+      "title": "Usability Research Techniques",
+      "credits": 5,
+      "description": "Introduces usability research methods used in the product-development process; contextual inquiry, surveys and interviews, focus groups, user profiling, usability testing, cognitive walkthroughs, heuristics, and others.",
+      "prerequisite": "HCDE 313; and either HCDE 300 and HCDE 318, or HCDE 303",
+      "link": "View course details in MyPlan: HCDE 417"
+    },
+    {
+      "code": "HCDE 418",
+      "title": "Advanced Projects in Human Centered Design and Engineering",
+      "credits": "5, max. 10",
+      "description": "Explores advanced topics in human centered design. Students engage with and discuss an advanced topic and then apply it by researching, designing, and implementing a solution to a design challenge. Team-based investigations culminate in a project response to the challenge.",
+      "prerequisite": "either HCDE 303, INFO 360, CSE 440, or HCDE 300 and HCDE 318",
+      "link": "View course details in MyPlan: HCDE 418"
+    },
+    {
+      "code": "HCDE 419",
+      "title": "Concepts in Human-Computer Interaction",
+      "credits": 5,
+      "description": "Studies the social, cognitive, behavioral, and contextual aspects of information systems and informational dimensions of the human-computer interface, and other user-centered design concepts. Surveys research literature of human information behavior, as well as ethical standards.",
+      "prerequisite": "either HCDE 300 and HCDE 318, or HCDE 303",
+      "link": "View course details in MyPlan: HCDE 419"
+    },
+    {
+      "code": "HCDE 438",
+      "title": "Web Technologies",
+      "credits": 5,
+      "description": "Covers technical knowledge and skills related to web development including design issues, markup languages, client-side and server-side scripting, and data management technologies. Students learn to use these technologies at a core level of functionality, and leverage this knowledge either to manage others using these technologies or to expand and extend their abilities with these technologies.",
+      "prerequisite": "either HCDE 310 (which may be taken concurrently) or CSE 160; and either HCDE 300 and HCDE 318, or HCDE 303",
+      "link": "View course details in MyPlan: HCDE 438"
+    },
+    {
+      "code": "HCDE 439",
+      "title": "Physical Computing",
+      "credits": 5,
+      "description": "Introduction to engineering and prototyping interactive systems and environments for human-centered applications that employ basic digital electronics components and circuits. Students build systems using micro-controllers and software tools. Provides hands-on experience in a project-based, studio environment.",
+      "prerequisite": "HCDE 310, which may be taken concurrently; and either HCDE 300 and HCDE 318, or HCDE 303",
+      "link": "View course details in MyPlan: HCDE 439"
+    },
+    {
+      "code": "HCDE 440",
+      "title": "Advanced Physical Computing",
+      "credits": "5, max. 10",
+      "description": "Advanced topics in engineering and prototyping interactive systems and environments for human-centered applications that use digital electronics, components, and circuits. Students build advanced systems using micro-controllers, sensors, wireless communications, and software APIs. Projects incorporate investigation of emerging technologies and their social and cultural impact. Provides hands-on experience in a project-based, studio environment.",
+      "prerequisite": "HCDE 439",
+      "link": "View course details in MyPlan: HCDE 440"
+    },
+    {
+      "code": "HCDE 485",
+      "title": "Material and Cultural Bias in Algorithmic Systems",
+      "credits": 5,
+      "description": "Project based course which examines the merging of data science, and arts and design practices. Draws from a range of theoretical texts and artistic works, combining textile and statistics literatures. Emphasizes mingling of ideas, multiple interpretations, and translations to critically represent, express, and challenge biased datasets and skewed machine learning systems.",
+      "link": "View course details in MyPlan: HCDE 485"
+    },
+    {
+      "code": "HCDE 492",
+      "title": "Capstone Planning",
+      "credits": 2,
+      "description": "Helps students define capstone topics, form project teams, and develop initial concepts, deliverables, and schedules for the HCDE capstone project.",
+      "prerequisite": "HCDE 308; HCDE 310; HCDE 313; HCDE 321; HCDE 322; and either HCDE 300 and HCDE 318, or HCDE 303",
+      "link": "View course details in MyPlan: HCDE 492"
+    },
+    {
+      "code": "HCDE 493",
+      "title": "Senior Capstone",
+      "credits": 5,
+      "description": "Capstone design experience. Integrates knowledge and skills acquired during major program into one paper or project.",
+      "prerequisite": "HCDE 492",
+      "link": "View course details in MyPlan: HCDE 493"
+    },
+    {
+      "code": "HCDE 494",
+      "title": "Independent Study in Human Centered Design and Engineering",
+      "credits": "1-5, max. 5",
+      "description": "Independent study in human centered design and engineering supervised by a faculty member.",
+      "link": "View course details in MyPlan: HCDE 494"
+    },
+    {
+      "code": "HCDE 496",
+      "title": "Directed Research in Human Centered Design and Engineering",
+      "credits": "1-5, max. 10",
+      "description": "Students work in teams under the supervision of individual faculty members on projects related to research, design, engineering, or outreach. Credit/no-credit only.",
+      "link": "View course details in MyPlan: HCDE 496"
+    },
+    {
+      "code": "HCDE 497",
+      "title": "Study Abroad: Human Centered Design and Engineering",
+      "credits": "1-5, max. 15",
+      "description": "Upper-division human centered design and engineering courses, for which there are no direct University of Washington equivalents, taken via study abroad.",
+      "link": "View course details in MyPlan: HCDE 497"
+    },
+    {
+      "code": "HCDE 498",
+      "title": "Advanced Special Topics",
+      "credits": "1-5, max. 10",
+      "description": "Advanced special topics in human centered design and engineering to be offered occasionally by permanent or visiting faculty members.",
+      "link": "View course details in MyPlan: HCDE 498"
+    },
+    {
+      "code": "HCDE 499",
+      "title": "Individual Research",
+      "credits": "1-5, max. 6",
+      "description": "Individual research projects in human centered design and engineering supervised by a faculty member.",
+      "link": "View course details in MyPlan: HCDE 499"
+    },
+    {
+      "code": "HCDE 501",
+      "title": "Theoretical Foundations of Human Centered Design and Engineering",
+      "credits": 4,
+      "description": "Examination of the theories that inform work in human centered design and engineering, focusing particularly on communication and interaction design theories. Topics include the complexities of communication as it is configured in different theoretical frameworks, the implications of these different configurations, and why these differences matter to people engaged in professional practice or research.",
+      "prerequisite": "admission to an engineering master's program or permission of instructor",
+      "link": "View course details in MyPlan: HCDE 501"
+    },
+    {
+      "code": "HCDE 502",
+      "title": "Empirical Traditions in Human Centered Design and Engineering",
+      "credits": 4,
+      "description": "Introduction to empirical traditions that inform research and practice in field of human centered design and engineering. Topics include epistemological assumptions underlying empirical research, empirical methods, and survey of results of empirical research on effects of text and visual media on comprehension, recall, and performance.",
+      "prerequisite": "graduate standing or permission of instructor",
+      "link": "View course details in MyPlan: HCDE 502"
+    },
+    {
+      "code": "HCDE 503",
+      "title": "Navigating Design in Organizations",
+      "credits": 4,
+      "description": "Examines how to manage the incubation and development of an idea, communicate it effectively to stakeholders, and deliver a quality product. Students learn to manage a design project from start to finish, collaborating across disciplines, working with partners and end-users, and communicating strategies for project management in organizations.",
+      "link": "View course details in MyPlan: HCDE 503"
+    },
+    {
+      "code": "HCDE 505",
+      "title": "Computer-Assisted Communication",
+      "credits": 4,
+      "description": "Explores computer-assisted communication from three perspectives: (1) cultural roles of communication technologies; (2) relationships between communication and information including information technologies in the workplace, academe, and other settings; and (3) application to design including models for audience analysis, task analysis, and cognitive systems engineering.",
+      "prerequisite": "graduate standing or permission of instructor",
+      "link": "View course details in MyPlan: HCDE 505"
+    },
+    {
+      "code": "HCDE 508",
+      "title": "Visual Communication",
+      "credits": 4,
+      "description": "Reviews principles of visual communication and design used in HCDE so that students gain a systematic and critical understanding so they can create visual communication components of print and interactive media. Students develop this understanding through hands-on exercises, design critiques, discussions, lectures, and readings in a studio environment.",
+      "link": "View course details in MyPlan: HCDE 508"
+    },
+    {
+      "code": "HCDE 509",
+      "title": "Writing the Scientific Article",
+      "credits": 3,
+      "description": "Examination of principles and practice of writing research manuscripts, articles, abstracts, and oral presentations. Detailed examination of scientific publication process includes issues of style, organization, and ethics. Students draft, critique, and revise their own manuscripts and learn to review the manuscripts of others.",
+      "link": "View course details in MyPlan: HCDE 509"
+    },
+    {
+      "code": "HCDE 510",
+      "title": "Information Design",
+      "credits": 4,
+      "description": "Examination of the design principles and procedures underlying the creation of both print and electronic information presentations. Topics include: print vs. electronic media, designing for the page and screen, information topologies, and hypermedia. Seminar includes a design project.",
+      "prerequisite": "HCDE 501 or permission of instructor",
+      "link": "View course details in MyPlan: HCDE 510"
+    },
+    {
+      "code": "HCDE 511",
+      "title": "Information Visualization",
+      "credits": 4,
+      "description": "Covers the design and presentation of digital information. Uses graphics, animation, sound, and other modalities in presenting information to users. Studies understanding vision and perception. Includes methods of presenting complex information to enhance comprehension and analysis; and incorporation of visualization techniques into human-computer interfaces.",
+      "link": "View course details in MyPlan: HCDE 511"
+    },
+    {
+      "code": "HCDE 512",
+      "title": "International User Experience and Communication",
+      "credits": 4,
+      "description": "Covers theory, research, and approaches for creating digital media for international audiences. Topics include cultural schemata and contrastive rhetoric, content, and text types and corresponding translation and localization strategies, market relevance and adaptation, international user research and usability, international polices and geopolitics, and cross-cultural business management and team work.",
+      "link": "View course details in MyPlan: HCDE 512"
+    },
+    {
+      "code": "HCDE 513",
+      "title": "Globalization and Localization Management",
+      "credits": 4,
+      "description": "Examines globalization and localization business processes. Topics include localization challenges for various business sectors and audiences as well as selecting localization software, services, and content; project types; and associated start-to-finish processes.",
+      "link": "View course details in MyPlan: HCDE 513"
+    },
+    {
+      "code": "HCDE 514",
+      "title": "Strategies for International Product Management",
+      "credits": 4,
+      "description": "Examines best practices in establishing localization work in technology companies. Covers facets important to research, planning, and decision-making processes, including use of internal company data, and economic, marketing, and technology factors. Uses real-life scenarios to demonstrate how companies have instituted localization processes given user-centered practices.",
+      "prerequisite": "HCDE 512; HDCE 513; or permission of instructor",
+      "link": "View course details in MyPlan: HCDE 514"
+    },
+    {
+      "code": "HCDE 515",
+      "title": "Accessibility and Inclusive Design",
+      "credits": 4,
+      "description": "An introduction to designing, prototyping, and evaluating inclusive user interfaces that meet the needs of a diverse range of users - such as older adults, users with visual, cognitive or motor disabilities, and users who are deaf or hard of hearing. Building on basic concepts in human-centered design, students will learn about design exclusion and barriers to use, and methods by which these can be overcome.",
+      "prerequisite": "HCDE 518",
+      "link": "View course details in MyPlan: HCDE 515"
+    },
+    {
+      "code": "HCDE 516",
+      "title": "Experimental Research Methods",
+      "credits": 4,
+      "description": "Introduction to experimental research methods in human centered design and engineering. Examines the relationship between theory and research, hypothesis testing, experimental designs, modes of observation, sampling, validity, and data analysis and interpretation.",
+      "prerequisite": "introductory statistics course",
+      "link": "View course details in MyPlan: HCDE 516"
+    },
+    {
+      "code": "HCDE 517",
+      "title": "Usability Studies",
+      "credits": 4,
+      "description": "Discusses the human-computer interface (HCI) as the communicative aspect of a computer system. Analyzes usability issues in HCI design, explores design-phase methods of predictability, and introduces evaluative methods of usability testing.",
+      "prerequisite": "HCDE 518 or permission of instructor",
+      "link": "View course details in MyPlan: HCDE 517"
+    },
+    {
+      "code": "HCDE 518",
+      "title": "User-Centered Design",
+      "credits": 4,
+      "description": "Explores the user-centered design paradigm from a broad perspective, emphasizing how user research and prototype assessment can be integrated into different phases of the design process. Students learn to think like a user-centered designer and carry out activities that are key to user-centered design.",
+      "link": "View course details in MyPlan: HCDE 518"
+    },
+    {
+      "code": "HCDE 519",
+      "title": "Qualitative Research Methods",
+      "credits": 4,
+      "description": "Provides hands-on experience with qualitative research methods, such as interviewing and participant observation, as used in human-centered design and engineering. Students learn to develop appropriate research questions, collect observational data, develop interview protocols, conduct interviews, analyze data, and communicate findings.",
+      "link": "View course details in MyPlan: HCDE 519"
+    },
+    {
+      "code": "HCDE 520",
+      "title": "Design and Management of Complex Systems",
+      "credits": 4,
+      "description": "Focuses on how to design and implement improvements to complex work systems. Emphasis on Agile development, including sprints using scrum teams to achieve rapid iteration design with system users, developers and owners. Investigates decision support systems, including sense making and adaptation in ambiguous situations.",
+      "link": "View course details in MyPlan: HCDE 520"
+    },
+    {
+      "code": "HCDE 521",
+      "title": "Seminar: Current Issues in Human Centered Design and Engineering",
+      "credits": "1-2, max. 3",
+      "description": "Presentations on current issues in human centered design and engineering.",
+      "prerequisite": "HCDE graduate student status or permission of instructor",
+      "link": "View course details in MyPlan: HCDE 521"
+    },
+    {
+      "code": "HCDE 523",
+      "title": "Design Use Build (DUB) Seminar",
+      "credits": "1, max. 3",
+      "description": "Exploration of advanced issues in human centered design and engineering research and practice. Students are encouraged to join the dub mailing list for calendar of events. Credit/no-credit only.",
+      "link": "View course details in MyPlan: HCDE 523"
+    },
+    {
+      "code": "HCDE 524",
+      "title": "Programming Concepts in HCDE",
+      "credits": 2,
+      "description": "Workshop in foundations of computing. Introduces students to core concepts in programming using interactive graphics applications. For students with NO prior experience programming in a high-level language like Java, Python, or C++.",
+      "prerequisite": "graduate standing or permission of instructor",
+      "link": "View course details in MyPlan: HCDE 524"
+    },
+    {
+      "code": "HCDE 525",
+      "title": "Emerging Issues in Human Centered Design and Engineering",
+      "credits": 2,
+      "description": "Topics of current interest in human centered design and engineering.",
+      "prerequisite": "HCDE 517 and HCDE 518",
+      "link": "View course details in MyPlan: HCDE 525"
+    },
+    {
+      "code": "HCDE 526",
+      "title": "Video Prototyping",
+      "credits": 2,
+      "description": "Explores video as a design tool. Students learn about narrative and storytelling in the context of User Centered Design. Enhances technical abilities in the creation of visual artifacts while communicating design vision. Imparts practical knowledge necessary to create a video prototype. Exposes students to the history of video prototypes, as well as contemporary practices.",
+      "prerequisite": "Graduate standing or permission of instructor",
+      "link": "View course details in MyPlan: HCDE 526"
+    },
+    {
+      "code": "HCDE 529",
+      "title": "Service Design",
+      "credits": 4,
+      "description": "Explores the theory and practice of service design. Academic and industry readings prepare students to mobilize and critique core concepts, methods, and practices within service design.",
+      "prerequisite": "HCDE 518",
+      "link": "View course details in MyPlan: HCDE 529"
+    },
+    {
+      "code": "HCDE 530",
+      "title": "Computational Concepts in HCDE",
+      "credits": 4,
+      "description": "Introduces basic computational concepts and programming skills needed to work with interactive systems in HCDE. Draws on topics such as log analysis, visualization, prototyping, and data mining. Students analyze data to inform user research and design.",
+      "link": "View course details in MyPlan: HCDE 530"
+    },
+    {
+      "code": "HCDE 532",
+      "title": "Web Design Studio",
+      "credits": 2,
+      "description": "Provides an overview of basic principles and practices of professional web site design and programming. Students gain hands-on experience with designing and building a successful website using industry standard techniques. For students planning to take HCDE 535 or HCDE 537 without previous programming experience.",
+      "link": "View course details in MyPlan: HCDE 532"
+    },
+    {
+      "code": "HCDE 533",
+      "title": "Digital Fabrication",
+      "credits": 4,
+      "description": "Introduces designing for and fabricating with tools such as 3D printers, laser cutters, computer controlled mills, and more. Students produce digital plans and physical prototypes in a variety of materials, and gain hands-on experience in a studio-based environment.",
+      "prerequisite": "HCDE 518",
+      "link": "View course details in MyPlan: HCDE 533"
+    },
+    {
+      "code": "HCDE 534",
+      "title": "Designing a Human Centered Venture",
+      "credits": 4,
+      "description": "Explores the planning of a new venture related to human-centered design. Examines relevant topics, such as team formation, user and market research, value creation, and the iterative demand planning for a new venture.",
+      "link": "View course details in MyPlan: HCDE 534"
+    },
+    {
+      "code": "HCDE 536",
+      "title": "Interaction Design and Prototyping",
+      "credits": 4,
+      "description": "Investigates advanced topics in the theory and practice of interaction design, using a project-oriented approach. Develops expertise in design, development, and critique of solutions in online and mobile platforms. Examines issues such as interaction theory, requirements and specifications, design language, prototyping, and presentation of projects.",
+      "prerequisite": "HCDE 518",
+      "link": "View course details in MyPlan: HCDE 536"
+    },
+    {
+      "code": "HCDE 537",
+      "title": "User-Centered Web Design",
+      "credits": 4,
+      "description": "Theory and practice of the user-centered web development process. Principles and processes for documenting and implementing various development stages, including requirements analysis, user needs analysis, information architecture, prototyping, mock-ups, and production.",
+      "prerequisite": "HCDE 518",
+      "link": "View course details in MyPlan: HCDE 537"
+    },
+    {
+      "code": "HCDE 538",
+      "title": "Designing for Behavior Change",
+      "credits": 4,
+      "description": "Students are introduced to existing behavior change theories, frameworks, and research to gain an understanding of why and how behavior changes. Utilizing these insights, students practice theory-driven design to nudge positive behavior change. They analyze current behavior change applications and utilize existing resources to guide their design process.",
+      "prerequisite": "HCDE 501; HCDE 518; and HCDE 536 (or equivalent graduate level interaction design coursework)",
+      "link": "View course details in MyPlan: HCDE 538"
+    },
+    {
+      "code": "HCDE 539",
+      "title": "Physical Computing and Prototyping",
+      "credits": 4,
+      "description": "Reviews fundamentals of designing and prototyping human-centered interactive systems and environments that include software and hardware components. Students build projects using electronic devices and fabrication tools. Provides hands on experience in a project-based, studio environment.",
+      "link": "View course details in MyPlan: HCDE 539"
+    },
+    {
+      "code": "HCDE 541",
+      "title": "Introduction to PhD Studies in HCDE",
+      "credits": 2,
+      "description": "Introduces the skills needed as a doctoral student in the field of human-centered design and engineering, including communicating about research, preparing for PhD milestones, identifying mentors, and establishing work practices. Credit/no-credit only.",
+      "link": "View course details in MyPlan: HCDE 541"
+    },
+    {
+      "code": "HCDE 542",
+      "title": "Theoretical Foundations in Human Centered Design and Engineering",
+      "credits": 4,
+      "description": "Examines theories that inform work in human centered design and engineering, focusing particularly on theories of communication and interaction design. Topics include complexities of interaction as it is configured in different theoretical frameworks, implications of these different configurations, and why these differences matter to people engaged in professional practice/research.",
+      "link": "View course details in MyPlan: HCDE 542"
+    },
+    {
+      "code": "HCDE 543",
+      "title": "Empirical Traditions in Human Centered Design and Engineering",
+      "credits": 4,
+      "description": "Introduces empirical traditions that inform research and practice in the field of human centered design and engineering. Topics include epistemological assumptions underlying research approaches and a survey of empirical methods.",
+      "link": "View course details in MyPlan: HCDE 543"
+    },
+    {
+      "code": "HCDE 544",
+      "title": "Experimental and Quasi-Experimental Research Methods",
+      "credits": 4,
+      "description": "Introduces experimental, quasi-experimental, and related research methods in human centered design and engineering. Examines the relationship between theory and research, hypothesis testing, experimental designs, modes of observation, sampling, validity, and data analysis and interpretation. Students undertake an intensive research project.",
+      "prerequisite": "introductory statistics course",
+      "link": "View course details in MyPlan: HCDE 544"
+    },
+    {
+      "code": "HCDE 545",
+      "title": "Qualitative Research Methods",
+      "credits": 4,
+      "description": "Provides hands-on experience with qualitative research methods with particular emphasis on how ethnographic fieldwork methods (e.g., interviewing and participant observation) are used in human centered design and engineering. Students undertake an intensive research project at a field site, collecting and analyzing data.",
+      "link": "View course details in MyPlan: HCDE 545"
+    },
+    {
+      "code": "HCDE 546",
+      "title": "Design Thinking",
+      "credits": 4,
+      "description": "Examines how design in enacted within disciplines, exploring commonalities and differences in design practices. Surveys empirical studies of design practices and approaches.",
+      "link": "View course details in MyPlan: HCDE 546"
+    },
+    {
+      "code": "HCDE 547",
+      "title": "Academic Research Seminar",
+      "credits": "1, max. 10",
+      "description": "Discussion seminar of a variety of academic research topics for doctoral students. Credit/no-credit only.",
+      "link": "View course details in MyPlan: HCDE 547"
+    },
+    {
+      "code": "HCDE 548",
+      "title": "Advanced Topics in Human Centered Design and Engineering",
+      "credits": "4, max. 20",
+      "description": "In-depth examination of a specialized topic in an emerging area of human centered design and engineering.",
+      "link": "View course details in MyPlan: HCDE 548"
+    },
+    {
+      "code": "HCDE 554",
+      "title": "Engineering as Research and Inquiry",
+      "credits": 4,
+      "description": "Introduces a range of theoretical perspectives related to conducting research through designing and engineering systems, and explores how epistemological contributions are developed.",
+      "link": "View course details in MyPlan: HCDE 554"
+    },
+    {
+      "code": "HCDE 555",
+      "title": "Design as Research and Inquiry",
+      "credits": 4,
+      "description": "Introduces students to the methodological range of design practices for knowledge production, with a focus on research and inquiry. Emphasizes differences between design research approaches and design inquiry approaches.",
+      "link": "View course details in MyPlan: HCDE 555"
     }
   ]
 }
 
-  
+
