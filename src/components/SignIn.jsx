@@ -25,7 +25,6 @@ export function SignIn(props) {
                 if (userData.password === password) {
                     login(username);
                     navigate('/myresumes');
-                    localStorage.setItem('loggedInUser', username);
                 } else {
                     setError('Incorrect password. Please try again.');
                 }
@@ -43,6 +42,7 @@ export function SignIn(props) {
     const auth = getAuth();
 
     const firebaseUIConfig = {
+        
         signInOptions: [ GoogleAuthProvider.PROVIDER_ID,
           { provider: EmailAuthProvider.PROVIDER_ID, requiredDisplayName: true },
         ],
@@ -50,6 +50,10 @@ export function SignIn(props) {
         credentialHelper: 'none', //don't show the email account chooser
         callbacks: { //"lifecycle" callbacks
           signInSuccessWithAuthResult: () => {
+            setUsername(GoogleAuthProvider.PROVIDER_ID || EmailAuthProvider.PROVIDER_ID);
+            console.log(GoogleAuthProvider.PROVIDER_ID);
+            login(username);
+            navigate('/myresumes');
             return false; //don't redirect after authentication
           }
         }
@@ -58,8 +62,8 @@ export function SignIn(props) {
     return (
         <div>
 
-        <div className="container">
-                <form onSubmit={handleSubmit}>
+         <div className="container">
+                { /*<form onSubmit={handleSubmit}>
                 <div className="user-input column">
                 <p className="sign-in-header">Sign in</p>
                 {<p className="text-danger">{error}</p>}
@@ -81,14 +85,14 @@ export function SignIn(props) {
                 <button type="submit" className="button">
                     Sign In
                 </button>
-                <p className="new-acc-suggestion">Don't have an account? Register now!</p>
-            <Link className="button" to="/register">Register</Link>
-            </form>
-        </div>
+                <p className="new-acc-suggestion">Don't have an account? Register now!</p> 
+            <Link className="button" to="/register">Register</Link> 
+            </form>*/ }
 
-        <div>
+            
             <StyledFirebaseAuth firebaseAuth={auth} uiConfig={firebaseUIConfig} />
-        </div>
+
+        </div> 
         </div>
     );
 }

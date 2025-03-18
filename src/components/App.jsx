@@ -9,6 +9,7 @@ import { MyResumes } from './MyResumes.jsx';
 import { ResumeEditor } from './ResumeEditor.jsx';
 import { Register } from './Register.jsx';
 import { SharedResumes } from './SharedResumes.jsx'; 
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../index.css'
@@ -18,6 +19,8 @@ function App(props) {
 
     // GET USERS AND UPDATE USERS
     const [users, setUsers] = useState([]);
+    
+    
     useEffect(() => {
       const db = getDatabase();
       const usersRef = ref(db, 'userData');
@@ -31,6 +34,25 @@ function App(props) {
       });
       return () => unsubscribe();
     }, []);
+
+    useEffect(() => {
+
+      const auth = getAuth();
+      onAuthStateChanged(auth, (firebaseUser) => {
+        console.log("login status changed");
+        console.log(firebaseUser);
+
+        if(firebaseUser){ // if defined
+          firebaseUser.userId = firebaseUser.uid; //rename keys
+          firebaseUser.userName = firebaseUser.displayName;
+          
+          setUsers(firebaseUser);
+        } else {
+          setUsers([]);
+        }
+      });
+
+    }, []);
     
     // UPDATE USERNAME
     const [username, setUsername] = useState(null);
@@ -41,6 +63,7 @@ function App(props) {
 
     const logout = () => {
       setUsername(null);
+      signOut(getAuth());
     }
 
     // INITIALIZE RESUMES
@@ -70,7 +93,7 @@ function App(props) {
         <main>
           <Routes>
             <Route path="/" element={<HomePage username={username} />} />
-            <Route path="/login" element={<SignIn login={login} />} />
+            <Route path="/login" element={<SignIn login={login} users={users} />} />
             <Route path="/register" element={<Register login={login} />} />
             <Route path="/templates" element={<ExamplesPage />} />
             <Route path="/shared-resumes" element={<SharedResumes />} />
