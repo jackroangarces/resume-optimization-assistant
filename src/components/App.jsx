@@ -7,7 +7,7 @@ import { HomePage } from './StaticPages.jsx';
 import { SignIn } from './SignIn.jsx';  
 import { MyResumes } from './MyResumes.jsx';
 import { ResumeEditor } from './ResumeEditor.jsx';
-import { Register } from './Register.jsx';
+// import { Register } from './Register.jsx';
 import { SharedResumes } from './SharedResumes.jsx'; 
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 
@@ -45,7 +45,8 @@ function App(props) {
         if(firebaseUser){ // if defined
           firebaseUser.userId = firebaseUser.uid; //rename keys
           firebaseUser.userName = firebaseUser.displayName;
-          
+          login(firebaseUser.displayName);
+          loginId(firebaseUser.uid);
           setUsers(firebaseUser);
         } else {
           setUsers([]);
@@ -55,10 +56,15 @@ function App(props) {
     }, []);
     
     // UPDATE USERNAME
+    const [user, setUser] = useState(null);
     const [username, setUsername] = useState(null);
     
     const login = (username) => {
       setUsername(username);
+    }
+
+    const loginId = (user) => {
+      setUser(user);
     }
 
     const logout = () => {
@@ -69,9 +75,9 @@ function App(props) {
     // INITIALIZE RESUMES
     const [resumes, setResumes] = useState([]);
     useEffect(() => {
-      if (username) {
+      if (user) {
         const db = getDatabase();
-        const resumesRef = ref(db, `userData/${username}/resumes`);
+        const resumesRef = ref(db, `userData/${user}/resumes`);
         const unsubscribeResumes = onValue(resumesRef, (snapshot) => {
           const resumesData = snapshot.val();
           if (resumesData) {
@@ -89,19 +95,18 @@ function App(props) {
     // ROUTING
     return (
       <div>
-        <Navbar username={username} logout={logout}/>
+        <Navbar username={username} users={users} logout={logout}/>
         <main>
           <Routes>
             <Route path="/" element={<HomePage username={username} />} />
             <Route path="/login" element={<SignIn login={login} users={users} />} />
-            <Route path="/register" element={<Register login={login} />} />
             <Route path="/templates" element={<ExamplesPage />} />
             <Route path="/shared-resumes" element={<SharedResumes />} />
             <Route path="*" element={<Navigate to="/"/>} /> {/* Catch-all for bad URLs */}
             
             <Route element={<ProtectedPage username={username} />} >
-            <Route path="/myresumes/*" element={<MyResumes resumes={resumes} setResumes={setResumes} username={username}/>} />
-            <Route path="/resume/edit-resume/:id" element={<ResumeEditor resumes={resumes} setResumes={setResumes} username={username} />} />
+            <Route path="/myresumes/*" element={<MyResumes resumes={resumes} setResumes={setResumes} username={user}/>} />
+            <Route path="/resume/edit-resume/:id" element={<ResumeEditor resumes={resumes} setResumes={setResumes} username={user} />} />
             </Route>
           </Routes>
         </main>

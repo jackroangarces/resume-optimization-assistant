@@ -136,7 +136,8 @@ export function PrivacyPopUp(props) {
                     <p className='p-4'>
                         The Resume Optimization System (ROS) prioritizes your privacy. Here's
                         how we use your information and data:
-                        <ol>
+                    </p>
+                        <ol className=''>
                             <li>
                                 Use of AI for Recommendations
                                 <ul>
@@ -178,7 +179,6 @@ export function PrivacyPopUp(props) {
                         </ol>
                         By using our platform, you acknowledge and agree to these terms. Thank you for
                         utilizing the Resume Optimization System!
-                    </p>
                 </div>
             </div>
         </>
