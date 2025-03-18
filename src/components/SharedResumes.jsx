@@ -3,6 +3,7 @@ import { getDatabase, ref, get } from "firebase/database";
 
 export function SharedResumes() {
     const [resumes, setResumes] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
         const fetchResumes = async () => {
@@ -15,8 +16,9 @@ export function SharedResumes() {
                 let resumeArray = Object.keys(resumesObject).map((key) => ({
                     id: key,
                     title: key.split("username:")[0].replace("title:", "").trim(),
-                    username: resumesObject[key].username || "Unknown", // Extract username
-                    timestamp: resumesObject[key].timestamp || "No date", // Extract timestamp
+                    username: resumesObject[key].username || "Unknown",
+                    timestamp: resumesObject[key].timestamp || "No date",
+                    jobObtained: resumesObject[key].jobObtained || "Unknown Job",
                     pdfBase64: resumesObject[key].pdfBase64 || null,
                 }));
 
@@ -29,7 +31,7 @@ export function SharedResumes() {
         fetchResumes();
     }, []);
 
-    // **Function to Open PDF in a New Tab**
+    // Function to Open PDF in a New Tab
     const openPdf = (base64Data) => {
         if (!base64Data) return;
         const byteCharacters = atob(base64Data.split(",")[1]);
@@ -40,6 +42,11 @@ export function SharedResumes() {
         window.open(blobUrl, "_blank");
     };
 
+    // Filter resumes based on search input
+    const filteredResumes = resumes.filter((resume) =>
+        resume.jobObtained.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
         <>
             <div className="examples-page">
@@ -47,11 +54,21 @@ export function SharedResumes() {
                 <p className="page-subtitle">
                     Browse resumes from professionals who have succeeded in the field.
                 </p>
+
+                {/* Search Input */}
+                <input
+                    type="text"
+                    placeholder="Search resumes by job obtained (e.g., SWE Intern at Apple)"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="search-input"
+                />
+
                 <div className="templates-container">
-                    {resumes.length === 0 ? (
-                        <p>No resumes available.</p>
+                    {filteredResumes.length === 0 ? (
+                        <p>No resumes found matching your search.</p>
                     ) : (
-                        resumes.map((resume) => (
+                        filteredResumes.map((resume) => (
                             <div key={resume.id} className="template-card w-50">
                                 <button
                                     onClick={() => openPdf(resume.pdfBase64)}
@@ -60,6 +77,7 @@ export function SharedResumes() {
                                     <h2>{resume.title}</h2>
                                     <p><strong>Shared by:</strong> {resume.username}</p>
                                     <p><strong>Uploaded on:</strong> {resume.timestamp}</p>
+                                    <p><strong>Job Obtained:</strong> {resume.jobObtained}</p>
                                 </button>
                             </div>
                         ))
