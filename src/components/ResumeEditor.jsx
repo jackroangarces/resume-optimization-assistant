@@ -347,13 +347,13 @@ export function ResumeEditor({ resumes, setResumes, username }) {
         setMessages((prevMessages) => [...prevMessages, newMessage]);
     }
     
-    const genAI = new GoogleGenerativeAI("AIzaSyALULJ4WeAf7y-p5Xc_rai0Z5jDGLtndc4");
+    const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
     const sendPromptToGemini = async (prompt) => {
         if (!prompt) return;
 
         try {
             setLoading(true);
-            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+            const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
             
             const result = await model.generateContent(prompt);
             
